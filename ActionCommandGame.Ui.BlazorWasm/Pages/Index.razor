@@ -1,9 +1,30 @@
 ﻿@page "/"
+@using ActionCommandGame.Services.Model.Filters
+@inject PlayerApi _playerApi
 
-<PageTitle>Index</PageTitle>
+@foreach (var player in Players.Data)
+{
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <img src="Images/JohnDoe.png" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@player.Name</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, perferendis.</p>
+                    <a href="#" class="btn btn-secondary">Select player</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-<h1>Hello, world!</h1>
+@code
+{
+    public ServiceResult<IList<PlayerResult>> Players { get; set; } = new ServiceResult<IList<PlayerResult>>();
+    public PlayerFilter Filter { get; set; } = new PlayerFilter();
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+    protected async override Task OnInitializedAsync()
+    {
+        Players = await _playerApi.Find(Filter);
+    }
+}

@@ -2,7 +2,18 @@ using ActionCommandGame.Api.Installers.Extensions;
 using ActionCommandGame.Repository;
 using Microsoft.EntityFrameworkCore;
 
+var  MyAllowAllOrigins = "_myAllowAllmOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowAllOrigins,
+        builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+});
 
 // Install services to the container using IInstaller classes.
 builder.Services.InstallServicesInAssembly(builder.Configuration);
@@ -25,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowAllOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
