@@ -1,0 +1,15 @@
+﻿<div class="card">
+    <img src="Images/JohnDoe.png" class="card-img-top" alt="">
+    <div class="card-body text-center">
+        <h5 class="card-title">@Player.Name</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, perferendis.</p>
+        <a href="#" class="btn btn-secondary">Select player</a>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public PlayerResult Player { get; set; }
+
+}

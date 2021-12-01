@@ -2,25 +2,30 @@
 @using ActionCommandGame.Services.Model.Filters
 @inject PlayerApi _playerApi
 
-@foreach (var player in Players.Data)
-{
+
+<div class="d-flex bg-dark min-vh-100 justify-content-center align-items-center">
     <div class="container">
         <div class="row">
-            <div class="card">
-                <img src="Images/JohnDoe.png" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title text-center">@player.Name</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, perferendis.</p>
-                    <a href="#" class="btn btn-secondary">Select player</a>
-                </div>
-            </div>
+            @if (Players is null)
+            {
+                <p>loading</p>
+            }
+            else
+            {
+                @foreach (var player in Players.Data)
+                {
+                    <div class="col-md-6 col-lg-3">
+                        <PlayerCardComponent Player="player"></PlayerCardComponent>
+                    </div>
+                }
+            }
         </div>
     </div>
-}
+</div>
 
 @code
 {
-    public ServiceResult<IList<PlayerResult>> Players { get; set; } = new ServiceResult<IList<PlayerResult>>();
+    public ServiceResult<IList<PlayerResult>>? Players { get; set; }
     public PlayerFilter Filter { get; set; } = new PlayerFilter();
 
     protected async override Task OnInitializedAsync()

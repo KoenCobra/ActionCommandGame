@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionCommandGame.Extension
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionCommandGame.Api.Authentication.Model", "ActionCommandGame.Api.Authentication.Model\ActionCommandGame.Api.Authentication.Model.csproj", "{84A83AB7-43DB-4CCE-B30D-E3A26B9F697E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionCommandGame.Ui.BlazorWasm", "ActionCommandGame.Ui.BlazorWasm\ActionCommandGame.Ui.BlazorWasm.csproj", "{D3711E83-E922-43A5-9C2F-7BE7DE7377D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionCommandGame.Ui.BlazorWasm", "ActionCommandGame.Ui.BlazorWasm\ActionCommandGame.Ui.BlazorWasm.csproj", "{D3711E83-E922-43A5-9C2F-7BE7DE7377D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
