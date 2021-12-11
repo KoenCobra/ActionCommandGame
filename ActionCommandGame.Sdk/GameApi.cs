@@ -55,7 +55,6 @@ namespace ActionCommandGame.Sdk
             {
                 return new ServiceResult<BuyResult>();
             }
-
             return result;
         }
     }

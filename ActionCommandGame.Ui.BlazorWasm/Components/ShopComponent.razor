@@ -1,0 +1,16 @@
+﻿@inject IItemApi _itemApi
+
+@foreach (var item in Items.Data)
+{
+    <div>@item.Name</div>
+}
+
+@code {
+    private ServiceResult<IList<ItemResult>> Items { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Items = await _itemApi.FindAsync();
+    }
+
+}

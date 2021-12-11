@@ -14,20 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 var settings = new AppSettings();
 builder.Configuration.GetSection(nameof(AppSettings)).Bind(settings);
 
-builder.Services.AddHttpClient("ActionCommandGame", options =>
-{
-    options.BaseAddress = new Uri(settings.ApiBaseUrl);
-});
-
-builder.Services.AddTransient<GameApi>();
-builder.Services.AddTransient<IdentityApi>();
-builder.Services.AddTransient<ItemApi>();
-builder.Services.AddTransient<PlayerApi>();
-builder.Services.AddTransient<PlayerItemApi>();
-
 builder.Services.AddApi(settings.ApiBaseUrl);
-
-
 builder.Services.AddSingleton<ITokenStore, TokenStore>();
 builder.Services.AddSingleton<AppSettings>();
 
