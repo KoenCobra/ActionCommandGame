@@ -1,57 +1,34 @@
-﻿@page "/game"
+﻿@page "/game/{Id:int}"
 @inject IGameApi _gameApi
 @inject IPlayerApi _playerApi
-<div class="h-100 w-100 text-center">
-    <button @onclick="Mine" class="btn btn-success">mine</button>
-    <p>Exp: @Player.Experience</p>
-    <p>Money: @Player.Money</p>
-    <p>level: @Player.GetLevel()</p>
-    <p>Experience for next level:@Player.GetExperienceForNextLevel()</p>
-    <p>Remaining: experience for next level:@Player.GetRemainingExperienceUntilNextLevel()</p>
-    @if (positiveGameEvent != null)
-    {
-        <p>@positiveGameEvent.Name</p>
-    }
-    @if (!string.IsNullOrWhiteSpace(positiveGameEvent?.Description))
-    {
-    <p>@positiveGameEvent.Description</p>
-    }
-    @if (positiveGameEvent?.Money > 0)
-    {
-    <p>@positiveGameEvent.Money has been added to your account</p>
-    }
-    
-    @if (_negativeGameEventResult != null)
-    {
-      @_negativeGameEventResult.Name
-    @if (!string.IsNullOrWhiteSpace(@_negativeGameEventResult.Description))
-    {
-      @_negativeGameEventResult.Description
-    }
-    }
-    
-</div>
-<br/>
 
-<div>
-    @Player.NumberOfInventoryItems
-</div>
+<a href="/shop" class="btn btn-dark">shop</a>
+<button @onclick="Rep" class="btn btn-dark">Lift</button>
 
-<a class="btn btn-dark" href="/shop">Shop</a>
+<p>@Player.Name</p>
+<p>@Player.Experience</p>
+<p>@Player.Money</p>
+<p>@Player.GetExperienceForNextLevel()</p>
+<p>@Player.GetLevel()</p>
+<p>@Player.GetRemainingExperienceUntilNextLevel()</p>
+
+
 @code {
+    [Parameter]
+    public int? Id { get; set; }
     private PlayerResult Player = new PlayerResult();
     private PositiveGameEventResult? positiveGameEvent;
     private NegativeGameEventResult? _negativeGameEventResult;
 
     protected override async Task OnInitializedAsync()
     {
-        var playerResult = await _playerApi.GetAsync(1);
-        Player = playerResult.Data;
+        var result = await _playerApi.GetAsync(Id.Value);
+        Player = result.Data;
     }
 
-    private async Task Mine()
+    private async Task Rep()
     {
-        var result = await _gameApi.PerformActionAsync(1);
+        var result = await _gameApi.PerformActionAsync(Id.Value);
 
         Player = result.Data.Player;
         positiveGameEvent = result.Data.PositiveGameEvent;

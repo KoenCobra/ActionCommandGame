@@ -63,10 +63,10 @@ namespace ActionCommandGame.Repository
                 Price = 10000000
             });
 
-            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Money = 100 });
-            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Money = 100000, Experience = 2000 });
-            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Money = 500, Experience = 5 });
-            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Money = 12345, Experience = 200 });
+            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Money = 100, ImageName = "nerd.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Money = 100000, Experience = 2000, ImageName = "Ronnie.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Money = 500, Experience = 5, ImageName = "kay.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Money = 12345, Experience = 200, ImageName = "buffdude.jpg"});
 
             SaveChanges();
         }
@@ -150,7 +150,7 @@ namespace ActionCommandGame.Repository
 
         private void GenerateAttackItems()
         {
-            Items.Add(new Item { Name = "Basic Pickaxe", Attack = 50, Price = 50 });
+            Items.Add(new Item { Name = "Basic Pickaxe", Attack = 50, Price = 50, ImageUrl = "https://www.tights.no/wp-content/uploads/sites/7/2021/02/on_drc-768x960.jpg"});
             Items.Add(new Item { Name = "Enhanced Pick", Attack = 300, Price = 300 });
             Items.Add(new Item { Name = "Turbo Pick", Attack = 500, Price = 500 });
             Items.Add(new Item { Name = "Mithril Warpick", Attack = 5000, Price = 15000 });

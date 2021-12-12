@@ -19,6 +19,8 @@ namespace ActionCommandGame.Model
 
         public string UserId { get; set; }
 
+        public string ImageName { get; set; }
+
         public int? CurrentFuelPlayerItemId { get; set; }
         public PlayerItem CurrentFuelPlayerItem { get; set; }
         public int? CurrentAttackPlayerItemId { get; set; }

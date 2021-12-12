@@ -10,6 +10,7 @@ namespace ActionCommandGame.Services.Model.Results
         public int Money { get; set; }
         public int Experience { get; set; }
         public DateTime? LastActionExecutedDateTime { get; set; }
+        public string ImageName { get; set; }
         public string UserId { get; set; }
         public int? CurrentFuelId { get; set; }
         public string CurrentFuelName { get; set; }

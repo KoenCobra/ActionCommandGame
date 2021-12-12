@@ -1,15 +1,15 @@
-﻿<div class="card">
-    <img src="Images/JohnDoe.png" class="card-img-top" alt="">
-    <div class="card-body text-center">
+﻿<div class="card" style="width: 18rem;">
+    <img src="Images/Ronnie.jpg" class="card-img-top" alt="player image">
+    @*<img src=@($"Images/{Player.ImageName}") class="card-img-top" alt="player image">*@
+    <div class="card-body">
         <h5 class="card-title">@Player.Name</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, perferendis.</p>
-        <a href="#" class="btn btn-secondary">Select player</a>
+        <p class="card-text">Money: @Player.Money</p>
+        <p class="card-text">Experience: @Player.Experience</p>
+        <a href="@($"game/{Player.Id}")" class="btn btn-primary">Play</a>
     </div>
 </div>
 
 @code {
-
     [Parameter]
     public PlayerResult Player { get; set; }
-
 }

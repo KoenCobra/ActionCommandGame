@@ -74,8 +74,8 @@ a, .btn-link {
 
 .wrapper {
     max-width: 350px;
-    min-height: 500px;
-    padding: 40px 30px 10px 30px;
+    min-height: 450px;
+    padding: 40px 30px 30px 30px;
     background-color: #ecf0f3;
     border-radius: 15px;
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
@@ -100,14 +100,14 @@ a, .btn-link {
 
 .wrapper .form-field {
     padding-left: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     border-radius: 20px;
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff
 }
 
-.wrapper .form-field .fas {
-    color: #555
-}
+    .wrapper .form-field .fas {
+        color: #555
+    }
 
 .wrapper .login-btn {
     box-shadow: none;
@@ -127,8 +127,13 @@ a, .btn-link {
 .wrapper a {
     text-decoration: none;
 }
+
 .signin-link {
     text-decoration: none;
     font-size: 1.4rem;
     color: orange;
 }
+
+
+/*===========player card==============*/
+
