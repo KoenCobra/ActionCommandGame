@@ -1,4 +1,5 @@
-﻿<div class="card" style="width: 18rem;">
+﻿@using ActionCommandGame.Ui.BlazorWasm.Stores
+<div class="card" style="width: 18rem;">
     <img src="Images/Ronnie.jpg" class="card-img-top" alt="player image">
     @*<img src=@($"Images/{Player.ImageName}") class="card-img-top" alt="player image">*@
     <div class="card-body">
@@ -12,4 +13,13 @@
 @code {
     [Parameter]
     public PlayerResult Player { get; set; }
+
+    private MemoryStore _memoryStore = new MemoryStore();
+
+    protected override Task OnInitializedAsync()
+    {
+        _memoryStore.CurrentPlayerId = Player.Id;
+        return base.OnInitializedAsync();
+    }
+
 }

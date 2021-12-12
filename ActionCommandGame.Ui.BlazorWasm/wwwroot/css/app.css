@@ -63,6 +63,10 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+.icon-background {
+    color: orange;
+}
+
 /*====================login===================*/
 .login-background {
     background-image: url('https://s1.1zoom.me/b6451/922/16_KG_Dumbbells_Black_and_white_Gym_538198_2560x1440.jpg');

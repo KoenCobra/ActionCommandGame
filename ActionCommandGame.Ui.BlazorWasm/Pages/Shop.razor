@@ -1,5 +1,7 @@
-﻿@page "/shop"
+﻿@page "/shop/{Id:int}"
 @inject IItemApi _itemApi
+@inject IGameApi _gameApi
+@inject IPlayerApi _playerApi
 
 <div class="row">
     <div class="col-lg-7 mx-auto">
@@ -12,7 +14,7 @@
                             <h5 class="mb-2">@item.Name</h5>
                             <p class="text-muted mb-0 small">@item.Description</p>
                             <h6 class="my-2">@item.Price</h6>
-                            <button class="btn btn-sm btn-outline-dark mt-3">BUY</button>
+                            <button @onclick="() => Buy(item.Id)" class="btn btn-sm btn-outline-dark mt-3">BUY</button>
                         </div>
                         <img src="@item.ImageUrl" height="200" width="200">
                     </div>
@@ -24,12 +26,22 @@
 
 @code
 {
+    [Parameter]
+    public int? Id { get; set; }
     private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
+    private int playerId;
 
     protected override async Task OnInitializedAsync()
     {
         var items = await _itemApi.FindAsync();
-
         Result = items.Data;
+        var player = await _playerApi.GetAsync(Id.Value);
+        playerId = player.Data.Id;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Buy(int itemId)
+    {
+        await _gameApi.BuyAsync(playerId, itemId);
     }
 }
