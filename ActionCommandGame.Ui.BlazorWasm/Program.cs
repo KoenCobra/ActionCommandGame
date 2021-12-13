@@ -4,6 +4,7 @@ using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Ui.BlazorWasm;
 using ActionCommandGame.Ui.BlazorWasm.Settings;
 using ActionCommandGame.Ui.BlazorWasm.Stores;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -17,6 +18,8 @@ builder.Configuration.GetSection(nameof(AppSettings)).Bind(settings);
 builder.Services.AddApi(settings.ApiBaseUrl);
 builder.Services.AddSingleton<ITokenStore, TokenStore>();
 builder.Services.AddSingleton<AppSettings>();
+
+builder.Services.AddBlazoredLocalStorage();
 
 
 await builder.Build().RunAsync();

@@ -1,0 +1,72 @@
+﻿<div class="card shadow">
+    <h2 class="card-header bg-dark text-white text-center">Stats</h2>
+    <div class="card-body">
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-child text-white" data-fa-transform="shrink-5"></i>
+            </div>
+            <div class="flex-grow-1">
+                @Player.Name
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-fire-alt text-white" data-fa-transform="shrink-8"></i>
+            </div>
+            <ul class="flex-grow-1 list-unstyled">
+                <li>Current fuel name: @Player.CurrentFuelName</li>
+                <li>Remaining fuel : @($"{Player.RemainingFuel}/{Player.TotalFuel}")</li>
+                <li><hr></li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-weight-hanging text-white" data-fa-transform="shrink-8"></i>
+            </div>
+            <ul class="flex-grow-1 list-unstyled">
+                <li>Current Attack name: @Player.CurrentAttackName</li>
+                <li>Remaining Attack : @($"{Player.RemainingAttack}/{Player.TotalAttack}")</li>
+                <li><hr></li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-shield-alt text-white" data-fa-transform="shrink-8"></i>
+            </div>
+            <ul class="flex-grow-1 list-unstyled">
+                <li>Current Defense name: @Player.CurrentDefenseName</li>
+                <li>Remaining Defense : @($"{Player.RemainingDefense}/{Player.TotalDefense}")</li>
+                <li><hr></li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-wallet text-white" data-fa-transform="shrink-5"></i>
+            </div>
+            <div class="flex-grow-1">
+                Money: @Player.Money
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex align-items-start">
+            <div class="fa-layers fa-fw fa-2x me-3">
+                <i class="fas fa-circle icon-background"></i>
+                <i class="fas fa-level-up-alt text-white" data-fa-transform="shrink-5"></i>
+            </div>
+            <div class="flex-grow-1">
+                @($"Level : {Player.GetLevel()} ({Player.Experience}/{Player.GetExperienceForNextLevel()})");
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public PlayerResult Player { get; set; }
+}

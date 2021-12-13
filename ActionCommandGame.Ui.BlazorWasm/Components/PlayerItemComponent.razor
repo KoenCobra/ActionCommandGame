@@ -1,0 +1,28 @@
+﻿<li class="list-group-item">
+    @PlayerItem.Name
+    @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
+    {
+    @PlayerItem.Description;
+    }
+    @if (@PlayerItem.Fuel > 0)
+    {
+    <span>Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
+    }
+    @if (@PlayerItem.Attack > 0)
+    {
+        <span>Attack: @PlayerItem.RemainingAttack/@PlayerItem.Attack</span>;
+    }
+    @if (@PlayerItem.Defense > 0)
+    {
+        <span>Defence: @PlayerItem.RemainingDefense/@PlayerItem.Defense</span>;
+    }
+    @if (@PlayerItem.ActionCooldownSeconds > 0)
+    {
+        <span>Cooldown seconds: @PlayerItem.ActionCooldownSeconds</span>;
+    }
+</li>
+
+@code {
+    [Parameter]
+    public PlayerItemResult PlayerItem { get; set; }
+}

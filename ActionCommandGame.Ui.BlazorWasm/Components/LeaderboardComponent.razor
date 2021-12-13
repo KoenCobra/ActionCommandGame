@@ -1,0 +1,17 @@
+﻿<div class="card text-center shadow">
+    <div class="card-header h2 bg-dark text-white">
+        LeaderBoard
+    </div>
+    <div class="card-body">
+        @foreach (var player in @OrderedPlayers)
+        {
+            <p>@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public IList<PlayerResult> OrderedPlayers { get; set; }
+}

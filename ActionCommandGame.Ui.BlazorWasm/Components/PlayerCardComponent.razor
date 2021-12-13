@@ -1,12 +1,11 @@
-﻿@using ActionCommandGame.Ui.BlazorWasm.Stores
-<div class="card" style="width: 18rem;">
+﻿<div class="card player-card" style="width: 16rem;">
     <img src="Images/Ronnie.jpg" class="card-img-top" alt="player image">
     @*<img src=@($"Images/{Player.ImageName}") class="card-img-top" alt="player image">*@
     <div class="card-body">
         <h5 class="card-title">@Player.Name</h5>
         <p class="card-text">Money: @Player.Money</p>
         <p class="card-text">Experience: @Player.Experience</p>
-        <a href="@($"game/{Player.Id}")" class="btn btn-primary">Play</a>
+        <a href="@($"game/{Player.Id}")" class="btn btn-dark">Play</a>
     </div>
 </div>
 
@@ -14,12 +13,8 @@
     [Parameter]
     public PlayerResult Player { get; set; }
 
-    private MemoryStore _memoryStore = new MemoryStore();
-
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        _memoryStore.CurrentPlayerId = Player.Id;
-        return base.OnInitializedAsync();
+        await base.OnInitializedAsync();
     }
-
 }

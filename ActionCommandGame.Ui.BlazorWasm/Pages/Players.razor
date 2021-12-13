@@ -1,12 +1,9 @@
 ﻿@page "/players"
-@using ActionCommandGame.Services.Model.Filters
-@using ActionCommandGame.Ui.BlazorWasm.Stores
 @inject IPlayerApi _playerApi
 
-
-<div class="d-flex bg-dark min-vh-100 justify-content-center align-items-center">
+<div class="d-flex bg-dark min-vh-100 players-background justify-content-center align-items-center">
     <div class="container">
-        <h1 class="text-center text-white mb-5 display-1">Select Your Lifter</h1>
+        <h1 class="display-1 player-select-title mb-5 display-1">Select Your Lifter</h1>
         <div class="row">
             @if (PlayersResult is null)
             {
@@ -34,7 +31,7 @@
     {
         var result = await _playerApi.Find(Filter);
         PlayersResult = result.Data;
-        await base.OnInitializedAsync();
 
+        await base.OnInitializedAsync();
     }
 }
