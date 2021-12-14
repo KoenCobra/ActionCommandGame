@@ -8,33 +8,52 @@
 <div class="vh-100 game-background">
     <div class="container">
         <div class="row">
-            <div class="col-4">
-                <div class="card shadow shop-card">
-                    <div class="card-header bg-dark text-center text-white">
-                        SHOP
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            @foreach (var item in Result)
-                            {
-                                <div class="d-flex flex-row">
-                                    <div class="p-3">
-                                        <img src="https://media.s-bol.com/rEY3V5k3nEyp/76wRVvy/516x840.jpg" height="80" width="80" class="img-fluid rounded-start" alt="Item Image">
-                                    </div>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="card-body">
-                                            <h5 class="card-title">@item.Name</h5>
-                                            <p class="card-text">@item.Description</p>
-                                            <h6 class="my-2">Price: @item.Price</h6>
-                                            <button @onclick="() => Buy(item.Id)" class="btn btn-outline-dark mt-3">BUY</button>
+            <button @onclick="Open">Open Shop</button>
+
+            <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+                <div class="modal-dialog" role="document" style="z-index: 1055">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button @onclick="Close" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    @foreach (var item in Result)
+                                    {
+                                        <div class="d-flex flex-row">
+                                            <div class="p-3">
+                                                <img src="https://media.s-bol.com/rEY3V5k3nEyp/76wRVvy/516x840.jpg" height="80" width="80" class="img-fluid rounded-start" alt="Item Image">
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">@item.Name</h5>
+                                                    <p class="card-text">@item.Description</p>
+                                                    <h6 class="my-2">Price: @item.Price</h6>
+                                                    <button @onclick="() => Buy(item.Id)" class="btn btn-outline-dark mt-3">BUY</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            }
-                        </li>
-                    </ul>
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="Close">Close</button>
+                        </div>
+                    </div>
+
                 </div>
+                @if (ShowBackdrop)
+                {
+                    <div class="modal-backdrop fade show"  data-dismiss="modal" @onclick="Close"></div>
+                }
             </div>
+
             <div class="col-3">
                 <button @onclick="Lift" class="btn btn-dark">Lift</button>
                 <StatsComponent Player="Player" />
@@ -80,20 +99,11 @@
         var result = await _playerApi.GetAsync(Id.Value);
         Player = result.Data;
 
-        var playersResult = await _playerApi.Find(new PlayerFilter());
-        _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
-
         var items = await _itemApi.FindAsync();
         Result = items.Data;
 
-        Filter = new PlayerItemFilter()
-        {
-            PlayerId = Player.Id
-        };
-
-        var playerItemResult = await _playerItemApi.FindAsync(Filter);
-        PlayerItems = playerItemResult.Data;
-
+        await RefreshLeaderBoard();
+        await RefreshPlayeritems();
         await base.OnInitializedAsync();
     }
 
@@ -105,18 +115,8 @@
         positiveGameEvent = result.Data.PositiveGameEvent;
         _negativeGameEventResult = result.Data.NegativeGameEvent;
 
-        Filter = new PlayerItemFilter()
-        {
-            PlayerId = Player.Id
-        };
-
-        var playerItemResult = await _playerItemApi.FindAsync(Filter);
-        PlayerItems = playerItemResult.Data;
-
-
-        var playersResult = await _playerApi.Find(new PlayerFilter());
-        _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
-
+        await RefreshPlayeritems();
+        await RefreshLeaderBoard();
         StateHasChanged();
     }
 
@@ -125,14 +125,44 @@
         var result = await _gameApi.BuyAsync(Player.Id, itemId);
         Player = result.Data.Player;
 
+        await RefreshPlayeritems();
+        StateHasChanged();
+    }
+
+    private async Task RefreshPlayeritems()
+    {
         Filter = new PlayerItemFilter()
-        {
-            PlayerId = Player.Id
-        };
+            {
+                PlayerId = Player.Id
+            };
 
         var playerItemResult = await _playerItemApi.FindAsync(Filter);
         PlayerItems = playerItemResult.Data;
+    }
 
+    private async Task RefreshLeaderBoard()
+    {
+        var playersResult = await _playerApi.Find(new PlayerFilter());
+        _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
+    }
+
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
         StateHasChanged();
     }
 
