@@ -1,6 +1,6 @@
 ﻿<div class="card player-card" style="width: 16rem;">
-    <img src="Images/Ronnie.jpg" class="card-img-top" alt="player image">
-    @*<img src=@($"Images/{Player.ImageName}") class="card-img-top" alt="player image">*@
+    @*<img src="Images/Ronnie.jpg" class="card-img-top" alt="player image">*@
+    <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
     <div class="card-body">
         <h5 class="card-title">@Player.Name</h5>
         <p class="card-text">Money: @Player.Money</p>

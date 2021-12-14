@@ -1,7 +1,7 @@
 ﻿@page "/players"
 @inject IPlayerApi _playerApi
 
-<div class="d-flex bg-dark min-vh-100 players-background justify-content-center align-items-center">
+<div class="d-flex min-vh-100 w-100 players-background justify-content-center align-items-center">
     <div class="container">
         <h1 class="display-1 player-select-title mb-5 display-1">Select Your Lifter</h1>
         <div class="row">
@@ -13,7 +13,7 @@
             {
                 @foreach (var player in PlayersResult)
                 {
-                    <div class="col-3">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3">
                         <PlayerCardComponent Player="player"></PlayerCardComponent>
                     </div>
                 }

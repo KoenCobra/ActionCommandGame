@@ -1,80 +1,94 @@
 ﻿@page "/game/{Id:int}"
+@inject IJSRuntime _jsRuntime
 @inject IGameApi _gameApi
 @inject IPlayerApi _playerApi
 @inject IItemApi _itemApi
 @inject IPlayerItemApi _playerItemApi;
 
-
 <div class="vh-100 game-background">
     <div class="container">
         <div class="row">
-            <button @onclick="Open">Open Shop</button>
+            <div class="col-5 mt-5">
+                <button @onclick="Lift" class="btn btn-dark">Lift</button>
+            </div>
 
-            <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
-                <div class="modal-dialog" role="document" style="z-index: 1055">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button @onclick="Close" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    @foreach (var item in Result)
+            <div class="col-6 d-flex mt-5 flex-row">
+                <div class="col-6 me-3">
+                    <StatsComponent Player="Player" />
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
+                    </div>
+                    <div>
+                        <div class="card text-center shadow">
+                            <div @onclick="Open" class="card-header h2 bg-dark text-white">
+                                <a class="fas fa-cart-arrow-down icon-background shop-icon"></a>
+                                PlayerItems
+                            </div>
+                            @if (!PlayerItems.Any())
+                            {
+                                <div class="d-flex playerItems-card align-items-center text-center">
+                                    <p>
+                                        Click on the shopping cart to buy some cool stuff
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <ul class="list-group list-group-flush playerItems-card ">
+                                    @foreach (var playerItem in PlayerItems)
                                     {
+                                        <PlayerItemComponent PlayerItem="playerItem"></PlayerItemComponent>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display: @ModalDisplay">
+        <div class="modal-dialog" role="document" style="z-index: 1055">
+            <div class="modal-content">
+                <div class="modal-header text-center bg-dark text-white">
+                    <h5 class="modal-title ">Shop 'till you drop</h5>
+                    <button @onclick="Close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            @foreach (var item in Result)
+                            {
+                                <div class="card align-items-center flex-column flex-lg-row p-3">
+                                    <div class="card-body order-2 order-lg-1">
+                                        <h5 class="mt-0 fw-bold mb-2">@item.Name</h5>
+                                        <p class="fst-italic text-muted mb-0 small">@item.Description</p>
                                         <div class="d-flex flex-row">
-                                            <div class="p-3">
-                                                <img src="https://media.s-bol.com/rEY3V5k3nEyp/76wRVvy/516x840.jpg" height="80" width="80" class="img-fluid rounded-start" alt="Item Image">
+                                            <div>
+                                                <button @onclick="() => Buy(item.Id)" class="btn btn-outline-dark">BUY</button>
                                             </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">@item.Name</h5>
-                                                    <p class="card-text">@item.Description</p>
-                                                    <h6 class="my-2">Price: @item.Price</h6>
-                                                    <button @onclick="() => Buy(item.Id)" class="btn btn-outline-dark mt-3">BUY</button>
-                                                </div>
+                                            <div class="ms-3">
+                                                <h6 class="fw-bold my-2"> Price: <span class="primary-color">@item.Price</span></h6>
                                             </div>
                                         </div>
-                                    }
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="Close">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-                @if (ShowBackdrop)
-                {
-                    <div class="modal-backdrop fade show"  data-dismiss="modal" @onclick="Close"></div>
-                }
-            </div>
-
-            <div class="col-3">
-                <button @onclick="Lift" class="btn btn-dark">Lift</button>
-                <StatsComponent Player="Player" />
-            </div>
-            <div class="col-3">
-                <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
-            </div>
-            <div class="col-3">
-                <div class="card text-center shadow">
-                    <div class="card-header h2 bg-dark text-white">
-                        PlayerItems
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        @foreach (var playerItem in PlayerItems)
-                        {
-                            <PlayerItemComponent PlayerItem="playerItem"></PlayerItemComponent>
-                        }
+                                    </div><img src="https://media.s-bol.com/rEY3V5k3nEyp/76wRVvy/516x840.jpg" alt="Generic placeholder image" width="50" class="ms-lg-5 order-1 order-lg-2">
+                                </div>
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </div>
+        @if (ShowBackdrop)
+        {
+            <div class="modal-backdrop fade show" data-dismiss="modal" @onclick="Close"></div>
+        }
     </div>
 </div>
 
@@ -86,13 +100,16 @@
     private PlayerResult Player { get; set; } = new();
     private IList<PlayerItemResult> PlayerItems { get; set; } = new List<PlayerItemResult>();
 
-    private PositiveGameEventResult? positiveGameEvent;
+    private PositiveGameEventResult? _positiveGameEvent;
     private NegativeGameEventResult? _negativeGameEventResult;
 
     private IList<PlayerResult> _orderedPlayers = new List<PlayerResult>();
     private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
+    private PlayerItemFilter? Filter { get; set; }
 
-    private PlayerItemFilter Filter { get; set; }
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -112,7 +129,7 @@
         var result = await _gameApi.PerformActionAsync(Id.Value);
 
         Player = result.Data.Player;
-        positiveGameEvent = result.Data.PositiveGameEvent;
+        _positiveGameEvent = result.Data.PositiveGameEvent;
         _negativeGameEventResult = result.Data.NegativeGameEvent;
 
         await RefreshPlayeritems();
@@ -122,7 +139,21 @@
 
     private async Task Buy(int itemId)
     {
+
         var result = await _gameApi.BuyAsync(Player.Id, itemId);
+
+        if (result.IsSuccess)
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "success",
+                $"You bought {result.Data.Item.Name} for €{result.Data.Item.Price}, " +
+                $" You have {result.Data.Player.Money} € left");
+        }
+        else
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
+                "Blood, sweat, and tears are required to pay for this... GO LIFT!!");
+        }
+
         Player = result.Data.Player;
 
         await RefreshPlayeritems();
@@ -137,6 +168,7 @@
             };
 
         var playerItemResult = await _playerItemApi.FindAsync(Filter);
+
         PlayerItems = playerItemResult.Data;
     }
 
@@ -145,10 +177,6 @@
         var playersResult = await _playerApi.Find(new PlayerFilter());
         _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
     }
-
-    public string ModalDisplay = "none;";
-    public string ModalClass = "";
-    public bool ShowBackdrop = false;
 
     public void Open()
     {
@@ -165,5 +193,4 @@
         ShowBackdrop = false;
         StateHasChanged();
     }
-
 }

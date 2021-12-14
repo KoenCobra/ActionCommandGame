@@ -63,4 +63,11 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+.icon-background {
+    color: orange;
+}
+
+.primary-color {
+    color: orange;
+}
 

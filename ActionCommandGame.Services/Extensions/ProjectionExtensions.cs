@@ -14,6 +14,7 @@ namespace ActionCommandGame.Services.Extensions
                 Name = p.Name,
                 UserId = p.UserId,
                 Experience = p.Experience,
+                ImageName = p.ImageName,
                 Money = p.Money,
                 LastActionExecutedDateTime = p.LastActionExecutedDateTime,
                 CurrentAttackId = p.CurrentAttackPlayerItemId,

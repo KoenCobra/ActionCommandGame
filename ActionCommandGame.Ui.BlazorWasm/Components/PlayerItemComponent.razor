@@ -2,11 +2,11 @@
     @PlayerItem.Name
     @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
     {
-    @PlayerItem.Description;
+        @PlayerItem.Description;
     }
     @if (@PlayerItem.Fuel > 0)
     {
-    <span>Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
+        <span>Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
     }
     @if (@PlayerItem.Attack > 0)
     {

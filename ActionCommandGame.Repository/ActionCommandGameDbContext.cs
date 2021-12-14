@@ -65,7 +65,7 @@ namespace ActionCommandGame.Repository
 
             Players.Add(new Player { UserId = user.Id, Name = "John Doe", Money = 100, ImageName = "nerd.jpg"});
             Players.Add(new Player { UserId = user.Id, Name = "John Francks", Money = 100000, Experience = 2000, ImageName = "Ronnie.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Money = 500, Experience = 5, ImageName = "kay.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Money = 500, Experience = 5, ImageName = "nerd2.jpg"});
             Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Money = 12345, Experience = 200, ImageName = "buffdude.jpg"});
 
             SaveChanges();
