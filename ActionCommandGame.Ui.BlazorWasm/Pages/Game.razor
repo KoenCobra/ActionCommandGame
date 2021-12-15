@@ -7,10 +7,33 @@
 
 <div class="vh-100 game-background">
     <div class="container">
-        <div class="row">
+        <div style="height: 60vh" class="row">
             <div class="col-5 mt-5 text-center">
-                <div class="d-flex flex-row justify-content-center">
-                    <button @onclick="Lift" class="btn btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
+                <div class="d-flex flex-row justify-content-center mb-3">
+                    <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
+                </div>
+                <div class="primary-color h5">
+                    @if (_positiveGameEvent != null)
+                    {
+                        <p>@Player.Name, You lift and...</p>
+                        <p>@_positiveGameEvent.Name</p>
+                        @if (!string.IsNullOrWhiteSpace(_positiveGameEvent.Description))
+                        {
+                            <p>@_positiveGameEvent.Description</p>
+                        }
+                        @if (_positiveGameEvent.Money > 0)
+                        {
+                            <p>@($"{_positiveGameEvent.Money}€ has been added to your account.")</p>
+                        }
+                    }
+                    @if (_negativeGameEvent != null)
+                    {
+                        <p>@_negativeGameEvent.Name</p>
+                        @if (!string.IsNullOrWhiteSpace(_negativeGameEvent.Description))
+                        {
+                            <p>@_negativeGameEvent.Description</p>
+                        }
+                    }
                 </div>
             </div>
             <div class="col-3 mt-5 me-3">
@@ -46,8 +69,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="text-center">
+            @if (isLiftChanged)
+            {
+                <div style="height: 200px; width: 200px;" class="bg-dark"></div>
 
+            }
+            else
+            {
+                <div style="height: 200px; width: 200px;" class="bg-success"></div>
 
+            }
         </div>
     </div>
     <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display: @ModalDisplay">
@@ -97,11 +130,13 @@
     [Parameter]
     public int? Id { get; set; }
 
+    private bool isLiftChanged;
+
     private PlayerResult Player { get; set; } = new();
     private IList<PlayerItemResult> PlayerItems { get; set; } = new List<PlayerItemResult>();
 
     private PositiveGameEventResult? _positiveGameEvent;
-    private NegativeGameEventResult? _negativeGameEventResult;
+    private NegativeGameEventResult? _negativeGameEvent;
 
     private IList<PlayerResult> _orderedPlayers = new List<PlayerResult>();
     private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
@@ -126,11 +161,13 @@
 
     private async Task Lift()
     {
+        isLiftChanged = !isLiftChanged;
+
         var result = await _gameApi.PerformActionAsync(Id.Value);
 
         Player = result.Data.Player;
         _positiveGameEvent = result.Data.PositiveGameEvent;
-        _negativeGameEventResult = result.Data.NegativeGameEvent;
+        _negativeGameEvent = result.Data.NegativeGameEvent;
 
         await RefreshPlayeritems();
         await RefreshLeaderBoard();
@@ -147,14 +184,14 @@
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "success",
                 $"You bought {result.Data.Item.Name} for €{result.Data.Item.Price}, " +
                 $" You have {result.Data.Player.Money} € left");
+
+            Player = result.Data.Player;
         }
         else
         {
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
                 "Blood, sweat, and tears are required to pay for this... GO LIFT!!");
         }
-
-        Player = result.Data.Player;
 
         await RefreshPlayeritems();
         StateHasChanged();

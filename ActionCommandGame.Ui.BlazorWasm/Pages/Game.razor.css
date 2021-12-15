@@ -88,6 +88,76 @@
     }
 }
 
+/**
+ * ----------------------------------------
+ * animation vibrate-1
+ * ----------------------------------------
+ */
+@-webkit-keyframes vibrate-1 {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+@keyframes vibrate-1 {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0);
+    }
+}
+
+
 .game-background {
     background-image: url('https://wallpaperaccess.com/full/1986805.jpg');
     width: 100%;
@@ -105,6 +175,18 @@
     height: 12.68rem;
     overflow-y: scroll;
 }
+
 body .modal-dialog {
     margin-left: 10rem;
 }
+
+.lift-button {
+    -webkit-animation: vibrate-1 0.5s linear infinite both;
+    animation: vibrate-1 0.5s linear infinite both;
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: inset 0 0 50px #fff, inset 20px 0 60px black, inset -20px 0 60px orange, inset 20px 0 300px black, inset -20px 0 300px orange, 0 0 50px #fff, -10px 0 60px black, 10px 0 60px orange;
+}
+
