@@ -8,46 +8,46 @@
 <div class="vh-100 game-background">
     <div class="container">
         <div class="row">
-            <div class="col-5 mt-5">
-                <button @onclick="Lift" class="btn btn-dark">Lift</button>
-            </div>
-
-            <div class="col-6 d-flex mt-5 flex-row">
-                <div class="col-6 me-3">
-                    <StatsComponent Player="Player" />
+            <div class="col-5 mt-5 text-center">
+                <div class="d-flex flex-row justify-content-center">
+                    <button @onclick="Lift" class="btn btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
                 </div>
-                <div class="col-6">
-                    <div class="mb-3">
-                        <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
-                    </div>
-                    <div>
-                        <div class="card text-center shadow">
-                            <div @onclick="Open" class="card-header h2 bg-dark text-white">
-                                <a class="fas fa-cart-arrow-down icon-background shop-icon"></a>
-                                PlayerItems
-                            </div>
-                            @if (!PlayerItems.Any())
-                            {
-                                <div class="d-flex playerItems-card align-items-center text-center">
-                                    <p>
-                                        Click on the shopping cart to buy some cool stuff
-                                    </p>
-                                </div>
-                            }
-                            else
-                            {
-                                <ul class="list-group list-group-flush playerItems-card ">
-                                    @foreach (var playerItem in PlayerItems)
-                                    {
-                                        <PlayerItemComponent PlayerItem="playerItem"></PlayerItemComponent>
-                                    }
-                                </ul>
-                            }
+            </div>
+            <div class="col-3 mt-5 me-3">
+                <StatsComponent Player="Player" />
+            </div>
+            <div class="col-3 mt-5">
+                <div class="mb-3">
+                    <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
+                </div>
+                <div>
+                    <div class="card text-center shadow">
+                        <div @onclick="OpenModal" class="card-header h2 bg-dark text-white">
+                            <a class="fas fa-cart-arrow-down icon-background shop-icon"></a>
+                            PlayerItems
                         </div>
+                        @if (!PlayerItems.Any())
+                        {
+                            <div class="d-flex playerItems-card align-items-center text-center">
+                                <p>
+                                    Click on the shopping cart to buy some cool stuff
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <ul class="list-group list-group-flush playerItems-card ">
+                                @foreach (var playerItem in PlayerItems)
+                                {
+                                    <PlayerItemComponent PlayerItem="playerItem"></PlayerItemComponent>
+                                }
+                            </ul>
+                        }
                     </div>
                 </div>
-
             </div>
+
+
         </div>
     </div>
     <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display: @ModalDisplay">
@@ -55,7 +55,7 @@
             <div class="modal-content">
                 <div class="modal-header text-center bg-dark text-white">
                     <h5 class="modal-title ">Shop 'till you drop</h5>
-                    <button @onclick="Close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button @onclick="CloseModal" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -87,7 +87,7 @@
         </div>
         @if (ShowBackdrop)
         {
-            <div class="modal-backdrop fade show" data-dismiss="modal" @onclick="Close"></div>
+            <div class="modal-backdrop fade show" data-dismiss="modal" @onclick="CloseModal"></div>
         }
     </div>
 </div>
@@ -178,7 +178,7 @@
         _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
     }
 
-    public void Open()
+    public void OpenModal()
     {
         ModalDisplay = "block;";
         ModalClass = "Show";
@@ -186,7 +186,7 @@
         StateHasChanged();
     }
 
-    public void Close()
+    public void CloseModal()
     {
         ModalDisplay = "none";
         ModalClass = "";
