@@ -1,10 +1,10 @@
 ﻿@page "/game/{Id:int}"
-@using System.Collections
 @inject IJSRuntime _jsRuntime
 @inject IGameApi _gameApi
 @inject IPlayerApi _playerApi
 @inject IItemApi _itemApi
 @inject IPlayerItemApi _playerItemApi;
+@inject Blazored.LocalStorage.ILocalStorageService _storageService
 
 <div class="vh-100 game-background">
     <div class="container">
@@ -122,12 +122,12 @@
     </div>
 </div>
 
-
 @code {
     [Parameter]
     public int? Id { get; set; }
 
     private string imageUrl;
+    private int playerId;
 
     private PlayerResult Player { get; set; } = new();
     private IList<PlayerItemResult> PlayerItems { get; set; } = new List<PlayerItemResult>();
@@ -148,7 +148,10 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await _playerApi.GetAsync(Id.Value);
+        await _storageService.SetItemAsync("PlayerId",Id.Value);
+        playerId = await _storageService.GetItemAsync<int>("PlayerId");
+
+        var result = await _playerApi.GetAsync(playerId);
         Player = result.Data;
 
         var items = await _itemApi.FindAsync();
@@ -170,7 +173,7 @@
 
     private async Task Lift()
     {
-        var result = await _gameApi.PerformActionAsync(Id.Value);
+        var result = await _gameApi.PerformActionAsync(playerId);
 
         Player = result.Data.Player;
         _positiveGameEvent = result.Data.PositiveGameEvent;
@@ -186,7 +189,7 @@
     private async Task Buy(int itemId)
     {
 
-        var result = await _gameApi.BuyAsync(Player.Id, itemId);
+        var result = await _gameApi.BuyAsync(playerId, itemId);
 
         if (result.IsSuccess)
         {
@@ -210,7 +213,7 @@
     {
         Filter = new PlayerItemFilter()
             {
-                PlayerId = Player.Id
+                PlayerId = playerId
             };
 
         var playerItemResult = await _playerItemApi.FindAsync(Filter);

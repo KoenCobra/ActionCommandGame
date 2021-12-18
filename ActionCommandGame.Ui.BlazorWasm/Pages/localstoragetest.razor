@@ -1,0 +1,17 @@
+﻿@page "/test"
+@inject Blazored.LocalStorage.ILocalStorageService _storageService
+
+<h3>localstoragetest</h3>
+
+<p>the player id is.... @playerId</p>
+
+@code {
+    private int playerId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        playerId = await _storageService.GetItemAsync<int>("PlayerId");
+        await base.OnInitializedAsync();
+    }
+
+}
