@@ -1,4 +1,5 @@
 ﻿@page "/game/{Id:int}"
+@using System.Collections
 @inject IJSRuntime _jsRuntime
 @inject IGameApi _gameApi
 @inject IPlayerApi _playerApi
@@ -8,11 +9,11 @@
 <div class="vh-100 game-background">
     <div class="container">
         <div style="height: 60vh" class="row">
-            <div class="col-5 mt-5 text-center">
+            <div class="col-5 mt-5 text-center lift-section">
                 <div class="d-flex flex-row justify-content-center mb-3">
                     <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
                 </div>
-                <div class="primary-color h5">
+                <div class="primary-color h6 lift-section mb-3">
                     @if (_positiveGameEvent != null)
                     {
                         <p>@Player.Name, You lift and...</p>
@@ -32,8 +33,16 @@
                         @if (!string.IsNullOrWhiteSpace(_negativeGameEvent.Description))
                         {
                             <p>@_negativeGameEvent.Description</p>
+
+                            @foreach (var message in _negativeGameEventMessage)
+                            {
+                                <p>@message.Message</p>
+                            }
                         }
                     }
+                </div>
+                <div class="d-flex justify-content-center">
+                    <img class="rounded-3 mt-2" src="@imageUrl" style="height: 250px; width: 400px"/>
                 </div>
             </div>
             <div class="col-3 mt-5 me-3">
@@ -69,18 +78,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-            @if (isLiftChanged)
-            {
-                <div style="height: 200px; width: 200px;" class="bg-dark"></div>
-
-            }
-            else
-            {
-                <div style="height: 200px; width: 200px;" class="bg-success"></div>
-
-            }
         </div>
     </div>
     <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display: @ModalDisplay">
@@ -130,21 +127,24 @@
     [Parameter]
     public int? Id { get; set; }
 
-    private bool isLiftChanged;
+    private string imageUrl;
 
     private PlayerResult Player { get; set; } = new();
     private IList<PlayerItemResult> PlayerItems { get; set; } = new List<PlayerItemResult>();
 
     private PositiveGameEventResult? _positiveGameEvent;
     private NegativeGameEventResult? _negativeGameEvent;
+    private IList<ServiceMessage> _negativeGameEventMessage;
 
     private IList<PlayerResult> _orderedPlayers = new List<PlayerResult>();
     private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
     private PlayerItemFilter? Filter { get; set; }
 
-    public string ModalDisplay = "none;";
-    public string ModalClass = "";
-    public bool ShowBackdrop = false;
+    private string ModalDisplay = "none;";
+    private string ModalClass = "";
+    private bool ShowBackdrop = false;
+
+    private List<string> ArnoldImages = new List<string>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -157,20 +157,29 @@
         await RefreshLeaderBoard();
         await RefreshPlayeritems();
         await base.OnInitializedAsync();
+
+        ArnoldImages.Add("http://www.goalcast.com/wp-content/uploads/2017/05/Arnold-Schwarzenegger-quotes-I-learned-that-we-are-always-stronger-than-we-know.jpg");
+        ArnoldImages.Add("https://wellquo.com/wp-content/uploads/2020/04/Arnold-Schwarzenegger-Quotes.jpg");
+        ArnoldImages.Add("https://ae01.alicdn.com/kf/HTB1EKlKLpXXXXX.XpXXq6xXFXXX1/Motivational-inspirational-quotes-Arnold-Schwarzenegger-bodybuilding-Poster-Home-Decor-Wall-Sticker-Various-Size-Free-Shipping.jpg");
+        ArnoldImages.Add("https://cdn.motivationgrid.com/wp-content/uploads/2017/11/Arnold-Schwarzenegger-quotes-770x400.jpg");
+        ArnoldImages.Add("https://i0.wp.com/www.theinspiringjournal.com/wp-content/uploads/2019/10/arnold-schwarzenegger-quotes-about-life-success-gym-bodybuilding-motivation-quotes-1.jpg?resize=740%2C555&ssl=1");
+        ArnoldImages.Add("https://2.bp.blogspot.com/-ONiZuanZ-6Q/VjgFf_CQy9I/AAAAAAAACdQ/IZrD_2zCrJc/s1600/%25E2%2580%259CAll%2BI%2Bwould%2Bsay%2Bis%2Bthat%2BI%2Bfind%2Bjoy%2Bin%2Bthe%2Bgym%2Bbecause%2Bevery%2Brep%2Band%2Bevery%2Bset%2Bis%2Bgetting%2Bme%2Bone%2Bstep%2Bcloser%2Bto%2Bmy%2Bgoal.%25E2%2580%259D%2B%25E2%2580%2593%2BArnold%2BSchwarzenegger.JPG");
+
+        imageUrl = "http://www.goalcast.com/wp-content/uploads/2017/05/Arnold-Schwarzenegger-quotes-Jealousy-you-have-to-earn.jpg";
     }
 
     private async Task Lift()
     {
-        isLiftChanged = !isLiftChanged;
-
         var result = await _gameApi.PerformActionAsync(Id.Value);
 
         Player = result.Data.Player;
         _positiveGameEvent = result.Data.PositiveGameEvent;
         _negativeGameEvent = result.Data.NegativeGameEvent;
+        _negativeGameEventMessage = result.Data.NegativeGameEventMessages;
 
         await RefreshPlayeritems();
         await RefreshLeaderBoard();
+        SetImage();
         StateHasChanged();
     }
 
@@ -229,5 +238,12 @@
         ModalClass = "";
         ShowBackdrop = false;
         StateHasChanged();
+    }
+
+    private void SetImage()
+    {
+        var random = new Random();
+        int index = random.Next(ArnoldImages.Count);
+        imageUrl = ArnoldImages[index];
     }
 }

@@ -1,4 +1,3 @@
-using ActionCommandGame.Sdk;
 using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Ui.BlazorWasm;
@@ -16,10 +15,11 @@ var settings = new AppSettings();
 builder.Configuration.GetSection(nameof(AppSettings)).Bind(settings);
 
 builder.Services.AddApi(settings.ApiBaseUrl);
-builder.Services.AddSingleton<ITokenStore, TokenStore>();
 builder.Services.AddSingleton<AppSettings>();
 
-builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddSingleton<MemoryStore>();
+builder.Services.AddSingleton<ITokenStore, TokenStore>();
 
+builder.Services.AddBlazoredLocalStorage();
 
 await builder.Build().RunAsync();

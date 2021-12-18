@@ -54,8 +54,8 @@ namespace ActionCommandGame.Repository
             //God Mode Item
             Items.Add(new Item
             {
-                Name = "GOD MODE",
-                Description = "This is almost how a GOD must feel.",
+                Name = "Arnold MODE",
+                Description = "This is almost how Arnold must feel.",
                 Attack = 1000000,
                 Defense = 1000000,
                 Fuel = 1000000,
@@ -112,37 +112,37 @@ namespace ActionCommandGame.Repository
         {
             NegativeGameEvents.Add(new NegativeGameEvent
             {
-                Name = "Rockfall",
-                Description = "As you are mining, the cave walls rumble and rocks tumble down on you",
-                DefenseWithGearDescription = "Your mining gear allows you and your tools to escape unscathed",
-                DefenseWithoutGearDescription = "You try to cover your face but the rocks are too heavy. That hurt!",
+                Name = "Weight drop",
+                Description = "As you are lifting, you get distracted by your phone and the weight drops on your foot",
+                DefenseWithGearDescription = "Your special fitness shoes allows you and your weights to escape unscathed",
+                DefenseWithoutGearDescription = "For some reason, you are lifting with bare feet, and the weight cracks your foot!",
                 DefenseLoss = 2,
                 Probability = 100
             });
             NegativeGameEvents.Add(new NegativeGameEvent
             {
-                Name = "Cave Rat",
-                Description = "As you are mining, you feel something scurry between your feet!",
-                DefenseWithGearDescription = "It tries to bite you, but your mining gear keeps the rat's teeth from sinking in.",
-                DefenseWithoutGearDescription = "It tries to bite you and nicks you in the ankles. It already starts to glow dangerously.",
+                Name = "Ripped pants",
+                Description = "As you are lifting, you hear something rip between your legs!",
+                DefenseWithGearDescription = "Luckily, you're just passing some gas from all the protein shakes, and nobody at the gym noticed",
+                DefenseWithoutGearDescription = "You are lifting too much heavy weight, and you rip your pants",
                 DefenseLoss = 3,
                 Probability = 50
             });
             NegativeGameEvents.Add(new NegativeGameEvent
             {
-                Name = "Sinkhole",
-                Description = "As you are mining, the ground suddenly gives way and you fall down into a chasm!",
-                DefenseWithGearDescription = "Your gear grants a safe landing, protecting you and your pickaxe.",
-                DefenseWithoutGearDescription = "You tumble down the dark hole and take a really bad landing. That hurt!",
+                Name = "Protein shake dropped",
+                Description = "As you are lifting, you accidentally knock over your protein shake",
+                DefenseWithGearDescription = "Luckily the protein shake lands directly on it's bottom and stays upright, so much luck",
+                DefenseWithoutGearDescription = "The protein shake drops and spills all over the floor, the gym manager is not amused",
                 DefenseLoss = 2,
                 Probability = 100
             });
             NegativeGameEvents.Add(new NegativeGameEvent
             {
-                Name = "Ancient Bacteria",
-                Description = "As you are mining, you uncover a green slime oozing from the cracks!",
-                DefenseWithGearDescription = "Your gear barely covers you from the noxious goop. You are safe.",
-                DefenseWithoutGearDescription = "The slime covers your hands and arms and starts biting through your flesh. This hurts!",
+                Name = "Muscle sprain",
+                Description = "As you are lifting, you feel a twitch in your back",
+                DefenseWithGearDescription = "You invested in a very good lifting belt, and it keeps you from hurting your back",
+                DefenseWithoutGearDescription = "You didn't want to pay for good equipment, so now you are on your way to the doctor",
                 DefenseLoss = 3,
                 Probability = 50
             });

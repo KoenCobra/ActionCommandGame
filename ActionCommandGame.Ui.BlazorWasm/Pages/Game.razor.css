@@ -159,11 +159,9 @@
 
 
 .game-background {
-    background-image: url('https://wallpaperaccess.com/full/1986805.jpg');
+    background-image: url('https://i0.wp.com/wallpapertag.com/wallpaper/full/5/1/a/124353-popular-gym-background-1920x1110-for-android-tablet.jpg');
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat;
-    object-fit: cover;
 }
 
 .shop-icon {
@@ -188,5 +186,9 @@ body .modal-dialog {
     margin: auto;
     border-radius: 50%;
     box-shadow: inset 0 0 50px #fff, inset 20px 0 60px black, inset -20px 0 60px orange, inset 20px 0 300px black, inset -20px 0 300px orange, 0 0 50px #fff, -10px 0 60px black, 10px 0 60px orange;
+}
+
+.lift-section {
+    height: 30vh;
 }
 
