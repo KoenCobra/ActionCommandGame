@@ -1,0 +1,20 @@
+﻿.shop-background {
+    background-image: url('https://homegymr.com/wp-content/uploads/2016/06/Chocolate-Protein-Powder-Spilled.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.shop-view {
+    height: 85vh;
+    overflow-y: scroll;
+}
+
+.back-button {
+    background: white;
+}
+
+.back-button:hover {
+    background: orange;
+    color: white;
+}

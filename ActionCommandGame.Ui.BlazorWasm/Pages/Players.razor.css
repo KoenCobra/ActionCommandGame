@@ -4,10 +4,9 @@
 
 .players-background {
     background-image: url('https://wallup.net/wp-content/uploads/2017/11/17/202444-working_out-bodybuilding-Bodybuilder-muscles-monochrome.jpg');
-    width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    object-fit: cover;
+    background-size: cover;
 }
 
 

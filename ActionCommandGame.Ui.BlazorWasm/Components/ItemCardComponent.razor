@@ -1,0 +1,52 @@
+﻿@inject IGameApi _gameApi
+@inject Blazored.LocalStorage.ILocalStorageService _storageService
+@inject IJSRuntime _jsRuntime
+
+<div class="card align-items-center flex-column flex-lg-row p-3 m-2">
+    <div class="card-body order-2 order-lg-1">
+        <h5 class="mt-0 fw-bold mb-2">@Item.Name</h5>
+        <p class="fst-italic text-muted mb-0 small">@Item.Description</p>
+        <div class="d-flex flex-row">
+            <div>
+                <button @onclick="() => Buy(Item.Id)" class="btn btn-outline-dark">BUY</button>
+            </div>
+            <div class="ms-3">
+                <h6 class="fw-bold my-2"> Price: <span class="primary-color">@Item.Price</span></h6>
+            </div>
+        </div>
+    </div>
+    <img src="https://media.s-bol.com/rEY3V5k3nEyp/76wRVvy/516x840.jpg" alt="Generic placeholder image" width="50" class="ms-lg-5 order-1 order-lg-2">
+</div>
+
+@code {
+    [Parameter]
+    public ItemResult Item { get; set; }
+
+    private int playerId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        playerId = await _storageService.GetItemAsync<int>("PlayerId");
+
+        await base.OnInitializedAsync();
+    }
+
+    public async Task Buy(int itemId)
+    {
+        var result = await _gameApi.BuyAsync(playerId, itemId);
+
+        if (result.IsSuccess)
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "success",
+                $"You bought {result.Data.Item.Name} for €{result.Data.Item.Price}, " +
+                $" You have {result.Data.Player.Money} € left");
+        }
+        else
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
+                "Blood, sweat, and tears are required to pay for this... GO LIFT!!");
+        }
+
+        StateHasChanged();
+    }
+}
