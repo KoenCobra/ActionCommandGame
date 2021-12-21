@@ -7,12 +7,10 @@ namespace ActionCommandGame.Sdk
     public class IdentityApi: IIdentityApi
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ITokenStore _tokenStore;
 
-        public IdentityApi(IHttpClientFactory httpClientFactory, ITokenStore tokenStore)
+        public IdentityApi(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
-            _tokenStore = tokenStore;
         }
 
         public async Task<AuthenticationResult> SignInAsync(UserSignInRequest request)

@@ -3,24 +3,26 @@ using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Results;
+using Blazored.LocalStorage;
 
 namespace ActionCommandGame.Sdk
 {
     public class ItemApi: IItemApi
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ITokenStore _tokenStore;
+        private readonly ILocalStorageService _localStorageService;
 
-        public ItemApi(IHttpClientFactory httpClientFactory, ITokenStore tokenStore)
+
+        public ItemApi(IHttpClientFactory httpClientFactory, ILocalStorageService localStorageService)
         {
             _httpClientFactory = httpClientFactory;
-            _tokenStore = tokenStore;
+            _localStorageService = localStorageService;
         }
 
         public async Task<ServiceResult<IList<ItemResult>>> FindAsync()
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
-            var token = await _tokenStore.GetTokenAsync();
+            var token = await _localStorageService.GetItemAsync<string>("Token");
             httpClient.AddAuthorization(token);
             var route = "items";
 

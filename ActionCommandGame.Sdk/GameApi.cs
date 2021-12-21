@@ -3,24 +3,25 @@ using ActionCommandGame.Sdk.Abstractions;
 using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Results;
+using Blazored.LocalStorage;
 
 namespace ActionCommandGame.Sdk
 {
     public class GameApi: IGameApi
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ITokenStore _tokenStore;
+        private readonly ILocalStorageService _localStorageService;
 
-        public GameApi(IHttpClientFactory httpClientFactory, ITokenStore tokenStore)
+        public GameApi(IHttpClientFactory httpClientFactory, ILocalStorageService localStorageService)
         {
             _httpClientFactory = httpClientFactory;
-            _tokenStore = tokenStore;
+            _localStorageService = localStorageService;
         }
 
         public async Task<ServiceResult<GameResult>> PerformActionAsync(int playerId)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
-            var token = await _tokenStore.GetTokenAsync();
+            var token = await _localStorageService.GetItemAsync<string>("Token");
             httpClient.AddAuthorization(token);
             var route = $"game/{playerId}/perform-action";
 
@@ -41,7 +42,7 @@ namespace ActionCommandGame.Sdk
         public async Task<ServiceResult<BuyResult>> BuyAsync(int playerId, int itemId)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
-            var token = await _tokenStore.GetTokenAsync();
+            var token = await _localStorageService.GetItemAsync<string>("Token");
             httpClient.AddAuthorization(token);
             var route = $"game/{playerId}/buy/{itemId}";
 

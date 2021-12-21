@@ -4,24 +4,27 @@ using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Filters;
 using ActionCommandGame.Services.Model.Results;
+using Blazored.LocalStorage;
 
 namespace ActionCommandGame.Sdk
 {
     public class PlayerApi: IPlayerApi
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ITokenStore _tokenStore;
+        private readonly ILocalStorageService _localStorageService;
 
-        public PlayerApi(IHttpClientFactory httpClientFactory, ITokenStore tokenStore)
+
+        public PlayerApi(IHttpClientFactory httpClientFactory, ILocalStorageService localStorageService)
         {
             _httpClientFactory = httpClientFactory;
-            _tokenStore = tokenStore;
+            _localStorageService = localStorageService;
         }
 
         public async Task<ServiceResult<PlayerResult>> GetAsync(int id)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
-            var token = await _tokenStore.GetTokenAsync();
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
             httpClient.AddAuthorization(token);
             var route = $"players/{id}";
 
@@ -42,7 +45,8 @@ namespace ActionCommandGame.Sdk
         public async Task<ServiceResult<IList<PlayerResult>>> Find(PlayerFilter filter)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
-            var token = await _tokenStore.GetTokenAsync();
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
             httpClient.AddAuthorization(token);
             var route = "players";
 
