@@ -1,5 +1,6 @@
 ﻿@page "/players"
 @inject IPlayerApi _playerApi
+@inject ILocalStorageService _storageService
 
 <div class="d-flex min-vh-100 w-100 players-background justify-content-center align-items-center">
     <div class="container">
@@ -7,7 +8,8 @@
         <div class="row">
             @if (PlayersResult is null)
             {
-                <p>loading.....</p>
+                <img style="height: 100px; width: 100px;" src="https://i.gifer.com/OSnw.gif" />
+                <p>Loading....</p>
             }
             else
             {
@@ -25,12 +27,14 @@
 @code
 {
     private IList<PlayerResult>? PlayersResult { get; set; }
-    private PlayerFilter Filter { get; set; } = new PlayerFilter();
+    private PlayerFilter Filter { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await _playerApi.Find(Filter);
-        PlayersResult = result.Data;
+        Filter = new PlayerFilter { FilterUserPlayers = true };
+        var players = await _playerApi.Find(Filter);
+
+        PlayersResult = players.Data;
 
         await base.OnInitializedAsync();
     }

@@ -54,7 +54,7 @@ namespace ActionCommandGame.Repository
             //God Mode Item
             Items.Add(new Item
             {
-                Name = "Arnold MODE",
+                Name = "ARNOLD MODE",
                 Description = "This is almost how Arnold must feel.",
                 Attack = 1000000,
                 Defense = 1000000,
