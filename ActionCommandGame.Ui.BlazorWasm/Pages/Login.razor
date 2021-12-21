@@ -1,34 +1,71 @@
 ﻿@page "/"
 @inject ILocalStorageService _storageService
 @inject IIdentityApi _identityApi
+@inject IJSRuntime _jsRuntime
 @inject NavigationManager _navigationManager
 
-<div class="vh-100 login-background d-flex justify-content-center align-items-center">
-    <div class="wrapper">
-        <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
-        <EditForm Model="_signInRequest" OnSubmit="LoginUser" class="p-3 mt-3">
-            <DataAnnotationsValidator/>
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <InputText @bind-Value="_signInRequest.Email" type="text"  name="userName" id="userName" placeholder="Username"/>
-                <ValidationMessage For="() => _signInRequest.Email"/>
-            </div>
+@if (isLoginShowing)
+{
+    <div class="vh-100 login-background d-flex justify-content-center align-items-center">
+        <div class="wrapper">
+            <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
+            <EditForm Model="_signInRequest" OnSubmit="LoginUser" class="p-3 mt-3">
+                <DataAnnotationsValidator />
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                    <InputText @bind-Value="_signInRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
+                    <ValidationMessage For="() => _signInRequest.Email" />
+                </div>
 
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password"/>
-                <ValidationMessage For="() => _signInRequest.Password"/>
-            </div>
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                    <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
+                    <ValidationMessage For="() => _signInRequest.Password" />
+                </div>
 
-            <button type="submit" class="btn login-btn">Login</button>
-        </EditForm>
-        <div class="text-center fs-6">Not A Member? <a href="#"><span class="signin-link">Sign Up</span></a></div>
+                <button type="submit" class="btn login-btn">Login</button>
+            </EditForm>
+            <div @onclick="ShowRegistration" class="text-center fs-6">
+                Not A Member? <a href="#"><span class="signin-link">Sign Up</span></a>
+            </div>
+        </div>
     </div>
-</div>
+}
+
+@if (isRegisterShowing)
+{
+    <div class="vh-100 login-background d-flex justify-content-center align-items-center">
+        <div class="wrapper">
+            <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
+            <EditForm Model="_registrationRequest" OnSubmit="RegisterUser" class="p-3 mt-3">
+                <DataAnnotationsValidator />
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                    <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
+                    <ValidationMessage For="() => _registrationRequest.Email" />
+                </div>
+
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                    <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
+                    <ValidationMessage For="() => _registrationRequest.Password" />
+                </div>
+                <button type="submit" class="btn login-btn">Register</button>
+            </EditForm>
+            <div @onclick="ShowLogin" class="text-center fs-6">
+                Already A Member? <a href="#"><span class="signin-link">Login</span></a>
+            </div>
+        </div>
+    </div>
+}
 
 @code {
 
-    private UserSignInRequest _signInRequest = new UserSignInRequest();
+    private UserSignInRequest _signInRequest = new();
+    private UserRegistrationRequest _registrationRequest = new();
+
+    private bool isRegisterShowing;
+    private bool isLoginShowing = true;
 
     public async Task LoginUser()
     {
@@ -36,13 +73,46 @@
 
         if (!result.Success)
         {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
+                "Take your pre-workout caffeine supplement first and FOCUS!!!!");
             return;
         }
 
-        var token =  result.Token;
+        var token = result.Token;
+        await _storageService.SetItemAsync("Token", token);
 
-        await _storageService.SetItemAsync("Token",token);
-        
         _navigationManager.NavigateTo("/players");
+    }
+
+    public async Task RegisterUser()
+    {
+        var result = await _identityApi.RegisterAsync(_registrationRequest);
+
+        var token = result.Token;
+        await _storageService.SetItemAsync("Token", token);
+
+        if (result.Success)
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "success", "Thank you for registering!!!");
+            isRegisterShowing = false;
+            isLoginShowing = true;
+        }
+        else
+        {
+            await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
+                "Take your pre-workout caffeine supplement first and FOCUS!!!!");
+        }
+    }
+
+    private void ShowRegistration()
+    {
+        isRegisterShowing = true;
+        isLoginShowing = false;
+    }
+
+    private void ShowLogin()
+    {
+        isRegisterShowing = false;
+        isLoginShowing = true;
     }
 }

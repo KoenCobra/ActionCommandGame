@@ -1,14 +1,14 @@
 ﻿window.ShowSwal = (type, message) => {
     if (type === "success") {
         Swal.fire(
-            "Thank You For Shopping!",
+            "Success!",
             message,
             "success"
         );
     }
     if (type === "error") {
         Swal.fire(
-            "Not Enough Money",
+            "Something went wrong",
             message,
             "error"
         );
