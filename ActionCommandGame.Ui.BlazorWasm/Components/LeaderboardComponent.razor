@@ -1,4 +1,6 @@
-﻿<div class="card text-center shadow">
+﻿@inject ILocalStorageService _storageService
+
+<div class="card text-center shadow">
     <div class="card-header h2 bg-dark text-white">
         <i class="fas fa-trophy icon-background"></i>
         LeaderBoard
@@ -6,13 +8,29 @@
     <div class="card-body">
         @foreach (var player in @OrderedPlayers)
         {
-            <p>@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
+            if (player.Id == playerId)
+            {
+                <p class="primary-color">@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
+
+            }
+            else
+            {
+                <p>@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
+            }
         }
     </div>
 </div>
 
 @code {
-
     [Parameter]
     public IList<PlayerResult> OrderedPlayers { get; set; }
+
+    private int playerId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        playerId = await _storageService.GetItemAsync<int>("PlayerId");
+        await base.OnInitializedAsync();
+    }
+
 }

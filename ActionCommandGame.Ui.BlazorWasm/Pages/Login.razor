@@ -1,24 +1,45 @@
 ﻿@page "/"
+@using ActionCommandGame.Api.Authentication.Model
+@inject ILocalStorageService _storageService
+@inject IIdentityApi _identityApi
+@inject NavigationManager _navigationManager
+
 <div class="vh-100 login-background d-flex justify-content-center align-items-center">
     <div class="wrapper">
         <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
-        <form class="p-3 mt-3">
+        <EditForm Model="_signInRequest" OnSubmit="LoginUser" class="p-3 mt-3">
+            <DataAnnotationsValidator/>
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
+                <InputText @bind-Value="_signInRequest.Email" type="text" name="userName" id="userName" placeholder="Username"/>
+                <ValidationMessage For="() => _signInRequest.Email"/>
             </div>
 
             <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span> 
-                <input type="password" name="password" id="pwd" placeholder="Password">
+                <span class="fas fa-key"></span>
+                <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password"/>
+                <ValidationMessage For="() => _signInRequest.Password"/>
+
             </div>
 
-            <a href="/motivation" class="btn login-btn">Login</a>
-        </form>
+            <button type="submit" class="btn login-btn">Login</button>
+        </EditForm>
         <div class="text-center fs-6">Not A Member? <a href="#"><span class="signin-link">Sign Up</span></a></div>
     </div>
 </div>
 
 @code {
 
+    private UserSignInRequest _signInRequest = new UserSignInRequest();
+
+    public async Task LoginUser()
+    {
+        var result = await _identityApi.SignInAsync(_signInRequest);
+
+        var token =  result.Token;
+
+        await _storageService.SetItemAsync("Token", token);
+        
+        _navigationManager.NavigateTo("/players");
+    }
 }

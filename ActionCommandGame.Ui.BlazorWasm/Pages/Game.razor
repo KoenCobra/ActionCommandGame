@@ -1,9 +1,9 @@
-﻿@page "/game/{Id:int}"
+﻿@page "/game"
 @inject IGameApi _gameApi
 @inject IPlayerApi _playerApi
 @inject IItemApi _itemApi
 @inject IPlayerItemApi _playerItemApi;
-@inject Blazored.LocalStorage.ILocalStorageService _storageService
+@inject ILocalStorageService _storageService
 
 <div class="vh-100 game-background position-relative">
     <a href="/players" class="btn change-player-btn border-white primary-color position-relative start-0 top-0 ms-3 mt-3">Change Player</a>
@@ -84,9 +84,6 @@
 </div>
 
 @code {
-    [Parameter]
-    public int? Id { get; set; }
-
     private int _playerId;
 
     private PlayerResult Player { get; set; } = new();
@@ -100,11 +97,8 @@
     private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
     private PlayerItemFilter? Filter { get; set; }
 
-    private List<string> ArnoldImages = new List<string>();
-
     protected override async Task OnInitializedAsync()
     {
-        await _storageService.SetItemAsync("PlayerId", Id.Value);
         _playerId = await _storageService.GetItemAsync<int>("PlayerId");
 
         var result = await _playerApi.GetAsync(_playerId);

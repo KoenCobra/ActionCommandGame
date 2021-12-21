@@ -1,12 +1,12 @@
 ﻿@page "/shop"
 @inject IItemApi _itemApi
 @inject IPlayerApi _playerApi
-@inject Blazored.LocalStorage.ILocalStorageService _storageService
+@inject ILocalStorageService _storageService
 
 <div class="vh-100 h-100 bg-dark shop-background">
     <div class="container">
         <div class="mx-2 pt-3 flex-row d-flex align-items-center justify-content-between">
-            <a href="/game/@playerId" class="btn back-button">BACK</a>
+            <a href="/game" class="btn back-button">BACK</a>
             <p class=" primary-color h3">Welcome to our shop, <span class="text-success">@Player.Name</span></p>
         </div>
         <div class="row shop-view">

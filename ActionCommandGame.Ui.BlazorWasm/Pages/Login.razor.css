@@ -15,9 +15,12 @@
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff
 }
 
+.fa-dumbbell {
+    transition: all 0.3s linear;
+}
+
 .fa-dumbbell:hover {
     color: orange;
-    transition: all 0.3s linear;
     transform: scale(1.1);
 }
 

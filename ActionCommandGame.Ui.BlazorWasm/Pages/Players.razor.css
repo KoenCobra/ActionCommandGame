@@ -9,5 +9,13 @@
     background-size: cover;
 }
 
+.player-card {
+    transition: all 0.3s linear;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+}
+
 
 
