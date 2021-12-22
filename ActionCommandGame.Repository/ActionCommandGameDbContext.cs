@@ -73,8 +73,8 @@ namespace ActionCommandGame.Repository
 
         private void GeneratePositiveGameEvents()
         {
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Nothing but boring rocks", Probability = 1000 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "The biggest Opal you ever saw.", Description = "It slips out of your hands and rolls inside a crack in the floor. It is out of reach.", Probability = 500 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Nothing but marginal gains", Probability = 1000 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "The biggest Protein Shake you ever saw.", Description = "It slips out of your hands and rolls under a squat machine. It is out of reach.", Probability = 500 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Sand, dirt and dust", Probability = 1000 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "A piece of empty paper", Description = "You hold it to the light and warm it up to reveal secret texts, but it remains empty.", Probability = 1000 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "A small water stream", Description = "The water flows around your feet and creates a dirty puddle.", Probability = 1000 });

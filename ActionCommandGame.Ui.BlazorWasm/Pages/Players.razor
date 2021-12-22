@@ -4,11 +4,14 @@
 
 <div class="d-flex min-vh-100 w-100 players-background justify-content-center align-items-center">
     <div class="container">
-        <h1 class="display-1 player-select-title mb-5 display-1">Select Your Lifter</h1>
+        <h1 class="primary-color">Select Your Lifter</h1>
+        <div class="d-flex flex-row mb-3">
+            <h3 class="primary-color">Or Create A New One</h3>
+            <a href="/create" class="btn change-player-btn border-white primary-color">Create Player</a>
+        </div>
         <div class="row">
             @if (PlayersResult is null)
             {
-                <img style="height: 100px; width: 100px;" src="https://i.gifer.com/OSnw.gif" />
                 <p>Loading....</p>
             }
             else
@@ -26,8 +29,8 @@
 
 @code
 {
-    private IList<PlayerResult>? PlayersResult { get; set; }
-    private PlayerFilter Filter { get; set; }
+    private IList<PlayerResult>? PlayersResult { get; set; } = new List<PlayerResult>();
+    private PlayerFilter? Filter { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
