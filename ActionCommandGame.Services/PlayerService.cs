@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using ActionCommandGame.Model;
 using ActionCommandGame.Repository;
 using ActionCommandGame.Services.Abstractions;
 using ActionCommandGame.Services.Extensions;
 using ActionCommandGame.Services.Extensions.Filters;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Filters;
-using ActionCommandGame.Services.Model.Requests;
 using ActionCommandGame.Services.Model.Results;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ActionCommandGame.Services
 {
-    public class PlayerService: IPlayerService
+    public class PlayerService : IPlayerService
     {
         private readonly ActionCommandGameDbContext _database;
 
@@ -38,6 +39,41 @@ namespace ActionCommandGame.Services
                 .ToListAsync();
 
             return new ServiceResult<IList<PlayerResult>>(players);
+        }
+
+        public async Task<ServiceResult<PlayerResult>> Create(PlayerResult playerResult, string authenticatedUserId)
+        {
+            var player = new Player()
+            {
+                Id = playerResult.Id,
+                Name = playerResult.Name,
+                UserId = authenticatedUserId,
+                Experience = playerResult.Experience,
+                ImageName = playerResult.ImageName,
+                Money = playerResult.Money,
+                LastActionExecutedDateTime = playerResult.LastActionExecutedDateTime,
+            };
+
+            _database.Players.Add(player);
+            await _database.SaveChangesAsync();
+
+            return await GetAsync(player.Id, authenticatedUserId);
+        }
+
+        public bool Delete(int id, string authenticatedUserId)
+        {
+            var dbPlayer = _database.Players
+                    .SingleOrDefault(p => p.Id == id);
+
+            if (dbPlayer is null)
+            {
+                return false;
+            }
+
+            _database.Players.Remove(dbPlayer);
+            _database.SaveChanges();
+
+            return true;
         }
     }
 }

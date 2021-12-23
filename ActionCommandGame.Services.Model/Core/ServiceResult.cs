@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace ActionCommandGame.Services.Model.Core
@@ -23,11 +22,11 @@ namespace ActionCommandGame.Services.Model.Core
         }
     }
 
-    public class ServiceResult<T>: ServiceResult
+    public class ServiceResult<T> : ServiceResult
     {
         public ServiceResult()
         {
-            
+
         }
         public ServiceResult(T data)
         {

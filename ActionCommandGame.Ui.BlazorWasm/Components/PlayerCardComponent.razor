@@ -1,5 +1,6 @@
 ﻿@inject NavigationManager _navigationManager 
 @inject ILocalStorageService _storageService
+@inject IPlayerApi _playerApi
 
 <div class="card player-card" style="width: 16rem;">
     <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
@@ -8,7 +9,10 @@
         <p class="card-text">Money: @Player.Money</p>
         <p class="card-text">Experience: @Player.Experience</p>
         @*<a href="@($"game/{Player.Id}")" class="btn btn-dark">Play</a>*@
-        <button @onclick="() => SetPlayerId(Player.Id)" class="btn btn-dark">Play</button>
+        <div class="card-footer">
+            <button @onclick="() => SetPlayerId(Player.Id)" class="btn btn-dark">Play</button>
+            <button @onclick="() => DeletePlayer(Player.Id)" class="btn btn-danger">Delete</button>
+        </div>
     </div>
 </div>
 
@@ -16,10 +20,19 @@
     [Parameter]
     public PlayerResult Player { get; set; }
 
+    [Parameter]
+    public EventCallback IsDeleted { get; set; }
+
     private async Task SetPlayerId(int playerId)
     {
         await _storageService.SetItemAsync("PlayerId", Player.Id);
         _navigationManager.NavigateTo("/Game");
+    }
+
+    private async Task DeletePlayer(int playerId)
+    {
+        await _playerApi.Delete(playerId);
+        await IsDeleted.InvokeAsync();
     }
 
 }

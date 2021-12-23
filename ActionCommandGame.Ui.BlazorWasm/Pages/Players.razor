@@ -19,7 +19,7 @@
                 @foreach (var player in PlayersResult)
                 {
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3 player-card">
-                        <PlayerCardComponent Player="player"></PlayerCardComponent>
+                        <PlayerCardComponent IsDeleted="LoadPlayers" Player="player"></PlayerCardComponent>
                     </div>
                 }
             }
@@ -34,11 +34,16 @@
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadPlayers();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task LoadPlayers()
+    {
+        
         Filter = new PlayerFilter { FilterUserPlayers = true };
         var players = await _playerApi.Find(Filter);
 
         PlayersResult = players.Data;
-
-        await base.OnInitializedAsync();
     }
 }
