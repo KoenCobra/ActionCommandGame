@@ -73,14 +73,20 @@ a, .btn-link {
     color: orange;
 }
 
-.delete-yes-btn:hover {
-    background: white;
+.yes-btn {
+    color: white;
+}
+
+.yes-btn:hover {
     color: orange;
 }
 
-.delete-no-btn:hover {
-    background: orange;
-    color: white;
+.no-btn {
+    background: lightgray;
+}
+
+.no-btn:hover {
+    color: orange;
 }
 /*============login====================*/
 .login-background {

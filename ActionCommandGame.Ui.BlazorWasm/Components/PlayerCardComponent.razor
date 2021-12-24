@@ -4,14 +4,14 @@
 
 <div class="card player-card" style="width: 16rem;">
     <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
-    <div class="card-body">
-        <h5 class="card-title">@Player.Name</h5>
+    <div class="card-body bg-dark text-white">
+        <h5 class="card-title primary-color">@Player.Name</h5>
         <p class="card-text">Money: @Player.Money</p>
         <p class="card-text">Experience: @Player.Experience</p>
-        <div class="card-footer">
-            <button @onclick="() => SetPlayerId(Player.Id)" class="btn btn-dark">Play</button>
-            <button @onclick="ShowDeleteComponent" class="btn btn-danger">Delete</button>
-            <a href="/create/@Player.Id" class="btn btn-success">Update</a>
+        <div class="mt-4 text-center">
+            <button @onclick="() => SetPlayerId(Player.Id)" class="btn border-white bg-black text-white btn-sm rounded-pill">Play</button>
+            <button @onclick="ShowDeleteComponent" class="btn btn-danger btn-sm rounded-pill">Delete</button>
+            <a href="/create/@Player.Id" class="btn btn-success btn-sm rounded-pill">Update</a>
         </div>
     </div>
 </div>
