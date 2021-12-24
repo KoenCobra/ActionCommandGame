@@ -1,0 +1,20 @@
+﻿.create-update-background {
+    background-image: url('https://wallpapercave.com/wp/wp7578886.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.create-update-btn {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: orange;
+}
+
+.create-update-btn:hover {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: orange;
+    transform: scale(1.2);
+}

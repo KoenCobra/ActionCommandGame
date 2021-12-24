@@ -36,6 +36,13 @@ namespace ActionCommandGame.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPut("players/{id}")]
+        public async Task<IActionResult> Update(int id,PlayerResult player)
+        {
+            var result = await _playerService.Update(id, player, User.GetId());
+            return Ok(result);
+        }
+
         [HttpDelete("players/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

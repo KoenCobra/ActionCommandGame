@@ -91,6 +91,28 @@ namespace ActionCommandGame.Sdk
             return result;
         }
 
+        public async Task<ServiceResult<PlayerResult>> Update(int id, PlayerResult playerResult)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
+            httpClient.AddAuthorization(token);
+            var route = $"players/{id}";
+
+            var httpResponse = await httpClient.PutAsJsonAsync(route, playerResult);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<PlayerResult>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<PlayerResult>();
+            }
+
+            return result;
+        }
+
         public async Task Delete(int id)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");

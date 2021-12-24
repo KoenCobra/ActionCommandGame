@@ -4,11 +4,6 @@
 
 <div class="d-flex min-vh-100 w-100 players-background justify-content-center align-items-center">
     <div class="container">
-        <h1 class="primary-color">Select Your Lifter</h1>
-        <div class="d-flex flex-row mb-3">
-            <h3 class="primary-color">Or Create A New One</h3>
-            <a href="/create" class="btn change-player-btn border-white primary-color">Create Player</a>
-        </div>
         <div class="row">
             @if (PlayersResult is null)
             {
@@ -16,6 +11,12 @@
             }
             else
             {
+                <h1 class="primary-color">Select Your Lifter</h1>
+                <div class="d-flex flex-row mb-3">
+                    <h3 class="primary-color">Or <a href="/create" class="btn change-player-btn border-white primary-color">Create</a> A New One</h3>
+                    
+                </div>
+
                 @foreach (var player in PlayersResult)
                 {
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3 player-card">
@@ -26,7 +27,6 @@
         </div>
     </div>
 </div>
-
 @code
 {
     private IList<PlayerResult>? PlayersResult { get; set; } = new List<PlayerResult>();

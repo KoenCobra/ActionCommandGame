@@ -1,0 +1,72 @@
+﻿  @page "/create"
+  @page "/create/{Id:int}"
+  @inject NavigationManager _navigationManager
+  @inject IPlayerApi _playerApi
+
+<div class="vh-100 create-update-background d-flex justify-content-center align-items-center">
+    <div class="wrapper">
+        <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
+        <EditForm Model="Player" OnValidSubmit="HandleCreateUpdate" class="p-3 mt-3">
+            <DataAnnotationsValidator />
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <InputText @bind-Value="Player.Name" placeholder="name" />
+                <ValidationMessage For="() => Player.Name" />
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-money-bill-alt"></span>
+                <InputNumber @bind-Value="Player.Money" placeholder="money" />
+                <ValidationMessage For="() => Player.Money" />
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-chart-line"></span>
+                <InputNumber @bind-Value="Player.Experience" placeholder="expercience" />
+                <ValidationMessage For="() => Player.Experience" />
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-camera"></span>
+                <InputText @bind-Value="Player.ImageName" placeholder="image" />
+                <ValidationMessage For="() => Player.ImageName" />
+            </div>
+            <div class="text-center fs-6">
+            <button type="submit" class="create-update-btn border-0">@Title</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+  @code {
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    private string Title { get; set; } = "Create";
+
+    private PlayerResult Player { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != null)
+        {
+            Title = "Update";
+            var result = await _playerApi.GetAsync(Id.Value);
+            Player = result.Data;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task HandleCreateUpdate()
+    {
+        if (Player.Id != null && Title == "Update")
+        {
+            await _playerApi.Update(Player.Id, Player);
+        }
+        else
+        {
+            await _playerApi.Create(Player);
+        }
+
+        _navigationManager.NavigateTo("/players");
+    }
+}

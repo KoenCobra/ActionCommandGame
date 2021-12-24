@@ -9,7 +9,7 @@
     <div class="vh-100 login-background d-flex justify-content-center align-items-center">
         <div class="wrapper">
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
-            <EditForm Model="_signInRequest" OnSubmit="LoginUser" class="p-3 mt-3">
+            <EditForm Model="_signInRequest" OnValidSubmit="LoginUser" class="p-3 mt-3">
                 <DataAnnotationsValidator />
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
@@ -37,7 +37,7 @@
     <div class="vh-100 login-background d-flex justify-content-center align-items-center">
         <div class="wrapper">
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
-            <EditForm Model="_registrationRequest" OnSubmit="RegisterUser" class="p-3 mt-3">
+            <EditForm Model="_registrationRequest" OnValidSubmit="RegisterUser" class="p-3 mt-3">
                 <DataAnnotationsValidator />
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>

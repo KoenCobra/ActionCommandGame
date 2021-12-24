@@ -60,6 +60,26 @@ namespace ActionCommandGame.Services
             return await GetAsync(player.Id, authenticatedUserId);
         }
 
+        public async Task<ServiceResult<PlayerResult>> Update(int id, PlayerResult playerResult, string authenticatedUserId)
+        {
+            var dbPlayer = await _database.Players
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (dbPlayer == null)
+            {
+                return null;
+            }
+
+            dbPlayer.Name= playerResult.Name;
+            dbPlayer.Money = playerResult.Money;
+            dbPlayer.Experience = playerResult.Experience;
+            dbPlayer.ImageName = playerResult.ImageName;
+
+            await _database.SaveChangesAsync();
+
+            return await GetAsync(dbPlayer.Id, authenticatedUserId);
+        }
+
         public bool Delete(int id, string authenticatedUserId)
         {
             var dbPlayer = _database.Players
