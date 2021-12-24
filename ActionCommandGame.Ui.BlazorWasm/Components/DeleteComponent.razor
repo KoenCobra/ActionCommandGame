@@ -1,0 +1,62 @@
+﻿@inject ILocalStorageService _storageService
+@inject IPlayerApi _playerApi
+
+@if (ShowDialog)
+{
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Player</h5>
+                    <button type="button" class="close" @onclick="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if (Player is null)
+                    {
+                        <p>Loading...</p>
+                    }
+                    else
+                    {
+                        <p>Are you sure you want to delete @Player.Name</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" @onclick="Close">No</button>
+                    <button type="button" class="btn btn-danger" @onclick="DeletePerson">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+}
+
+@code {
+    [Parameter]
+    public PlayerResult? Player { get; set; }
+
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+
+    private bool ShowDialog;
+
+    private async Task DeletePerson()
+    {
+        await _playerApi.Delete(Player.Id);
+        await OnDelete.InvokeAsync();
+        Close();
+    }
+
+    public void Open()
+    {
+        ShowDialog = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    
+    {
+        ShowDialog = false;
+        StateHasChanged();
+    }
+}

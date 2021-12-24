@@ -8,17 +8,21 @@
         <h5 class="card-title">@Player.Name</h5>
         <p class="card-text">Money: @Player.Money</p>
         <p class="card-text">Experience: @Player.Experience</p>
-        @*<a href="@($"game/{Player.Id}")" class="btn btn-dark">Play</a>*@
         <div class="card-footer">
             <button @onclick="() => SetPlayerId(Player.Id)" class="btn btn-dark">Play</button>
-            <button @onclick="() => DeletePlayer(Player.Id)" class="btn btn-danger">Delete</button>
+            @*<button @onclick="() => DeletePlayer(Player.Id)" class="btn btn-danger">Delete</button>*@
+            <button @onclick="ShowDeleteComponent" class="btn btn-danger">Delete</button>
         </div>
     </div>
 </div>
 
+<DeleteComponent @ref="DeleteComponent" Player="Player" OnDelete="IsDeleted"/>
+
 @code {
     [Parameter]
     public PlayerResult Player { get; set; }
+
+    private DeleteComponent? DeleteComponent { get; set; }
 
     [Parameter]
     public EventCallback IsDeleted { get; set; }
@@ -29,10 +33,20 @@
         _navigationManager.NavigateTo("/Game");
     }
 
-    private async Task DeletePlayer(int playerId)
+    private void ShowDeleteComponent()
     {
-        await _playerApi.Delete(playerId);
-        await IsDeleted.InvokeAsync();
+        if (DeleteComponent is null)
+        {
+            return;
+        }
+
+        DeleteComponent.Open();
     }
+
+    //private async Task DeletePlayer(int playerId)
+    //{
+    //    await _playerApi.Delete(playerId);
+    //    await IsDeleted.InvokeAsync();
+    //}
 
 }
