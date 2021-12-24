@@ -10,13 +10,12 @@
         <p class="card-text">Experience: @Player.Experience</p>
         <div class="card-footer">
             <button @onclick="() => SetPlayerId(Player.Id)" class="btn btn-dark">Play</button>
-            @*<button @onclick="() => DeletePlayer(Player.Id)" class="btn btn-danger">Delete</button>*@
             <button @onclick="ShowDeleteComponent" class="btn btn-danger">Delete</button>
         </div>
     </div>
 </div>
 
-<DeleteComponent @ref="DeleteComponent" Player="Player" OnDelete="IsDeleted"/>
+<DeleteComponent @ref="DeleteComponent" OnDelete="IsDeleted" Player="Player"/>
 
 @code {
     [Parameter]
@@ -42,11 +41,4 @@
 
         DeleteComponent.Open();
     }
-
-    //private async Task DeletePlayer(int playerId)
-    //{
-    //    await _playerApi.Delete(playerId);
-    //    await IsDeleted.InvokeAsync();
-    //}
-
 }
