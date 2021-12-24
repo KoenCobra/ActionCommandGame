@@ -8,13 +8,12 @@
 
 .create-update-btn {
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 2.5rem;
     color: orange;
+    transition: all 0.2s linear;
 }
 
 .create-update-btn:hover {
-    text-decoration: none;
-    font-size: 1.4rem;
-    color: orange;
     transform: scale(1.2);
+
 }

@@ -73,8 +73,16 @@ a, .btn-link {
     color: orange;
 }
 
-/*============login====================*/
+.delete-yes-btn:hover {
+    background: white;
+    color: orange;
+}
 
+.delete-no-btn:hover {
+    background: orange;
+    color: white;
+}
+/*============login====================*/
 .login-background {
     background-image: url('https://s1.1zoom.me/b6451/922/16_KG_Dumbbells_Black_and_white_Gym_538198_2560x1440.jpg');
     height: 100%;
