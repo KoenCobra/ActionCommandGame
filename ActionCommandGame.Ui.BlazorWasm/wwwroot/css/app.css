@@ -9,7 +9,7 @@ h1:focus {
 }
 
 a, .btn-link {
-    color: #0071c1;
+    color: inherit;
 }
 
 .btn-primary {
@@ -29,11 +29,11 @@ a, .btn-link {
 }
 
 .invalid {
-    outline: 1px solid red;
+    outline: 1px solid orange;
 }
 
 .validation-message {
-    color: red;
+    color: orange;
 }
 
 #blazor-error-ui {
@@ -77,16 +77,20 @@ a, .btn-link {
     color: white;
 }
 
-.yes-btn:hover {
-    color: orange;
-}
+    .yes-btn:hover {
+        color: orange;
+    }
 
 .no-btn {
     background: lightgray;
 }
 
-.no-btn:hover {
-    color: orange;
+    .no-btn:hover {
+        color: orange;
+    }
+
+.logout-btn:hover {
+    color: white;
 }
 /*============login====================*/
 .login-background {
@@ -103,17 +107,17 @@ a, .btn-link {
     padding: 40px 30px 30px 30px;
     background-color: #ecf0f3;
     border-radius: 15px;
-    box-shadow: 13px 13px 10px #cbced1, -13px -13px 10px #fff
+    box-shadow: 7px 7px 5px #cbced1, -7px -7px 5px #fff
 }
 
 .fa-dumbbell {
     transition: all 0.3s linear;
 }
 
-.fa-dumbbell:hover {
-    color: orange;
-    transform: scale(1.1);
-}
+    .fa-dumbbell:hover {
+        color: orange;
+        transform: scale(1.1);
+    }
 
 .wrapper .form-field input {
     width: 100%;
@@ -133,9 +137,9 @@ a, .btn-link {
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff
 }
 
-.wrapper .form-field .fas {
-    color: #555
-}
+    .wrapper .form-field .fas {
+        color: #555
+    }
 
 .wrapper .login-btn {
     box-shadow: none;

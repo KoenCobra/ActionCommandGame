@@ -5,8 +5,17 @@
 @inject IPlayerItemApi _playerItemApi;
 @inject ILocalStorageService _storageService
 
-<div class="vh-100 game-background position-relative">
-    <a href="/players" class="btn change-player-btn border-white primary-color position-relative start-0 top-0 ms-3 mt-3">Change Player</a>
+<div class="vh-100 game-background">
+    <div class="d-flex w-100 justify-content-between">
+        <a href="/players" class="btn change-player-btn border-white primary-color ms-3 mt-3 rounded-pill">
+            Change Player 
+            <i class="fas fa-people-arrows ms-1"></i>
+        </a>
+        <a href="/" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
+            LOGOUT
+            <i class="fas fa-sign-out-alt ms-1"></i>
+        </a>
+    </div>
     <div class="container">
         <div style="height: 60vh" class="row">
             <div class="col-5 mt-3 text-center lift-section">
@@ -47,11 +56,11 @@
                 </div>
             </div>
             <div class="col-3 mt-3 me-3">
-                <StatsComponent Player="Player"/>
+                <StatsComponent Player="Player" />
             </div>
             <div class="col-3 mt-3">
                 <div class="mb-3">
-                    <LeaderboardComponent OrderedPlayers="_orderedPlayers"/>
+                    <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
                 </div>
                 <div>
                     <div class="card text-center shadow">

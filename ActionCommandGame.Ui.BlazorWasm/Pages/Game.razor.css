@@ -221,5 +221,11 @@ body .modal-dialog {
 
 .change-player-btn:hover {
     color: white;
+    background: orange;
+}
+
+.logout-btn:hover {
+    background: orange;
+    color: white;
 }
 

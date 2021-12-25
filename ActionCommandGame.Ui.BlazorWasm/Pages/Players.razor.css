@@ -60,5 +60,10 @@
     color: white;
 }
 
+.logout-btn:hover {
+    color: white;
+    background: orange;
+}
+
 
 

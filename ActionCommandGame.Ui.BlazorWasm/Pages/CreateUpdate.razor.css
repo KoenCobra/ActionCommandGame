@@ -17,3 +17,20 @@
     transform: scale(1.2);
 
 }
+
+.back-dumbell:hover {
+    cursor: pointer;
+}
+
+.change-player-btn:hover {
+    color: white;
+    background: orange;
+}
+
+.cancel-player-btn {
+    background: orange;
+}
+
+.cancel-player-btn:hover {
+    color: white;
+}

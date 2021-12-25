@@ -11,16 +11,16 @@
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
             <EditForm Model="_signInRequest" OnValidSubmit="LoginUser" class="p-3 mt-3">
                 <DataAnnotationsValidator />
+                <ValidationMessage For="() => _signInRequest.Email" />
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
                     <InputText @bind-Value="_signInRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
-                    <ValidationMessage For="() => _signInRequest.Email" />
                 </div>
 
+                <ValidationMessage For="() => _signInRequest.Password" />
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
                     <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
-                    <ValidationMessage For="() => _signInRequest.Password" />
                 </div>
 
                 <button type="submit" class="btn login-btn">Login</button>
@@ -39,16 +39,16 @@
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
             <EditForm Model="_registrationRequest" OnValidSubmit="RegisterUser" class="p-3 mt-3">
                 <DataAnnotationsValidator />
+                <ValidationMessage For="() => _registrationRequest.Email" />
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
                     <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
-                    <ValidationMessage For="() => _registrationRequest.Email" />
                 </div>
 
+                <ValidationMessage For="() => _registrationRequest.Password" />
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
                     <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
-                    <ValidationMessage For="() => _registrationRequest.Password" />
                 </div>
                 <button type="submit" class="btn login-btn">Register</button>
             </EditForm>
