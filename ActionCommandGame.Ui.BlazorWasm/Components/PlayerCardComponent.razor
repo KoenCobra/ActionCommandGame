@@ -2,16 +2,16 @@
 @inject ILocalStorageService _storageService
 @inject IPlayerApi _playerApi
 
-<div class="card player-card" style="width: 16rem;">
+<div class="card player-card">
     <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
     <div class="card-body bg-dark text-white">
         <h5 class="card-title primary-color">@Player.Name</h5>
         <p class="card-text">Money: @Player.Money</p>
         <p class="card-text">Experience: @Player.Experience</p>
         <div class="mt-4">
-            <button @onclick="() => SetPlayerId(Player.Id)" class="btn border-white bg-black text-white btn-sm rounded-pill">Play <i class="fas fa-play"></i></button>
-            <button @onclick="ShowDeleteComponent" class="btn btn-danger btn-sm rounded-pill"><i class="fas fa-trash-alt"></i></button>
-            <a href="/create/@Player.Id" class="btn btn-success btn-sm rounded-pill"><i class="fas fa-user-edit"></i></a>
+            <button @onclick="() => SetPlayerId(Player.Id)" class="btn fw-bolder play-btn me-1 rounded-pill">Play <i class="fas fa-play play-icon"></i></button>
+            <button @onclick="ShowDeleteComponent" class="btn btn-sm btn-danger rounded-pill me-1"><i class="fas fa-trash-alt"></i></button>
+            <a href="/create/@Player.Id" class="btn btn-sm update-btn border-1 rounded-pill"><i class="fas fa-user-edit"></i></a>
         </div>
     </div>
 </div>

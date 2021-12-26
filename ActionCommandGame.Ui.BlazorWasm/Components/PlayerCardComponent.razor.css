@@ -134,6 +134,7 @@
     -webkit-animation: bounce-in-top 1.1s both;
     animation: bounce-in-top 1.1s both;
     transition: all 0.1s linear;
+    width: 16rem;
 }
 
 .player-card:hover {
@@ -145,4 +146,18 @@
     width: 15.9rem;
     height: 17rem;
     object-fit: fill;
+}
+
+.play-btn {
+    background: orange;
+    color: black;
+}
+
+.play-icon {
+    transition: all 0.1s linear;
+}
+
+.update-btn {
+    background: green;
+    color: white;
 }
