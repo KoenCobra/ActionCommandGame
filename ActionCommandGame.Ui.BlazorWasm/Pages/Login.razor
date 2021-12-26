@@ -78,18 +78,14 @@
             return;
         }
 
-        var token = result.Token;
-        await _storageService.SetItemAsync("Token", token);
-
+        await _storageService.SetItemAsync("Token", result.Token);
         _navigationManager.NavigateTo("/players");
     }
 
     public async Task RegisterUser()
     {
         var result = await _identityApi.RegisterAsync(_registrationRequest);
-
-        var token = result.Token;
-        await _storageService.SetItemAsync("Token", token);
+        await _storageService.SetItemAsync("Token", result.Token);
 
         if (result.Success)
         {
