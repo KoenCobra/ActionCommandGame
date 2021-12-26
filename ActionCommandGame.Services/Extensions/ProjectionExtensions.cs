@@ -89,6 +89,7 @@ namespace ActionCommandGame.Services.Extensions
                 Name = i.Name,
                 Description = i.Description,
                 Price = i.Price,
+                ImageUrl = i.ImageUrl,
                 ActionCooldownSeconds = i.ActionCooldownSeconds,
                 Attack = i.Attack,
                 Defense = i.Defense,

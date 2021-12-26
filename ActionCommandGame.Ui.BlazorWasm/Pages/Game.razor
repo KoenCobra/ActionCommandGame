@@ -4,11 +4,12 @@
 @inject IItemApi _itemApi
 @inject IPlayerItemApi _playerItemApi;
 @inject ILocalStorageService _storageService
-
+@inject IJSRuntime _jsRuntime
 <div class="vh-100 game-background">
+
     <div class="d-flex w-100 justify-content-between">
         <a href="/players" class="btn change-player-btn border-white primary-color ms-3 mt-3 rounded-pill">
-            Change Player 
+            Change Player
             <i class="fas fa-people-arrows ms-1"></i>
         </a>
         <a href="/" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
@@ -20,6 +21,7 @@
         <div style="height: 60vh" class="row">
             <div class="col-5 mt-3 text-center lift-section">
                 <div class="d-flex flex-row justify-content-center mb-5">
+                    <audio id="sound" src="/media/alert.wav"/>
                     <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
                 </div>
                 <div class="primary-color h4 lift-section mt-3">
@@ -56,11 +58,11 @@
                 </div>
             </div>
             <div class="col-3 mt-3 me-3">
-                <StatsComponent Player="Player" />
+                <StatsComponent Player="Player"/>
             </div>
             <div class="col-3 mt-3">
                 <div class="mb-3">
-                    <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
+                    <LeaderboardComponent OrderedPlayers="_orderedPlayers"/>
                 </div>
                 <div>
                     <div class="card text-center shadow">
@@ -90,6 +92,10 @@
             </div>
         </div>
     </div>
+    <iframe width="0" height="0" 
+            src="https://www.youtube.com/embed/NmM1BLh9bO0?controls=0&amp;start=16?&autoplay=1" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 </div>
 
 @code {
@@ -124,6 +130,8 @@
     private async Task Lift()
     {
         var result = await _gameApi.PerformActionAsync(_playerId);
+
+        await _jsRuntime.InvokeAsync<string>("PlaySound");
 
         Player = result.Data.Player;
         _positiveGameEvent = result.Data.PositiveGameEvent;

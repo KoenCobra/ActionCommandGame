@@ -150,16 +150,16 @@ namespace ActionCommandGame.Repository
 
         private void GenerateAttackItems()
         {
-            Items.Add(new Item { Name = "Basic Pickaxe", Attack = 50, Price = 50, ImageUrl = "https://www.tights.no/wp-content/uploads/sites/7/2021/02/on_drc-768x960.jpg"});
-            Items.Add(new Item { Name = "Enhanced Pick", Attack = 300, Price = 300 });
-            Items.Add(new Item { Name = "Turbo Pick", Attack = 500, Price = 500 });
-            Items.Add(new Item { Name = "Mithril Warpick", Attack = 5000, Price = 15000 });
-            Items.Add(new Item { Name = "Thor's Hammer", Attack = 50, Price = 1000000 });
+            Items.Add(new Item { Name = "Whey Isolate", Attack = 50, Price = 50, ImageUrl = "https://xxlnutrition.com/media/catalog/product/cache/73fb52fa48b4d85cd19815f9f841ae49/w/h/whey_isolate_1kg__2021__1_5.png"});
+            Items.Add(new Item { Name = "Naked Whey", Attack = 300, Price = 300, ImageUrl = "https://adaoklneoo.cloudimg.io/v7/cdn.shopify.com/s/files/1/0645/6465/products/grass-fed-whey-protein-powder_1024x1024.jpg?v=1613950823"});
+            Items.Add(new Item { Name = "Anabolic Whey", Attack = 500, Price = 500, ImageUrl = "https://gymbeam.com/media/catalog/product/cache/926507dc7f93631a094422215b778fe0/m/o/monsterwhey_2000g_w_1677_l_2.jpg"});
+            Items.Add(new Item { Name = "Mutant Mass", Attack = 5000, Price = 15000, ImageUrl = "https://5.imimg.com/data5/VJ/PE/MY-41800760/mutant-muscle-mass-gainer-500x500.jpg"});
+            Items.Add(new Item { Name = "The Ripper...", Attack = 50, Price = 1000000, ImageUrl = "https://media.s-bol.com/Lg58v8ZB4zqD/550x580.jpg"});
         }
 
         private void GenerateDefenseItems()
         {
-            Items.Add(new Item { Name = "Torn Clothes", Defense = 20, Price = 20 });
+            Items.Add(new Item { Name = "Torn Clothes", Defense = 20, Price = 20, ImageUrl = "https://cdn.shopify.com/s/files/1/1655/5199/products/Push-Harder-Shirt-Dedicated_2048x.png?v=1481699119"});
             Items.Add(new Item { Name = "Hardened Leather Gear", Defense = 150, Price = 200 });
             Items.Add(new Item { Name = "Iron plated Armor", Defense = 500, Price = 1000 });
             Items.Add(new Item { Name = "Rock Shield", Defense = 2000, Price = 10000 });
