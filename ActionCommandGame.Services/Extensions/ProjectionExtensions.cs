@@ -15,7 +15,7 @@ namespace ActionCommandGame.Services.Extensions
                 UserId = p.UserId,
                 Experience = p.Experience,
                 ImageName = p.ImageName,
-                Money = p.Money,
+                Gains = p.Gains,
                 LastActionExecutedDateTime = p.LastActionExecutedDateTime,
                 CurrentAttackId = p.CurrentAttackPlayerItemId,
                 CurrentAttackName = p.CurrentAttackPlayerItemId.HasValue ? p.CurrentAttackPlayerItem.Item.Name : string.Empty,
@@ -42,7 +42,7 @@ namespace ActionCommandGame.Services.Extensions
                 Name = pge.Name,
                 Description = pge.Description,
                 Experience = pge.Experience,
-                Money = pge.Money,
+                Gains = pge.Gains,
                 Probability = pge.Probability
             });
         }

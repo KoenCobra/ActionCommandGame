@@ -38,8 +38,8 @@
         if (result.IsSuccess)
         {
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "success",
-                $"You bought {result.Data.Item.Name} for €{result.Data.Item.Price}, " +
-                $" You have {result.Data.Player.Money} € left");
+                $"You bought {result.Data.Item.Name} for {result.Data.Item.Price} Gains, " +
+                $" You have {result.Data.Player.Gains} Gains left");
         }
         else
         {

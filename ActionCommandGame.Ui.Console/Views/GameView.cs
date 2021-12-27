@@ -169,7 +169,7 @@ namespace ActionCommandGame.Ui.ConsoleApp.Views
             }
 
             ConsoleWriter.WriteText("[Money] ", ConsoleColor.Yellow, false);
-            ConsoleWriter.WriteText($"€{player.Money}  ", null, false);
+            ConsoleWriter.WriteText($"€{player.Gains}  ", null, false);
             ConsoleWriter.WriteText("[Level] ", ConsoleColor.Yellow, false);
             ConsoleWriter.WriteText($"{player.GetLevel()} ({player.Experience}/{player.GetExperienceForNextLevel()})  ", null, false);
 
@@ -194,9 +194,9 @@ namespace ActionCommandGame.Ui.ConsoleApp.Views
                 {
                     ConsoleWriter.WriteText(positiveGameEvent.Description);
                 }
-                if (positiveGameEvent.Money > 0)
+                if (positiveGameEvent.Gains > 0)
                 {
-                    ConsoleWriter.WriteText($"€{positiveGameEvent.Money}", ConsoleColor.Yellow, false);
+                    ConsoleWriter.WriteText($"€{positiveGameEvent.Gains}", ConsoleColor.Yellow, false);
                     ConsoleWriter.WriteText(" has been added to your account.");
                 }
             }
@@ -223,7 +223,7 @@ namespace ActionCommandGame.Ui.ConsoleApp.Views
             if (result.IsSuccess)
             {
                 ConsoleWriter.WriteText($"You bought {result.Data.Item.Name} for €{result.Data.Item.Price}");
-                ConsoleWriter.WriteText($"Thank you for shopping. Your current balance is €{result.Data.Player.Money}.");
+                ConsoleWriter.WriteText($"Thank you for shopping. Your current balance is €{result.Data.Player.Gains}.");
 
                 //Check if there are info and warning messages
                 var nonErrorMessages =

@@ -64,10 +64,10 @@ namespace ActionCommandGame.Repository
                 ImageUrl = "https://i.pinimg.com/236x/85/8f/20/858f20bc09890753ad7255223ad9b345--bodybuilding-fitness-bodybuilding-motivation.jpg"
             });
 
-            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Money = 100, ImageName = "nerd.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Money = 100000, Experience = 2000, ImageName = "Ronnie.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Money = 500, Experience = 5, ImageName = "nerd2.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Money = 12345, Experience = 200, ImageName = "buffdude.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Gains = 100, ImageName = "nerd.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Gains = 100000, Experience = 2000, ImageName = "Ronnie.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Gains = 500, Experience = 5, ImageName = "nerd2.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Gains = 12345, Experience = 200, ImageName = "buffdude.jpg"});
 
             SaveChanges();
         }
@@ -79,34 +79,34 @@ namespace ActionCommandGame.Repository
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Sand, dirt and dust", Probability = 1000 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "A piece of empty paper", Description = "You hold it to the light and warm it up to reveal secret texts, but it remains empty.", Probability = 1000 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "A small water stream", Description = "The water flows around your feet and creates a dirty puddle.", Probability = 1000 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Junk", Money = 1, Experience = 1, Probability = 2000 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Murphy's idea bin", Money = 1, Experience = 1, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Donald's book of excuses", Money = 1, Experience = 1, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Children's Treasure Map", Money = 1, Experience = 1, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Trinket", Money = 5, Experience = 3, Probability = 1000 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Old Tool", Money = 10, Experience = 5, Probability = 800 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Old Equipment", Money = 10, Experience = 5, Probability = 800 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ornate Shell", Money = 10, Experience = 5, Probability = 800 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Fossil", Money = 12, Experience = 6, Probability = 700 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Cave Shroom", Money = 20, Experience = 8, Probability = 650 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Artifact", Money = 30, Experience = 10, Probability = 500 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Scrap Metal", Money = 50, Experience = 13, Probability = 400 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Jewelry", Money = 60, Experience = 15, Probability = 400 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Peculiar Mask", Money = 100, Experience = 40, Probability = 350 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Quartz Geode", Money = 140, Experience = 50, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Weapon", Money = 160, Experience = 80, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Instrument", Money = 160, Experience = 80, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Texts", Money = 180, Experience = 80, Probability = 300 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Gemstone", Money = 300, Experience = 100, Probability = 110 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Mysterious Potion", Money = 300, Experience = 100, Probability = 80 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Meteorite", Money = 400, Experience = 150, Probability = 200 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Bust", Money = 500, Experience = 150, Probability = 150 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Buried Treasure", Money = 1000, Experience = 200, Probability = 100 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Alien DNA", Money = 60000, Experience = 1500, Probability = 5 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Rare Collector's Item", Money = 3000, Experience = 400, Probability = 30 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Pure Gold", Money = 2000, Experience = 350, Probability = 30 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Safe Deposit Box Key", Money = 20000, Experience = 1000, Probability = 10 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Advanced Bio Tech", Money = 30000, Experience = 1500, Probability = 10 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Junk", Gains = 1, Experience = 1, Probability = 2000 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Murphy's idea bin", Gains = 1, Experience = 1, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Donald's book of excuses", Gains = 1, Experience = 1, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Children's Treasure Map", Gains = 1, Experience = 1, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Trinket", Gains = 5, Experience = 3, Probability = 1000 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Old Tool", Gains = 10, Experience = 5, Probability = 800 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Old Equipment", Gains = 10, Experience = 5, Probability = 800 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ornate Shell", Gains = 10, Experience = 5, Probability = 800 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Fossil", Gains = 12, Experience = 6, Probability = 700 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Cave Shroom", Gains = 20, Experience = 8, Probability = 650 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Artifact", Gains = 30, Experience = 10, Probability = 500 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Scrap Metal", Gains = 50, Experience = 13, Probability = 400 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Jewelry", Gains = 60, Experience = 15, Probability = 400 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Peculiar Mask", Gains = 100, Experience = 40, Probability = 350 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Quartz Geode", Gains = 140, Experience = 50, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Weapon", Gains = 160, Experience = 80, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Instrument", Gains = 160, Experience = 80, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Texts", Gains = 180, Experience = 80, Probability = 300 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Gemstone", Gains = 300, Experience = 100, Probability = 110 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Mysterious Potion", Gains = 300, Experience = 100, Probability = 80 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Meteorite", Gains = 400, Experience = 150, Probability = 200 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Ancient Bust", Gains = 500, Experience = 150, Probability = 150 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Buried Treasure", Gains = 1000, Experience = 200, Probability = 100 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Alien DNA", Gains = 60000, Experience = 1500, Probability = 5 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Rare Collector's Item", Gains = 3000, Experience = 400, Probability = 30 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Pure Gold", Gains = 2000, Experience = 350, Probability = 30 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Safe Deposit Box Key", Gains = 20000, Experience = 1000, Probability = 10 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Advanced Bio Tech", Gains = 30000, Experience = 1500, Probability = 10 });
         }
 
         public void GenerateNegativeGameEvents()

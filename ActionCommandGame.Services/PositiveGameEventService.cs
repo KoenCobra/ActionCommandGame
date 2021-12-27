@@ -29,7 +29,7 @@ namespace ActionCommandGame.Services
             //If we don't have an attack item, we can only get low-reward items.
             if (!hasAttackItem)
             {
-                query = query.Where(p => p.Money < 50);
+                query = query.Where(p => p.Gains < 50);
             }
 
             var gameEvents = await query

@@ -50,7 +50,7 @@ namespace ActionCommandGame.Services
                 UserId = authenticatedUserId,
                 Experience = playerResult.Experience,
                 ImageName = playerResult.ImageName,
-                Money = playerResult.Money,
+                Gains = playerResult.Gains,
                 LastActionExecutedDateTime = playerResult.LastActionExecutedDateTime,
             };
 
@@ -71,7 +71,7 @@ namespace ActionCommandGame.Services
             }
 
             dbPlayer.Name= playerResult.Name;
-            dbPlayer.Money = playerResult.Money;
+            dbPlayer.Gains = playerResult.Gains;
             dbPlayer.Experience = playerResult.Experience;
             dbPlayer.ImageName = playerResult.ImageName;
 

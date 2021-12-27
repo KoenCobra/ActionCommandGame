@@ -21,7 +21,7 @@
         <div style="height: 60vh" class="row">
             <div class="col-5 mt-3 text-center lift-section">
                 <div class="d-flex flex-row justify-content-center mb-5">
-                    <audio id="sound" src="/media/alert.wav"/>
+                   <audio id="sound" src="/Sounds/come-on-2.mp3"></audio>
                     <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
                 </div>
                 <div class="primary-color h4 lift-section mt-3">
@@ -37,9 +37,9 @@
                         {
                             <p>@_positiveGameEvent.Description</p>
                         }
-                        @if (_positiveGameEvent.Money > 0)
+                        @if (_positiveGameEvent.Gains > 0)
                         {
-                            <p>@($"{_positiveGameEvent.Money}€ has been added to your account.")</p>
+                            <p>@($"{_positiveGameEvent.Gains}€ has been added to your account.")</p>
                         }
                     }
                     @if (_negativeGameEvent != null)

@@ -108,7 +108,7 @@ namespace ActionCommandGame.Services
 
             var oldLevel = player.GetLevel();
 
-            player.Money += positiveGameEvent.Data.Money;
+            player.Gains += positiveGameEvent.Data.Gains;
             player.Experience += positiveGameEvent.Data.Experience;
 
             var newLevel = player.GetLevel();
@@ -125,7 +125,7 @@ namespace ActionCommandGame.Services
 
             var attackMessages = new List<ServiceMessage>();
             //Consume attack when we got some loot
-            if (positiveGameEvent.Data.Money > 0)
+            if (positiveGameEvent.Data.Gains > 0)
             {
                 attackMessages.AddRange(ConsumeAttack(player, authenticatedUserId));
             }
@@ -193,14 +193,14 @@ namespace ActionCommandGame.Services
                 return new ServiceResult<BuyResult>().ItemNotFound();
             }
 
-            if (item.Price > player.Money)
+            if (item.Price > player.Gains)
             {
                 return new ServiceResult<BuyResult>().NotEnoughMoney();
             }
 
             await _playerItemService.CreateAsync(playerId, itemId, authenticatedUserId);
 
-            player.Money -= item.Price;
+            player.Gains -= item.Price;
 
             //SaveChanges
             await _database.SaveChangesAsync();

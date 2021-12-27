@@ -10,23 +10,23 @@
         </div>
         <EditForm Model="Player" OnValidSubmit="HandleCreateUpdate" class="p-3 mt-3">
             <DataAnnotationsValidator />
+                <ValidationMessage For="() => Player.Name" />
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
                 <InputText @bind-Value="Player.Name" placeholder="name" />
-                <ValidationMessage For="() => Player.Name" />
             </div>
+                <ValidationMessage For="() => Player.Gains" />
             <div class="form-field d-flex align-items-center">
-                <span class="fas fa-money-bill-alt"></span>
-                <InputNumber @bind-Value="Player.Money" placeholder="money" />
-                <ValidationMessage For="() => Player.Money" />
+                <span class="fas fa-fist-raised"></span>
+                <InputNumber @bind-Value="Player.Gains" placeholder="gains"/>
             </div>
+                <ValidationMessage For="() => Player.Experience" />
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-chart-line"></span>
                 <InputNumber @bind-Value="Player.Experience" placeholder="expercience" />
-                <ValidationMessage For="() => Player.Experience" />
             </div>
             <div class="form-field d-flex align-items-center">
-                <select id="slick" class="d-flex align-items-center" @bind="Player.ImageName">
+                <select class="d-flex align-items-center" @bind="Player.ImageName">
                     <option selected>Select your image</option>
                     <option value="nerd.jpg">One</option>
                     <option value="nerd2.jpg">Two</option>
