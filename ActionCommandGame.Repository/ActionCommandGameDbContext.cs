@@ -60,7 +60,8 @@ namespace ActionCommandGame.Repository
                 Defense = 1000000,
                 Fuel = 1000000,
                 ActionCooldownSeconds = 1,
-                Price = 10000000
+                Price = 10000000,
+                ImageUrl = "https://i.pinimg.com/236x/85/8f/20/858f20bc09890753ad7255223ad9b345--bodybuilding-fitness-bodybuilding-motivation.jpg"
             });
 
             Players.Add(new Player { UserId = user.Id, Name = "John Doe", Money = 100, ImageName = "nerd.jpg"});
@@ -159,32 +160,29 @@ namespace ActionCommandGame.Repository
 
         private void GenerateDefenseItems()
         {
-            Items.Add(new Item { Name = "Torn Clothes", Defense = 20, Price = 20, ImageUrl = "https://cdn.shopify.com/s/files/1/1655/5199/products/Push-Harder-Shirt-Dedicated_2048x.png?v=1481699119"});
-            Items.Add(new Item { Name = "Hardened Leather Gear", Defense = 150, Price = 200 });
-            Items.Add(new Item { Name = "Iron plated Armor", Defense = 500, Price = 1000 });
-            Items.Add(new Item { Name = "Rock Shield", Defense = 2000, Price = 10000 });
-            Items.Add(new Item { Name = "Emerald Shield", Defense = 2000, Price = 10000 });
-            Items.Add(new Item { Name = "Diamond Shield", Defense = 20000, Price = 10000 });
+            Items.Add(new Item { Name = "Push Harder", Defense = 20, Price = 20, ImageUrl = "https://cdn.shopify.com/s/files/1/1655/5199/products/Push-Harder-Shirt-Dedicated_2048x.png?v=1481699119"});
+            Items.Add(new Item { Name = "Leather Gloves", Defense = 150, Price = 200, ImageUrl = "https://img.joomcdn.net/c85f4ed1b6645b619ce379cc642b344ea56ceaac_original.jpeg"});
+            Items.Add(new Item { Name = "Lifting Shoes", Defense = 500, Price = 1000, ImageUrl = "https://ae01.alicdn.com/kf/H2242a2306bd84e8e89163fb6777cdfb6p/Professional-Weightlifting-Shoes-Weight-Lifting-Shoe-Hightop-Gym-Training-Bodybuilding-Suqte-Power-Lifting-High-Tops.jpg_640x640.jpg"});
+            Items.Add(new Item { Name = "Knee Sleeves", Defense = 2000, Price = 10000, ImageUrl = "https://cdn.shopify.com/s/files/1/0509/2071/8486/products/A3A0161-Edit_2048x2048.jpg?v=1623877483"});
+            Items.Add(new Item { Name = "Lifting Straps", Defense = 2000, Price = 10000, ImageUrl = "https://media.s-bol.com/qQ614gZ9A33R/1124x1200.jpg"});
+            Items.Add(new Item { Name = "Power Belt", Defense = 20000, Price = 10000, ImageUrl = "https://cdn.shopify.com/s/files/1/0560/0323/1943/products/1_Genuine-Leather-Weightlifting-Belt-Weight-Lifting-Back-Support-Power-Training-Belt-GYM-Fitness-Equipment-Workout-Exercise_590x_9309854d-dd99-4f1c-af2c-c9b9b2829ff0.png?v=1617730334"});
         }
 
         private void GenerateFoodItems()
         {
-            Items.Add(new Item { Name = "Apple", ActionCooldownSeconds = 50, Fuel = 4, Price = 8 });
-            Items.Add(new Item { Name = "Energy Bar", ActionCooldownSeconds = 45, Fuel = 5, Price = 10 });
-            Items.Add(new Item { Name = "Field Rations", ActionCooldownSeconds = 30, Fuel = 30, Price = 300 });
-            Items.Add(new Item { Name = "Abbye cheese", ActionCooldownSeconds = 25, Fuel = 100, Price = 500 });
-            Items.Add(new Item { Name = "Abbye Beer", ActionCooldownSeconds = 25, Fuel = 100, Price = 500 });
-            Items.Add(new Item { Name = "Celestial Burrito", ActionCooldownSeconds = 15, Fuel = 500, Price = 10000 });
-#if DEBUG
-            Items.Add(new Item { Name = "Developer Food", ActionCooldownSeconds = 1, Fuel = 1000, Price = 1 });
-#endif
+            Items.Add(new Item { Name = "Banana", ActionCooldownSeconds = 50, Fuel = 4, Price = 8, ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"});
+            Items.Add(new Item { Name = "Energy Bar", ActionCooldownSeconds = 45, Fuel = 5, Price = 10, ImageUrl = "https://www.bodymassnutrition.com/wp-content/uploads/2020/02/Energybar-nieuw.png"});
+            Items.Add(new Item { Name = "Pre Made Meal", ActionCooldownSeconds = 30, Fuel = 30, Price = 300, ImageUrl = "https://mepmeals.com/data/meals/33.jpg?md=17eb6224c2fbfbe032854eacce9b435b"});
+            Items.Add(new Item { Name = "High Protein Bar", ActionCooldownSeconds = 25, Fuel = 100, Price = 500, ImageUrl = "https://gymbeam.com/media/catalog/product/l/o/low-carb-high-protein-bar-latte-machiato.png"});
+            Items.Add(new Item { Name = "Energy Drink", ActionCooldownSeconds = 25, Fuel = 100, Price = 500, ImageUrl = "https://www.asianfoodlovers.be/media/catalog/product/cache/9/image/750x750/9df78eab33525d08d6e5fb8d27136e95/1/1/11671_5.jpg"});
+            Items.Add(new Item { Name = "Daily Meal Delivery", ActionCooldownSeconds = 15, Fuel = 500, Price = 10000, ImageUrl = "https://lh3.googleusercontent.com/proxy/eJH3pNZgMT95MgCHzWWdaaTatugKkx3Sjir4cD1QQG1PhB3HJx7XC8yWmbJvrV5F__0LQUUtpOj0QtmV3Tk7p7Y5hYQrR3FcAUfLyYskCqEqIz63dgsEU4sF9GOvwNR6Rmt7N5F6zRS-"});
         }
 
         private void GenerateDecorativeItems()
         {
-            Items.Add(new Item { Name = "Balloon", Description = "Does nothing. Do you feel special now?", Price = 10 });
-            Items.Add(new Item { Name = "Blue Medal", Description = "For those who cannot afford the Crown of Flexing.", Price = 100000 });
-            Items.Add(new Item { Name = "Crown of Flexing", Description = "Yes, show everyone how much money you are willing to spend on something useless!", Price = 500000 });
+            Items.Add(new Item { Name = "Vegan Protein", Description = "Does nothing. Do you feel special now?", Price = 10, ImageUrl = "https://s1.thcdn.com/productimg/300/300/11654583-9984622705420877.jpg"});
+            Items.Add(new Item { Name = "Tank Top Flexing", Description = "For those who cannot afford the Crown of Flexing.", Price = 100000, ImageUrl = "https://ae01.alicdn.com/kf/Hb1e16449b99b4271a7e1948b1d1ac4f6v/4-Colors-Men-Gym-Stringer-Tank-Top-Sleeveless-Bodybuilding-Fitness-Singlets-Muscle-Vest-Tee-Outfits-M.jpg"});
+            Items.Add(new Item { Name = "Crown of Flexing", Description = "Yes, show everyone how much money you are willing to spend on something useless!", Price = 500000, ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnZ78A0EUG_ukhgMmzjcWhlLqJKdlrUgR7fCU9kFmIkUChNZHAAd17iTIimUod3AIdWLo&usqp=CAU"});
         }
 
     }
