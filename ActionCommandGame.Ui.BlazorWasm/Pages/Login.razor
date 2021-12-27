@@ -10,6 +10,9 @@
         <div class="wrapper">
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
             <EditForm Model="_signInRequest" OnValidSubmit="LoginUser" class="p-3 mt-3">
+                <audio id="player">
+                    <source id="playerSource" src="" />
+                </audio>
                 <DataAnnotationsValidator />
                 <ValidationMessage For="() => _signInRequest.Email" />
                 <div class="form-field d-flex align-items-center">
@@ -38,17 +41,20 @@
         <div class="wrapper">
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
             <EditForm Model="_registrationRequest" OnValidSubmit="RegisterUser" class="p-3 mt-3">
-                <DataAnnotationsValidator />
-                <ValidationMessage For="() => _registrationRequest.Email" />
+                <audio id="player">
+                    <source id="playerSource" src="" />
+                </audio>
+                <DataAnnotationsValidator/>
+                <ValidationMessage For="() => _registrationRequest.Email"/>
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
-                    <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
+                    <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username"/>
                 </div>
 
-                <ValidationMessage For="() => _registrationRequest.Password" />
+                <ValidationMessage For="() => _registrationRequest.Password"/>
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
-                    <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
+                    <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password"/>
                 </div>
                 <button type="submit" class="btn login-btn">Register</button>
             </EditForm>
@@ -70,11 +76,11 @@
     public async Task LoginUser()
     {
         var result = await _identityApi.SignInAsync(_signInRequest);
-
         if (!result.Success)
         {
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
                 "Take your pre-workout caffeine supplement first and FOCUS!!!!");
+            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/who-are-you.mp3");
             return;
         }
 
@@ -97,6 +103,7 @@
         {
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
                 "Take your pre-workout caffeine supplement first and FOCUS!!!!");
+            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/who-are-you.mp3");
         }
     }
 

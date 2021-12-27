@@ -1,14 +1,18 @@
 ﻿@page "/players"
 @inject IPlayerApi _playerApi
 @inject ILocalStorageService _storageService
-
+@inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
 
 <div class="d-flex min-vh-100 position-relative w-100 players-background justify-content-center align-items-center">
     <div class="top-0 position-absolute end-0">
-        <a href="/" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
+        <audio id="player">
+            <source id="playerSource" src="" />
+        </audio>
+        <button @onclick="GameOver" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
             LOGOUT
             <i class="fas fa-sign-out-alt ms-1"></i>
-        </a>
+        </button>
     </div>
     <div class="container">
         <div class="row">
@@ -54,5 +58,13 @@
         var players = await _playerApi.Find(Filter);
 
         PlayersResult = players.Data;
+    }
+
+    private async Task GameOver()
+    {
+        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/game-over.mp3");
+        Task delay = Task.Delay(2000);
+        await delay;
+        _navigationManager.NavigateTo("/");
     }
 }

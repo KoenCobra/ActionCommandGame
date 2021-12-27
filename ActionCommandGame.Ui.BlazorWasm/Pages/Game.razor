@@ -5,6 +5,8 @@
 @inject IPlayerItemApi _playerItemApi;
 @inject ILocalStorageService _storageService
 @inject IJSRuntime _jsRuntime
+@inject NavigationManager _navigationManager
+
 <div class="vh-100 game-background">
 
     <div class="d-flex w-100 justify-content-between">
@@ -12,10 +14,13 @@
             Change Player
             <i class="fas fa-people-arrows ms-1"></i>
         </a>
-        <a href="/" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
+        <audio id="player">
+            <source id="playerSource" src="" />
+        </audio>
+        <button @onclick="GameOver" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
             LOGOUT
             <i class="fas fa-sign-out-alt ms-1"></i>
-        </a>
+        </button>
     </div>
     <div class="container">
         <div style="height: 60vh" class="row">
@@ -159,5 +164,13 @@
     {
         var playersResult = await _playerApi.Find(new PlayerFilter());
         _orderedPlayers = playersResult.Data.OrderByDescending(p => p.Experience).ToList();
+    }
+
+    private async Task GameOver()
+    {
+        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/game-over.mp3");
+        Task delay = Task.Delay(2000);
+        await delay;
+        _navigationManager.NavigateTo("/");
     }
 }
