@@ -1,0 +1,10 @@
+﻿.img-toggle {
+    background-color: orange;
+    color: white;
+    font-weight: bolder;
+}
+
+.images-list {
+    height: 380px;
+    overflow-y: scroll;
+}

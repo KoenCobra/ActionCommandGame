@@ -186,7 +186,7 @@ select.icon-menu option {
 .drop-down {
     position: relative;
     display: inline-block;
-    width: auto;
+    width: 100%;
     margin-top: 0;
     font-family: verdana;
 }

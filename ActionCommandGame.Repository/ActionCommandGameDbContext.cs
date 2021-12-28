@@ -174,7 +174,7 @@ namespace ActionCommandGame.Repository
             Items.Add(new Item { Name = "Pre Made Meal", ActionCooldownSeconds = 30, Fuel = 30, Price = 300, ImageUrl = "https://mepmeals.com/data/meals/33.jpg?md=17eb6224c2fbfbe032854eacce9b435b"});
             Items.Add(new Item { Name = "High Protein Bar", ActionCooldownSeconds = 25, Fuel = 100, Price = 500, ImageUrl = "https://gymbeam.com/media/catalog/product/l/o/low-carb-high-protein-bar-latte-machiato.png"});
             Items.Add(new Item { Name = "Energy Drink", ActionCooldownSeconds = 25, Fuel = 100, Price = 500, ImageUrl = "https://www.asianfoodlovers.be/media/catalog/product/cache/9/image/750x750/9df78eab33525d08d6e5fb8d27136e95/1/1/11671_5.jpg"});
-            Items.Add(new Item { Name = "Daily Meal Delivery", ActionCooldownSeconds = 15, Fuel = 500, Price = 10000, ImageUrl = "https://lh3.googleusercontent.com/proxy/eJH3pNZgMT95MgCHzWWdaaTatugKkx3Sjir4cD1QQG1PhB3HJx7XC8yWmbJvrV5F__0LQUUtpOj0QtmV3Tk7p7Y5hYQrR3FcAUfLyYskCqEqIz63dgsEU4sF9GOvwNR6Rmt7N5F6zRS-"});
+            Items.Add(new Item { Name = "Daily Meal Delivery", ActionCooldownSeconds = 15, Fuel = 500, Price = 10000, ImageUrl = "https://www.fuelyourbody.be/media/catalog/product/cache/a933d7a3783b8d88651fdd9da06e3ec3/c/h/chicken-variation-mix-pack.jpg"});
         }
 
         private void GenerateDecorativeItems()

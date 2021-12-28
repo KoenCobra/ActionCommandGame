@@ -9,7 +9,7 @@
         <audio id="player">
             <source id="playerSource" src="" />
         </audio>
-        <button @onclick="GameOver" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
+        <button @onclick="Logout" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
             LOGOUT
             <i class="fas fa-sign-out-alt ms-1"></i>
         </button>
@@ -60,10 +60,10 @@
         PlayersResult = players.Data;
     }
 
-    private async Task GameOver()
+    private async Task Logout()
     {
         await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/ill-be-back.mp3");
-        Task delay = Task.Delay(1200);
+        Task delay = Task.Delay(1400);
         await delay;
         _navigationManager.NavigateTo("/");
     }
