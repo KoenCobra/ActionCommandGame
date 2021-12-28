@@ -63,7 +63,7 @@
     private async Task Logout()
     {
         await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/ill-be-back.mp3");
-        Task delay = Task.Delay(1400);
+        Task delay = Task.Delay(1600);
         await delay;
         _navigationManager.NavigateTo("/");
     }

@@ -92,6 +92,17 @@ a, .btn-link {
 .logout-btn:hover {
     color: white;
 }
+
+.img-toggle {
+    background-color: orange;
+    color: white;
+    font-weight: bolder;
+}
+
+.images-list {
+    height: 380px;
+    overflow-y: scroll;
+}
 /*============login====================*/
 .login-background {
     background-image: url('https://s1.1zoom.me/b6451/922/16_KG_Dumbbells_Black_and_white_Gym_538198_2560x1440.jpg');

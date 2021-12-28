@@ -64,10 +64,10 @@ namespace ActionCommandGame.Repository
                 ImageUrl = "https://i.pinimg.com/236x/85/8f/20/858f20bc09890753ad7255223ad9b345--bodybuilding-fitness-bodybuilding-motivation.jpg"
             });
 
-            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Gains = 100, ImageName = "nerd.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Gains = 100000, Experience = 2000, ImageName = "Ronnie.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Gains = 500, Experience = 5, ImageName = "nerd2.jpg"});
-            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Gains = 12345, Experience = 200, ImageName = "buffdude.jpg"});
+            Players.Add(new Player { UserId = user.Id, Name = "John Doe", Gains = 100, ImageName = "woman2.jpg" });
+            Players.Add(new Player { UserId = user.Id, Name = "John Francks", Gains = 100000, Experience = 2000, ImageName = "Ronnie.jpg" });
+            Players.Add(new Player { UserId = user.Id, Name = "Luc Doleman", Gains = 500, Experience = 5, ImageName = "nerd2.jpg" });
+            Players.Add(new Player { UserId = user.Id, Name = "Emilio Fratilleci", Gains = 12345, Experience = 200, ImageName = "woman.jpg" });
 
             SaveChanges();
         }
