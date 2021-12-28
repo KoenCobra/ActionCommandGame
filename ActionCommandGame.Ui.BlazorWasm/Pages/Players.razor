@@ -62,8 +62,8 @@
 
     private async Task GameOver()
     {
-        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/game-over.mp3");
-        Task delay = Task.Delay(2000);
+        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/ill-be-back.mp3");
+        Task delay = Task.Delay(1200);
         await delay;
         _navigationManager.NavigateTo("/");
     }
