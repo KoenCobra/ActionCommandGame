@@ -6,19 +6,19 @@
     }
     @if (@PlayerItem.Fuel > 0)
     {
-        <span>Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
+        <span class="primary-color"> Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
     }
     @if (@PlayerItem.Attack > 0)
     {
-        <span>Attack: @PlayerItem.RemainingAttack/@PlayerItem.Attack</span>;
+        <span class="primary-color"> Attack: @PlayerItem.RemainingAttack/@PlayerItem.Attack</span>;
     }
     @if (@PlayerItem.Defense > 0)
     {
-        <span>Defence: @PlayerItem.RemainingDefense/@PlayerItem.Defense</span>;
+        <span class="primary-color"> Defence: @PlayerItem.RemainingDefense/@PlayerItem.Defense</span>;
     }
     @if (@PlayerItem.ActionCooldownSeconds > 0)
     {
-        <span>Cooldown seconds: @PlayerItem.ActionCooldownSeconds</span>;
+        <span class="primary-color"> Cooldown seconds: @PlayerItem.ActionCooldownSeconds</span>;
     }
 </li>
 
