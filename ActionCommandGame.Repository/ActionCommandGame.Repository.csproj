@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ActionCommandGame.Model\ActionCommandGame.Model.csproj" />
+    <ProjectReference Include="..\ActionCommandGame.Ui.BlazorWasm\ActionCommandGame.Ui.BlazorWasm.csproj" />
   </ItemGroup>
 
 </Project>

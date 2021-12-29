@@ -11,11 +11,14 @@ namespace ActionCommandGame.Api.Installers
 
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = configuration.GetConnectionString("ActionCommandGameDbContext");
+
             services.AddDbContext<ActionCommandGameDbContext>(options =>
             {
                 options.UseLoggerFactory(ConsoleLoggerFactory);
                 options.EnableSensitiveDataLogging();
-                options.UseInMemoryDatabase("InMemoryDb");
+                //options.UseInMemoryDatabase("InMemoryDb");
+                options.UseSqlServer(connectionString);
             }, ServiceLifetime.Singleton, ServiceLifetime.Singleton);
         }
     }
