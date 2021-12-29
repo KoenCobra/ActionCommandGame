@@ -75,16 +75,16 @@
 
     public async Task LoginUser()
     {
-        var result = await _identityApi.SignInAsync(_signInRequest);
-        if (!result.Success)
-        {
-            await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
-                "Take your pre-workout caffeine supplement first and FOCUS!!!!");
-            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/who-are-you.mp3");
-            return;
-        }
+        //var result = await _identityApi.SignInAsync(_signInRequest);
+        //if (!result.Success)
+        //{
+        //    await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
+        //        "Take your pre-workout caffeine supplement first and FOCUS!!!!");
+        //    await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/who-are-you.mp3");
+        //    return;
+        //}
 
-        await _storageService.SetItemAsync("Token", result.Token);
+        //await _storageService.SetItemAsync("Token", result.Token);
         _navigationManager.NavigateTo("/players");
     }
 
