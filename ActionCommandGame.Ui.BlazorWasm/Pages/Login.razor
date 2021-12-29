@@ -11,19 +11,19 @@
             <div class="w-100 text-center"> <i class="fas fa-dumbbell fa-fw fa-5x"></i> </div>
             <EditForm Model="_signInRequest" OnValidSubmit="LoginUser" class="p-3 mt-3">
                 <audio id="player">
-                    <source id="playerSource" src="" />
+                    <source id="playerSource" src=""/>
                 </audio>
-                <DataAnnotationsValidator />
-                <ValidationMessage For="() => _signInRequest.Email" />
+                <DataAnnotationsValidator/>
+                <ValidationMessage For="() => _signInRequest.Email"/>
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
-                    <InputText @bind-Value="_signInRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
+                    <InputText @bind-Value="_signInRequest.Email" type="text" name="userName" id="userName" placeholder="Username"/>
                 </div>
 
-                <ValidationMessage For="() => _signInRequest.Password" />
+                <ValidationMessage For="() => _signInRequest.Password"/>
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
-                    <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
+                    <InputText @bind-Value="_signInRequest.Password" type="password" name="password" id="pwd" placeholder="Password"/>
                 </div>
 
                 <button type="submit" class="btn login-btn">Login</button>
@@ -44,17 +44,17 @@
                 <audio id="player">
                     <source id="playerSource" src="" />
                 </audio>
-                <DataAnnotationsValidator/>
-                <ValidationMessage For="() => _registrationRequest.Email"/>
+                <DataAnnotationsValidator />
+                <ValidationMessage For="() => _registrationRequest.Email" />
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
-                    <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username"/>
+                    <InputText @bind-Value="_registrationRequest.Email" type="text" name="userName" id="userName" placeholder="Username" />
                 </div>
 
-                <ValidationMessage For="() => _registrationRequest.Password"/>
+                <ValidationMessage For="() => _registrationRequest.Password" />
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
-                    <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password"/>
+                    <InputText @bind-Value="_registrationRequest.Password" type="password" name="password" id="pwd" placeholder="Password" />
                 </div>
                 <button type="submit" class="btn login-btn">Register</button>
             </EditForm>

@@ -103,6 +103,11 @@ a, .btn-link {
     height: 380px;
     overflow-y: scroll;
 }
+
+.shop-img {
+    width: 150px;
+    height: 150px;
+}
 /*============login====================*/
 .login-background {
     background-image: url('https://s1.1zoom.me/b6451/922/16_KG_Dumbbells_Black_and_white_Gym_538198_2560x1440.jpg');
@@ -241,7 +246,5 @@ select.icon-menu option {
     opacity: 1;
 }
 
-.shop-img {
-    width: 150px;
-    height: 150px;
-}
+
+

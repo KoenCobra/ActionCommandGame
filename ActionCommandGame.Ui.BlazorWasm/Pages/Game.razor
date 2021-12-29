@@ -116,7 +116,7 @@
     private IList<ServiceMessage>? _negativeGameEventMessage;
 
     private IList<PlayerResult> _orderedPlayers = new List<PlayerResult>();
-    private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
+    //private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
     private PlayerItemFilter? Filter { get; set; }
 
     private List<string> ArnoldMotivations = new List<string>()
@@ -132,8 +132,8 @@
         var result = await _playerApi.GetAsync(_playerId);
         Player = result.Data;
 
-        var items = await _itemApi.FindAsync();
-        Result = items.Data;
+        //var items = await _itemApi.FindAsync();
+        //Result = items.Data;
 
         await RefreshLeaderBoard();
         await RefreshPlayeritems();
