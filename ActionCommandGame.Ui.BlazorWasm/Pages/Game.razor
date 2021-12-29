@@ -46,7 +46,7 @@
                         }
                         @if (_positiveGameEvent.Gains > 0)
                         {
-                            <p>@($"{_positiveGameEvent.Gains}€ has been added to your account.")</p>
+                            <p>@($"{_positiveGameEvent.Gains} gains has been added to your account.")</p>
                         }
                     }
                     @if (_negativeGameEvent != null)
@@ -138,7 +138,6 @@
         await RefreshLeaderBoard();
         await RefreshPlayeritems();
 
-        ArnoldMotivations.Add("");
         await base.OnInitializedAsync();
     }
 

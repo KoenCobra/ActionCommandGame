@@ -97,12 +97,11 @@ namespace ActionCommandGame.Repository
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "GAT Nitraflex", Gains = 160, Experience = 80, Probability = 300 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "BPI 1MR Vortex", Gains = 180, Experience = 80, Probability = 300 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Pumpers", Gains = 300, Experience = 100, Probability = 110 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Jack3d: The Banned King of Them All", Gains = 300, Experience = 100, Probability = 80 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Anadrol", Gains = 400, Experience = 150, Probability = 200 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Roids.", Gains = 500, Experience = 150, Probability = 150 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Deca-durabolin", Gains = 1000, Experience = 200, Probability = 100 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "EPO", Gains = 60000, Experience = 1500, Probability = 5 });
-            PositiveGameEvents.Add(new PositiveGameEvent { Name = "Winstrol", Gains = 3000, Experience = 400, Probability = 30 });
+            PositiveGameEvents.Add(new PositiveGameEvent { Name = "", Gains = 3000, Experience = 400, Probability = 30 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Dianabol", Gains = 2000, Experience = 350, Probability = 30 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Oxandrin", Gains = 20000, Experience = 1000, Probability = 10 });
             PositiveGameEvents.Add(new PositiveGameEvent { Name = "Jack3d: The Banned King of Them All", Gains = 30000, Experience = 1500, Probability = 10 });
@@ -132,7 +131,7 @@ namespace ActionCommandGame.Repository
             {
                 Name = "Protein shake dropped",
                 Description = "As you are lifting, you accidentally knock over your protein shake",
-                DefenseWithGearDescription = "Luckily the protein shake lands directly on it's bottom and stays upright, so much luck",
+                DefenseWithGearDescription = "Luckily the protein shake lands directly on its bottom and stays upright, so much luck",
                 DefenseWithoutGearDescription = "The protein shake drops and spills all over the floor, the gym manager is not amused",
                 DefenseLoss = 2,
                 Probability = 100
