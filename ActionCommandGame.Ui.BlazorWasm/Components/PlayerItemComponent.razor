@@ -1,11 +1,13 @@
 ﻿@inject IPlayerItemApi _playerItemApi
 
 <li class="list-group-item">
-    <p class="primary-color fw-bold h5"> @PlayerItem.Name </p>
-    <button @onclick="DeletePlayerItem" class="btn btn-danger">delete</button>
+    <div class="d-flex flex-row justify-content-center">
+        <p class="primary-color fw-bold h5"> @PlayerItem.Name </p>
+        <button @onclick="DeletePlayerItem" class="primary-color border-0 bg-white"><span class="far fa-minus-square mb-1"></span></button>
+    </div>
     @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
     {
-        <span>  @PlayerItem.Description</span>
+        <span> @PlayerItem.Description</span>
     }
     @if (@PlayerItem.Fuel > 0)
     {
