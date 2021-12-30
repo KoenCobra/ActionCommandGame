@@ -35,6 +35,10 @@
                     @if (_positiveGameEvent is null)
                     {
                         <p class="h2">Pick up that weight, follow your destiny, and start lifting!!!</p>
+                        @if (Player.CurrentFuelActionCooldownSeconds > 0)
+                        {
+                        <p class="h2">But you should wait a bit after eating all that food </p>
+                        }
                     }
                     @if (_positiveGameEvent != null)
                     {
@@ -106,8 +110,8 @@
 </div>
 
 @code {
-    private int _playerId;
 
+    private int _playerId;
     private PlayerResult Player { get; set; } = new();
     private IList<PlayerItemResult> PlayerItems { get; set; } = new List<PlayerItemResult>();
 
@@ -116,28 +120,22 @@
     private IList<ServiceMessage>? _negativeGameEventMessage;
 
     private IList<PlayerResult> _orderedPlayers = new List<PlayerResult>();
-    //private IList<ItemResult> Result { get; set; } = new List<ItemResult>();
     private PlayerItemFilter? Filter { get; set; }
 
     private List<string> ArnoldMotivations = new List<string>()
     {
-        "come-on.mp3", "come-on-2.mp3", "doin.mp3", "do-it.mp3", "do-it-now.mp3",
-        "dont-worry.mp3", "go-on.mp3", "good.mp3", "hit-spot.mp3", "stop.mp3", "terrific.mp3"
+        "come-on.mp3", "come-on-2.mp3", "doin.mp3", "do-it.mp3", "do-it-now.mp3", "choir.mp3",
+        "dont-worry.mp3", "go-on.mp3", "good.mp3", "hit-spot.mp3", "stop.mp3", "terrific.mp3", "terrific (1).mp3"
     };
 
     protected override async Task OnInitializedAsync()
     {
         _playerId = await _storageService.GetItemAsync<int>("PlayerId");
-
         var result = await _playerApi.GetAsync(_playerId);
         Player = result.Data;
 
-        //var items = await _itemApi.FindAsync();
-        //Result = items.Data;
-
         await RefreshLeaderBoard();
         await RefreshPlayeritems();
-
         await base.OnInitializedAsync();
     }
 
@@ -167,7 +165,6 @@
             };
 
         var playerItemResult = await _playerItemApi.FindAsync(Filter);
-
         PlayerItems = playerItemResult.Data;
     }
 

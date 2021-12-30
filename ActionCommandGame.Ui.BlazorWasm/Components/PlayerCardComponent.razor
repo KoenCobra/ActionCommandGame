@@ -1,8 +1,12 @@
 ﻿@inject NavigationManager _navigationManager 
 @inject ILocalStorageService _storageService
 @inject IPlayerApi _playerApi
+@inject IJSRuntime _jsRuntime
 
 <div class="card player-card">
+    <audio id="player">
+        <source id="playerSource" src="" />
+    </audio>
     <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
     <div class="card-body bg-dark text-white">
         <h5 class="card-title primary-color">@Player.Name</h5>
@@ -33,8 +37,10 @@
         _navigationManager.NavigateTo("/Game");
     }
 
-    private void ShowDeleteComponent()
+    private async Task ShowDeleteComponent()
     {
+        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/hasta-la-vista.mp3");
+
         if (DeleteComponent is null)
         {
             return;

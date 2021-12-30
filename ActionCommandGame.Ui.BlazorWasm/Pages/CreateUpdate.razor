@@ -2,8 +2,12 @@
   @page "/create/{Id:int}"
   @inject NavigationManager _navigationManager
   @inject IPlayerApi _playerApi
+  @inject IJSRuntime _jsRuntime
 
 <div class="vh-100 create-update-background d-flex justify-content-center align-items-center">
+    <audio id="player">
+        <source id="playerSource" src="" />
+    </audio>
     <div class="wrapper">
         <div class="w-100 text-center">
             <a href="/players"><i data-bs-toggle="tooltip" data-bs-placement="top" title="Back To Players" class="fas back-dumbell fa-dumbbell fa-fw fa-5x"></i></a>
@@ -77,6 +81,11 @@
             Title = "UPDATE";
             var result = await _playerApi.GetAsync(Id.Value);
             Player = result.Data;
+            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/questions.mp3");
+        }
+        else
+        {
+            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/questions.mp3");
         }
 
         await base.OnInitializedAsync();

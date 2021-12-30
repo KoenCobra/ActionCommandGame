@@ -3,11 +3,17 @@
 @inject IJSRuntime _jsRuntime
 
 <div class="card align-items-center flex-row flex-sm-column flex-md-row p-3 m-2">
+    <audio id="player">
+        <source id="playerSource" src="" />
+    </audio>
     <div class="card-body">
         <h5 class="mt-0 fw-bold mb-2">@Item.Name</h5>
         <p class="fst-italic text-muted mb-0 small">@Item.Description</p>
         <div class="d-flex flex-row">
             <div>
+                <audio id="player">
+                    <source id="playerSource" src="" />
+                </audio>
                 <button @onclick="() => Buy(Item.Id)" class="btn btn-outline-dark rounded-pill">BUY</button>
             </div>
             <div class="ms-3">
@@ -33,6 +39,8 @@
 
     public async Task Buy(int itemId)
     {
+        await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/how-much.mp3");
+
         var result = await _gameApi.BuyAsync(playerId, itemId);
 
         if (result.IsSuccess)
@@ -40,11 +48,13 @@
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "success",
                 $"You bought {result.Data.Item.Name} for {result.Data.Item.Price} Gains, " +
                 $" You have {result.Data.Player.Gains} Gains left");
+
         }
         else
         {
             await _jsRuntime.InvokeVoidAsync("ShowSwal", "error",
                 "Blood, sweat, and tears are required to pay for this... GO LIFT!!");
+            await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/bullshit-me.mp3");
         }
 
         StateHasChanged();
