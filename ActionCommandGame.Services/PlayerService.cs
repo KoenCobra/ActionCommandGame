@@ -83,7 +83,7 @@ namespace ActionCommandGame.Services
         public bool Delete(int id, string authenticatedUserId)
         {
             var dbPlayer = _database.Players
-                    .SingleOrDefault(p => p.Id == id);
+                .SingleOrDefault(p => p.Id == id);
 
             if (dbPlayer is null)
             {
