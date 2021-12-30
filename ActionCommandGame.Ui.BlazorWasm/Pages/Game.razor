@@ -10,28 +10,28 @@
 <div class="vh-100 game-background">
 
     <div class="d-flex w-100 justify-content-between">
-        <a href="/players" class="btn change-player-btn border-white primary-color ms-3 mt-3 rounded-pill">
+        <a href="/players" class="btn change-player-btn fw-bolder border-white primary-color ms-3 mt-3 rounded-pill">
             Change Player
             <i class="fas fa-people-arrows ms-1"></i>
         </a>
         <audio id="player">
             <source id="playerSource" src="" />
         </audio>
-        <button @onclick="Logout" class="btn logout-btn border-white primary-color me-3 mt-3 rounded-pill">
+        <button @onclick="Logout" class="btn logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill">
             LOGOUT
             <i class="fas fa-sign-out-alt ms-1"></i>
         </button>
     </div>
     <div class="container">
         <div style="height: 60vh" class="row">
-            <div class="col-5 mt-3 text-center lift-section">
+            <div class="col-5 mt-2 text-center lift-section">
                 <div class="d-flex flex-row justify-content-center mb-5">
                     <audio id="player">
                         <source id="playerSource" src="" />
                     </audio>
                     <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
                 </div>
-                <div class="primary-color h4 lift-section mt-3">
+                <div class="primary-color h3 lift-section mt-3">
                     @if (_positiveGameEvent is null)
                     {
                         <p class="h2">Pick up that weight, follow your destiny, and start lifting!!!</p>
@@ -64,15 +64,15 @@
                     }
                 </div>
             </div>
-            <div class="col-3 mt-3 me-3">
-                <StatsComponent Player="Player"/>
+            <div class="col-3 mt-2 me-3">
+                <StatsComponent Player="Player" />
             </div>
-            <div class="col-3 mt-3">
+            <div class="col-3 mt-2">
                 <div class="mb-3">
-                    <LeaderboardComponent OrderedPlayers="_orderedPlayers"/>
+                    <LeaderboardComponent OrderedPlayers="_orderedPlayers" />
                 </div>
                 <div>
-                    <div class="card text-center shadow">
+                    <div class="card text-center shadow fw-bold">
                         <div class="card-header h2 bg-dark text-white">
                             <a href="/shop"><i class="fas fa-cart-arrow-down icon-background shop-icon"></i></a>
                             PlayerItems
@@ -99,8 +99,8 @@
             </div>
         </div>
     </div>
-    <iframe width="0" height="0" 
-            src="https://www.youtube.com/embed/NmM1BLh9bO0?controls=0&amp;start=16?&autoplay=1" 
+    <iframe width="0" height="0"
+            src="https://www.youtube.com/embed/NmM1BLh9bO0?controls=0&amp;start=16?&autoplay=1"
             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
 </div>

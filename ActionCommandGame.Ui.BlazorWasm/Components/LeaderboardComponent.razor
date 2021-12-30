@@ -5,12 +5,12 @@
         <i class="fas fa-trophy icon-background"></i>
         LeaderBoard
     </div>
-    <div class="card-body leaderboard">
+    <div class="card-body leaderboard fw-bold">
         @foreach (var player in @OrderedPlayers)
         {
             if (player.Id == playerId)
             {
-                <p class="primary-color">@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
+                <p class="primary-color fw-bolder">@($"Level {player.GetLevel()} {player.Name} ({player.Experience})")</p>
 
             }
             else

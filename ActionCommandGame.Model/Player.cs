@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using ActionCommandGame.Abstractions;
 
 namespace ActionCommandGame.Model
@@ -15,6 +16,7 @@ namespace ActionCommandGame.Model
         public string Name { get; set; }
         public int Gains { get; set; }
         public int Experience { get; set; }
+
         public DateTime? LastActionExecutedDateTime { get; set; }
 
         public string UserId { get; set; }

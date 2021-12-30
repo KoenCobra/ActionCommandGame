@@ -1,24 +1,24 @@
 ﻿<li class="list-group-item">
-    @PlayerItem.Name
+    <p class="primary-color fw-bold h5"> @PlayerItem.Name </p>
     @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
     {
-        @PlayerItem.Description;
+        <span>  @PlayerItem.Description</span>
     }
     @if (@PlayerItem.Fuel > 0)
     {
-        <span class="primary-color"> Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</span>;
+        <p> Fuel: @PlayerItem.RemainingFuel/@PlayerItem.Fuel</p>
     }
     @if (@PlayerItem.Attack > 0)
     {
-        <span class="primary-color"> Attack: @PlayerItem.RemainingAttack/@PlayerItem.Attack</span>;
+        <p> Attack: @PlayerItem.RemainingAttack/@PlayerItem.Attack</p>
     }
     @if (@PlayerItem.Defense > 0)
     {
-        <span class="primary-color"> Defence: @PlayerItem.RemainingDefense/@PlayerItem.Defense</span>;
+        <p> Defence: @PlayerItem.RemainingDefense/@PlayerItem.Defense</p>
     }
     @if (@PlayerItem.ActionCooldownSeconds > 0)
     {
-        <span class="primary-color"> Cooldown seconds: @PlayerItem.ActionCooldownSeconds</span>;
+        <p> Cooldown seconds: @PlayerItem.ActionCooldownSeconds</p>
     }
 </li>
 

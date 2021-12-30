@@ -85,6 +85,8 @@
         }
 
         await _storageService.SetItemAsync("Token", result.Token);
+
+
         _navigationManager.NavigateTo("/players");
     }
 
