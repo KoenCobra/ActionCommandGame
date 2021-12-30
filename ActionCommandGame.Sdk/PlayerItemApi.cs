@@ -46,5 +46,19 @@ namespace ActionCommandGame.Sdk
 
             return result;
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
+            httpClient.AddAuthorization(token);
+            var route = $"player-items/{id}";
+
+            var httpResponse = await httpClient.DeleteAsync(route);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+        }
     }
 }

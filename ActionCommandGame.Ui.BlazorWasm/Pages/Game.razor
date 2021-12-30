@@ -94,7 +94,7 @@
                             <ul class="list-group list-group-flush playerItems-card ">
                                 @foreach (var playerItem in PlayerItems)
                                 {
-                                    <PlayerItemComponent PlayerItem="playerItem"></PlayerItemComponent>
+                                    <PlayerItemComponent IsPlayerItemDeleted="RefreshPlayeritems" PlayerItem="playerItem"></PlayerItemComponent>
                                 }
                             </ul>
                         }

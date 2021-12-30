@@ -7,5 +7,6 @@ namespace ActionCommandGame.Sdk.Abstractions
     public interface IPlayerItemApi
     {
         Task<ServiceResult<IList<PlayerItemResult>>> FindAsync(PlayerItemFilter filter);
+        Task DeleteAsync(int id);
     }
 }

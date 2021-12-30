@@ -1,5 +1,8 @@
-﻿<li class="list-group-item">
+﻿@inject IPlayerItemApi _playerItemApi
+
+<li class="list-group-item">
     <p class="primary-color fw-bold h5"> @PlayerItem.Name </p>
+    <button @onclick="DeletePlayerItem" class="btn btn-danger">delete</button>
     @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
     {
         <span>  @PlayerItem.Description</span>
@@ -25,4 +28,14 @@
 @code {
     [Parameter]
     public PlayerItemResult PlayerItem { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> IsPlayerItemDeleted { get; set; }
+
+    private async Task DeletePlayerItem()
+    {
+        await _playerItemApi.DeleteAsync(PlayerItem.Id);
+        await IsPlayerItemDeleted.InvokeAsync();
+        StateHasChanged();
+    }
 }
