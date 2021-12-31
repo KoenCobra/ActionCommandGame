@@ -44,15 +44,10 @@ namespace ActionCommandGame.Api.Controllers
         }
 
         [HttpDelete("players/{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            var isDeleted = _playerService.Delete(id, User.GetId());
-            if (!isDeleted)
-            {
-                return BadRequest();
-            }
-
-            return Ok();
+            var result = await _playerService.DeleteAsync(id, User.GetId());
+            return Ok(result);
         }
     }
 }

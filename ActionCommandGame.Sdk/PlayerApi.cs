@@ -113,7 +113,7 @@ namespace ActionCommandGame.Sdk
             return result;
         }
 
-        public async Task Delete(int id)
+        public async Task<ServiceResult<PlayerResult>> DeleteAsync(int id)
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
             var token = await _localStorageService.GetItemAsync<string>("Token");
@@ -124,6 +124,15 @@ namespace ActionCommandGame.Sdk
             var httpResponse = await httpClient.DeleteAsync(route);
 
             httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<PlayerResult>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<PlayerResult>();
+            }
+
+            return result;
         }
     }
 }

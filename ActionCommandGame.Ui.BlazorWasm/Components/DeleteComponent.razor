@@ -44,7 +44,7 @@
 
     private async Task DeletePerson()
     {
-        await _playerApi.Delete(Player.Id);
+        await _playerApi.DeleteAsync(Player.Id);
         await OnDelete.InvokeAsync();
         Close();
     }

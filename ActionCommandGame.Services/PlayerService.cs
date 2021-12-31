@@ -70,7 +70,7 @@ namespace ActionCommandGame.Services
                 return null;
             }
 
-            dbPlayer.Name= playerResult.Name;
+            dbPlayer.Name = playerResult.Name;
             dbPlayer.Gains = playerResult.Gains;
             dbPlayer.Experience = playerResult.Experience;
             dbPlayer.ImageName = playerResult.ImageName;
@@ -80,20 +80,19 @@ namespace ActionCommandGame.Services
             return await GetAsync(dbPlayer.Id, authenticatedUserId);
         }
 
-        public bool Delete(int id, string authenticatedUserId)
+        public async Task<ServiceResult> DeleteAsync(int id, string authenticatedUserId)
         {
-            var dbPlayer = _database.Players
-                .SingleOrDefault(p => p.Id == id);
+            var player = _database.Players.SingleOrDefault(pi => pi.Id == id);
 
-            if (dbPlayer is null)
+            if (player == null)
             {
-                return false;
+                return new ServiceResult().NotFound();
             }
 
-            _database.Players.Remove(dbPlayer);
-            _database.SaveChanges();
+            _database.Players.Remove(player);
+            await _database.SaveChangesAsync();
 
-            return true;
+            return new ServiceResult();
         }
     }
 }
