@@ -3,7 +3,7 @@
 <li class="list-group-item">
     <div class="d-flex flex-row justify-content-center">
         <p class="primary-color fw-bold h5"> @PlayerItem.Name </p>
-        @*<button @onclick="DeletePlayerItem" class="text-danger border-0 bg-white"><span class="far fa-minus-square mb-1"></span></button>*@
+        <button @onclick="DeletePlayerItem" class="text-danger border-0 bg-white"><span class="far fa-minus-square mb-1"></span></button>
     </div>
     @if (!string.IsNullOrWhiteSpace(@PlayerItem.Description))
     {
