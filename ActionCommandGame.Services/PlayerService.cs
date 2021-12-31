@@ -82,7 +82,8 @@ namespace ActionCommandGame.Services
 
         public async Task<ServiceResult> DeleteAsync(int id, string authenticatedUserId)
         {
-            var player = _database.Players.SingleOrDefault(pi => pi.Id == id);
+            var player = await _database.Players
+                .SingleOrDefaultAsync(p => p.Id == id);
 
             if (player == null)
             {

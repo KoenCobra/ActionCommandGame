@@ -46,7 +46,6 @@
     {
         await _playerApi.DeleteAsync(Player.Id);
         await OnDelete.InvokeAsync();
-        StateHasChanged();
         Close();
     }
 

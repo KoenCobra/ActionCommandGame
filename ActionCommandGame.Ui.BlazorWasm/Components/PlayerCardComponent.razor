@@ -39,6 +39,7 @@
 
     private async Task ShowDeleteComponent()
     {
+        await _storageService.SetItemAsync("PlayerId", Player.Id);
         await _jsRuntime.InvokeVoidAsync("PlayAudioFile", "/sounds/hasta-la-vista.mp3");
 
         if (DeleteComponent is null)
