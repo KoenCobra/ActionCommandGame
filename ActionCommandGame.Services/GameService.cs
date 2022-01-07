@@ -152,8 +152,15 @@ namespace ActionCommandGame.Services
 
             var warningMessages = GetWarningMessages(player);
 
-            //Save Player
-            await _database.SaveChangesAsync();
+            try
+            {
+                //Save Player
+                await _database.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             playerResult = await _playerService.GetAsync(playerId, authenticatedUserId);
             var gameResult = new GameResult

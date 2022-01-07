@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using ActionCommandGame.Abstractions;
 
 namespace ActionCommandGame.Model
@@ -11,7 +12,6 @@ namespace ActionCommandGame.Model
             AttackPlayers = new List<Player>();
             DefensePlayers = new List<Player>();
         }
-
         public int Id { get; set; }
 
         public int PlayerId { get; set; }

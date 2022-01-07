@@ -21,8 +21,8 @@ builder.Services.InstallServicesInAssembly(builder.Configuration);
 var app = builder.Build();
 
 //Initialize dbContext data
-
-var dbContext = app.Services.GetRequiredService<ActionCommandGameDbContext>();
+using var scope = app.Services.CreateScope();
+var dbContext = scope.ServiceProvider.GetRequiredService<ActionCommandGameDbContext>();
 if (dbContext.Database.IsInMemory())
 {
     dbContext.Initialize();
