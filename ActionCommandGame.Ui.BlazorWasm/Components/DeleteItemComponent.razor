@@ -43,7 +43,7 @@
 
     private async Task DeleteItem()
     {
-        //await _itemApi.DeleteAsync(Item.Id);
+        await _itemApi.DeleteAsync(Item.Id);
         await OnDelete.InvokeAsync();
         Close();
     }

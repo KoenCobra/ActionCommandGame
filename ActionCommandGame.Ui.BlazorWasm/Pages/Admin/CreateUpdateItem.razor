@@ -1,0 +1,89 @@
+﻿  @page "/CreateItem"
+  @page "/UpdateItem/{Id:int}"
+  @inject NavigationManager _navigationManager
+  @inject IItemApi _itemApi
+  @inject IJSRuntime _jsRuntime
+
+
+<EditForm Model="Item" OnValidSubmit="HandleCreateUpdate" class="p-3 mt-3">
+    <DataAnnotationsValidator />
+    <ValidationMessage For="() => Item.Name" />
+    <div class="form-field d-flex align-items-center">
+        <InputText @bind-Value="Item.Name" placeholder="name" />
+    </div>
+    <ValidationMessage For="() => Item.ActionCooldownSeconds" />
+    <div class="form-field d-flex align-items-center">
+        <InputNumber @bind-Value="Item.ActionCooldownSeconds" placeholder="Cooldown Seconds" />
+    </div>
+    <ValidationMessage For="() => Item.Attack" />
+    <div class="form-field d-flex align-items-center">
+        <InputNumber @bind-Value="Item.Attack" placeholder="Attack" />
+    </div>
+    <ValidationMessage For="() => Item.Defense" />
+    <div class="form-field d-flex align-items-center">
+        <InputNumber @bind-Value="Item.Defense" placeholder="Defence" />
+    </div>
+    <ValidationMessage For="() => Item.Fuel" />
+    <div class="form-field d-flex align-items-center">
+        <InputNumber @bind-Value="Item.Fuel" placeholder="Fuel" />
+    </div>
+    <ValidationMessage For="() => Item.Price" />
+    <div class="form-field d-flex align-items-center">
+        <InputNumber @bind-Value="Item.Price" placeholder="Price" />
+    </div>
+    <ValidationMessage For="() => Item.Description" />
+    <div class="form-field d-flex align-items-center">
+        <InputTextArea @bind-Value="Item.Description" placeholder="Description" />
+    </div>
+    
+    <ValidationMessage For="() => Item.ImageUrl" />
+    <div class="form-field d-flex align-items-center">
+        <InputFile @bind-Value="Item.ImageUrl" placeholder="ImageUrl" />
+    </div>
+    <div class="text-center fs-6 flex-column d-flex w-100">
+        <button type="submit" class="btn change-Item-btn bg-black border-white primary-color rounded-pill w-100">
+            <i class="fas fa-user-check"></i>
+            @Title
+        </button>
+        <a href="/Items" class="btn cancel-Item-btn rounded-pill mt-2 w-100">
+            <i class="fas fa-user-alt-slash"></i>
+            CANCEL
+        </a>
+    </div>
+</EditForm>
+
+  @code {
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    private string Title { get; set; } = "CREATE";
+
+    private ItemResult Item { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != null)
+        {
+            Title = "UPDATE";
+            var result = await _itemApi.GetAsync(Id.Value);
+            Item = result.Data;
+        }
+        await base.OnInitializedAsync();
+    }
+
+    private async Task HandleCreateUpdate()
+    {
+        if (Item.Id != null && Title == "UPDATE")
+        {
+            await _itemApi.Update(Item.Id, Item);
+        }
+        else
+        {
+            await _itemApi.CreateAsync(Item);
+        }
+
+        _navigationManager.NavigateTo("/ItemAdmin");
+    }
+  }
+

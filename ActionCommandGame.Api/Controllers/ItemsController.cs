@@ -19,5 +19,12 @@ namespace ActionCommandGame.Api.Controllers
             var result = await _itemService.FindAsync(User.GetId());
             return Ok(result);
         }
+
+        [HttpDelete("items/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _itemService.DeleteAsync(id);
+            return Ok(result);
+        }
     }
 }

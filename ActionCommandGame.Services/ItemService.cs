@@ -37,5 +37,21 @@ namespace ActionCommandGame.Services
 
             return new ServiceResult<IList<ItemResult>>(items);
         }
+
+        public async Task<ServiceResult> DeleteAsync(int id)
+        {
+            var item = await _dbContext.Items
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (item == null)
+            {
+                return new ServiceResult().NotFound();
+            }
+
+            _dbContext.Items.Remove(item);
+            await _dbContext.SaveChangesAsync();
+
+            return new ServiceResult();
+        }
     }
 }
