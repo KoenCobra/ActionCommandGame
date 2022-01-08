@@ -19,6 +19,28 @@ namespace ActionCommandGame.Sdk
             _localStorageService = localStorageService;
         }
 
+        public async Task<ServiceResult<ItemResult>> GetAsync(int id)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
+            httpClient.AddAuthorization(token);
+            var route = $"items/{id}";
+
+            var httpResponse = await httpClient.GetAsync(route);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<ItemResult>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<ItemResult>();
+            }
+
+            return result;
+        }
+
         public async Task<ServiceResult<IList<ItemResult>>> FindAsync()
         {
             var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
@@ -35,6 +57,50 @@ namespace ActionCommandGame.Sdk
             if (result is null)
             {
                 return new ServiceResult<IList<ItemResult>>();
+            }
+
+            return result;
+        }
+
+        public async Task<ServiceResult<ItemResult>> Create(ItemResult itemResult)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
+            httpClient.AddAuthorization(token);
+            var route = "items";
+
+            var httpResponse = await httpClient.PostAsJsonAsync(route, itemResult);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<ItemResult>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<ItemResult>();
+            }
+
+            return result;
+        }
+
+        public async Task<ServiceResult<ItemResult>> Update(int id, ItemResult itemResult)
+        {
+            var httpClient = _httpClientFactory.CreateClient("ActionCommandGame");
+            var token = await _localStorageService.GetItemAsync<string>("Token");
+
+            httpClient.AddAuthorization(token);
+            var route = $"items/{id}";
+
+            var httpResponse = await httpClient.PutAsJsonAsync(route, itemResult);
+
+            httpResponse.EnsureSuccessStatusCode();
+
+            var result = await httpResponse.Content.ReadFromJsonAsync<ServiceResult<ItemResult>>();
+
+            if (result is null)
+            {
+                return new ServiceResult<ItemResult>();
             }
 
             return result;

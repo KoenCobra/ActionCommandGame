@@ -2,55 +2,80 @@
   @page "/UpdateItem/{Id:int}"
   @inject NavigationManager _navigationManager
   @inject IItemApi _itemApi
-  @inject IJSRuntime _jsRuntime
 
+<div class="container">
 
-<EditForm Model="Item" OnValidSubmit="HandleCreateUpdate" class="p-3 mt-3">
-    <DataAnnotationsValidator />
-    <ValidationMessage For="() => Item.Name" />
-    <div class="form-field d-flex align-items-center">
-        <InputText @bind-Value="Item.Name" placeholder="name" />
-    </div>
-    <ValidationMessage For="() => Item.ActionCooldownSeconds" />
-    <div class="form-field d-flex align-items-center">
-        <InputNumber @bind-Value="Item.ActionCooldownSeconds" placeholder="Cooldown Seconds" />
-    </div>
-    <ValidationMessage For="() => Item.Attack" />
-    <div class="form-field d-flex align-items-center">
-        <InputNumber @bind-Value="Item.Attack" placeholder="Attack" />
-    </div>
-    <ValidationMessage For="() => Item.Defense" />
-    <div class="form-field d-flex align-items-center">
-        <InputNumber @bind-Value="Item.Defense" placeholder="Defence" />
-    </div>
-    <ValidationMessage For="() => Item.Fuel" />
-    <div class="form-field d-flex align-items-center">
-        <InputNumber @bind-Value="Item.Fuel" placeholder="Fuel" />
-    </div>
-    <ValidationMessage For="() => Item.Price" />
-    <div class="form-field d-flex align-items-center">
-        <InputNumber @bind-Value="Item.Price" placeholder="Price" />
-    </div>
-    <ValidationMessage For="() => Item.Description" />
-    <div class="form-field d-flex align-items-center">
-        <InputTextArea @bind-Value="Item.Description" placeholder="Description" />
-    </div>
-    
-    <ValidationMessage For="() => Item.ImageUrl" />
-    <div class="form-field d-flex align-items-center">
-        <InputFile @bind-Value="Item.ImageUrl" placeholder="ImageUrl" />
-    </div>
-    <div class="text-center fs-6 flex-column d-flex w-100">
-        <button type="submit" class="btn change-Item-btn bg-black border-white primary-color rounded-pill w-100">
-            <i class="fas fa-user-check"></i>
-            @Title
-        </button>
-        <a href="/Items" class="btn cancel-Item-btn rounded-pill mt-2 w-100">
-            <i class="fas fa-user-alt-slash"></i>
-            CANCEL
-        </a>
-    </div>
-</EditForm>
+    <EditForm Model="Item" OnValidSubmit="HandleCreateUpdate" class="p-3 mt-3">
+        <DataAnnotationsValidator />
+        <ValidationMessage For="() => Item.Name" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                Name
+            </label>
+            <InputText class="form-control" @bind-Value="Item.Name" placeholder="name"/>
+        </div>
+        <ValidationMessage For="() => Item.ActionCooldownSeconds" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                ActionCooldownSeconds
+            </label>
+            <InputNumber class="form-control" @bind-Value="Item.ActionCooldownSeconds" placeholder="Cooldown Seconds"/>
+        </div>
+        <ValidationMessage For="() => Item.Attack" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                Attack
+            </label>
+            <InputNumber class="form-control" @bind-Value="Item.Attack" placeholder="Attack"/>
+        </div>
+        <ValidationMessage For="() => Item.Defense" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                Defense
+            </label>
+            <InputNumber class="form-control" @bind-Value="Item.Defense" placeholder="Defence"/>
+        </div>
+        <ValidationMessage For="() => Item.Fuel" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                Fuel
+            </label>
+            <InputNumber class="form-control" @bind-Value="Item.Fuel" placeholder="Fuel"/>
+        </div>
+        <ValidationMessage For="() => Item.Price" />
+        <div class="d-flex flex-row mb-2">
+            <label  class="col-sm-2 col-form-label">
+                Price
+            </label>
+            <InputNumber class="form-control" @bind-Value="Item.Price" placeholder="Price"/>
+        </div>
+        <ValidationMessage For="() => Item.Description" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                Description
+            </label>
+            <InputTextArea class="form-control" @bind-Value="Item.Description" placeholder="Description"/>
+        </div>
+
+        <ValidationMessage For="() => Item.ImageUrl" />
+        <div class="d-flex flex-row mb-2">
+            <label class="col-sm-2 col-form-label">
+                ImageUrl
+            </label>
+            <InputText class="form-control" @bind-Value="Item.ImageUrl" placeholder="Paste ImgUrl address here"/>
+        </div>
+        <div class="d-flex flex-row align-items-center">
+            <button type="submit" class="btn change-item-btn bg-black border-white primary-color rounded-pill">
+                <i class="fas fa-user-check"></i>
+                @Title
+            </button>
+            <a href="/ItemAdmin" class="btn cancel-item-btn rounded-pill mt-2">
+                <i class="fas fa-user-alt-slash"></i>
+                CANCEL
+            </a>
+        </div>
+    </EditForm>
+</div>
 
   @code {
 
@@ -80,7 +105,7 @@
         }
         else
         {
-            await _itemApi.CreateAsync(Item);
+            await _itemApi.Create(Item);
         }
 
         _navigationManager.NavigateTo("/ItemAdmin");
