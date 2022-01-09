@@ -180,13 +180,24 @@
     }
 }
 
+@media (max-width: 992px) {
+    .game-background {
+        background-image: url('https://i0.wp.com/wallpapertag.com/wallpaper/full/5/1/a/124353-popular-gym-background-1920x1110-for-android-tablet.jpg');
+        min-height: 250vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
 
-.game-background {
-    background-image: url('https://i0.wp.com/wallpapertag.com/wallpaper/full/5/1/a/124353-popular-gym-background-1920x1110-for-android-tablet.jpg');
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+@media (min-width: 992px) {
+    .game-background {
+        background-image: url('https://i0.wp.com/wallpapertag.com/wallpaper/full/5/1/a/124353-popular-gym-background-1920x1110-for-android-tablet.jpg');
+        min-height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 .shop-icon {
