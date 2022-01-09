@@ -1,5 +1,6 @@
 using ActionCommandGame.Api.Installers.Extensions;
 using ActionCommandGame.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var  MyAllowAllOrigins = "_myAllowAllmyOrigins";
@@ -21,8 +22,12 @@ builder.Services.InstallServicesInAssembly(builder.Configuration);
 var app = builder.Build();
 
 //Initialize dbContext data
-using var scope = app.Services.CreateScope();
-var dbContext = scope.ServiceProvider.GetRequiredService<ActionCommandGameDbContext>();
+//using var scope = app.Services.CreateScope();
+//var dbContext = scope.ServiceProvider.GetRequiredService<ActionCommandGameDbContext>();
+
+
+//had to put this back because otherwise the attack, defence, and fuel was not being consumed anymore
+var dbContext = app.Services.GetRequiredService<ActionCommandGameDbContext>();
 if (dbContext.Database.IsInMemory())
 {
     dbContext.Initialize();

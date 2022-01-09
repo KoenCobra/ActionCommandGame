@@ -62,8 +62,8 @@ namespace ActionCommandGame.Services
 
             if (player.LastActionExecutedDateTime.HasValue)
             {
-	            var elapsedSeconds = DateTime.UtcNow.Subtract(player.LastActionExecutedDateTime.Value).TotalSeconds;
-	            var cooldownSeconds = _gameSettings.DefaultCooldown;
+                var elapsedSeconds = DateTime.UtcNow.Subtract(player.LastActionExecutedDateTime.Value).TotalSeconds;
+                var cooldownSeconds = _gameSettings.DefaultCooldown;
 
                 if (player.CurrentFuelPlayerItemId.HasValue)
                 {
@@ -87,12 +87,14 @@ namespace ActionCommandGame.Services
             }
 
             player.LastActionExecutedDateTime = DateTime.UtcNow;
-            
+
             var hasAttackItem = player.CurrentAttackPlayerItemId.HasValue;
             var positiveGameEvent = await _positiveGameEventService.GetRandomPositiveGameEvent(hasAttackItem, authenticatedUserId);
             if (positiveGameEvent.Data is null)
             {
-                return new ServiceResult<GameResult>{Messages = 
+                return new ServiceResult<GameResult>
+                {
+                    Messages =
                     new List<ServiceMessage>
                     {
                         new ServiceMessage
@@ -101,7 +103,8 @@ namespace ActionCommandGame.Services
                             Message = "Something went wrong getting the Positive Game Event.",
                             MessagePriority = MessagePriority.Error
                         }
-                    }};
+                    }
+                };
             }
 
             var negativeGameEvent = await _negativeGameEventService.GetRandomNegativeGameEvent(authenticatedUserId);
@@ -117,7 +120,7 @@ namespace ActionCommandGame.Services
             //Check if we leveled up
             if (oldLevel < newLevel)
             {
-                levelMessages = new List<ServiceMessage>{new ServiceMessage{Code="LevelUp", Message = $"Congratulations, you arrived at level {newLevel}"}};
+                levelMessages = new List<ServiceMessage> { new ServiceMessage { Code = "LevelUp", Message = $"Congratulations, you arrived at level {newLevel}" } };
             }
 
             //Consume fuel
@@ -152,15 +155,8 @@ namespace ActionCommandGame.Services
 
             var warningMessages = GetWarningMessages(player);
 
-            try
-            {
-                //Save Player
-                await _database.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //Save Player
+            await _database.SaveChangesAsync();
 
             playerResult = await _playerService.GetAsync(playerId, authenticatedUserId);
             var gameResult = new GameResult
@@ -318,7 +314,7 @@ namespace ActionCommandGame.Services
                     var newDefenseItem = _database.PlayerItems
                         .Where(pi => pi.PlayerId == player.Id && pi.Item.Defense > 0)
                         .OrderByDescending(pi => pi.Item.Defense).FirstOrDefault();
-                    
+
                     if (newDefenseItem != null)
                     {
                         player.CurrentDefensePlayerItem = newDefenseItem;
