@@ -1,7 +1,9 @@
 ﻿  @page "/CreateItem"
   @page "/UpdateItem/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
   @inject NavigationManager _navigationManager
   @inject IItemApi _itemApi
+  @attribute [Authorize(Roles = "Admin")]
 
 <div class="container">
 
@@ -12,49 +14,49 @@
             <label class="col-sm-2 col-form-label">
                 Name
             </label>
-            <InputText class="form-control" @bind-Value="Item.Name" placeholder="name"/>
+            <InputText class="form-control" @bind-Value="Item.Name" placeholder="name" />
         </div>
         <ValidationMessage For="() => Item.ActionCooldownSeconds" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 ActionCooldownSeconds
             </label>
-            <InputNumber class="form-control" @bind-Value="Item.ActionCooldownSeconds" placeholder="Cooldown Seconds"/>
+            <InputNumber class="form-control" @bind-Value="Item.ActionCooldownSeconds" placeholder="Cooldown Seconds" />
         </div>
         <ValidationMessage For="() => Item.Attack" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Attack
             </label>
-            <InputNumber class="form-control" @bind-Value="Item.Attack" placeholder="Attack"/>
+            <InputNumber class="form-control" @bind-Value="Item.Attack" placeholder="Attack" />
         </div>
         <ValidationMessage For="() => Item.Defense" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Defense
             </label>
-            <InputNumber class="form-control" @bind-Value="Item.Defense" placeholder="Defence"/>
+            <InputNumber class="form-control" @bind-Value="Item.Defense" placeholder="Defence" />
         </div>
         <ValidationMessage For="() => Item.Fuel" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Fuel
             </label>
-            <InputNumber class="form-control" @bind-Value="Item.Fuel" placeholder="Fuel"/>
+            <InputNumber class="form-control" @bind-Value="Item.Fuel" placeholder="Fuel" />
         </div>
         <ValidationMessage For="() => Item.Price" />
         <div class="d-flex flex-row mb-2">
-            <label  class="col-sm-2 col-form-label">
+            <label class="col-sm-2 col-form-label">
                 Price
             </label>
-            <InputNumber class="form-control" @bind-Value="Item.Price" placeholder="Price"/>
+            <InputNumber class="form-control" @bind-Value="Item.Price" placeholder="Price" />
         </div>
         <ValidationMessage For="() => Item.Description" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Description
             </label>
-            <InputTextArea class="form-control" @bind-Value="Item.Description" placeholder="Description"/>
+            <InputTextArea class="form-control" @bind-Value="Item.Description" placeholder="Description" />
         </div>
 
         <ValidationMessage For="() => Item.ImageUrl" />
@@ -62,7 +64,7 @@
             <label class="col-sm-2 col-form-label">
                 ImageUrl
             </label>
-            <InputText class="form-control" @bind-Value="Item.ImageUrl" placeholder="Paste ImgUrl address here"/>
+            <InputText class="form-control" @bind-Value="Item.ImageUrl" placeholder="Paste ImgUrl address here" />
         </div>
         <div class="d-flex flex-row align-items-center">
             <button type="submit" class="btn change-item-btn bg-black border-white primary-color rounded-pill">

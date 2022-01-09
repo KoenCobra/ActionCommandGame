@@ -1,5 +1,7 @@
 ﻿@page "/ItemAdmin"
+@using Microsoft.AspNetCore.Authorization
 @inject IItemApi _itemApi
+@attribute [Authorize(Roles = "Admin")]
 
 <div class="container">
     <a class="btn btn-primary" href="CreateItem">Create</a>

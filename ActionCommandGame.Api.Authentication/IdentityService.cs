@@ -12,15 +12,17 @@ namespace ActionCommandGame.Api.Authentication
 	public class IdentityService: IIdentityService
 	{
 		private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly JwtSettings _jwtSettings;
 
 		public IdentityService(
 			UserManager<IdentityUser> userManager, 
-			JwtSettings jwtSettings)
+			JwtSettings jwtSettings, RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
 			_jwtSettings = jwtSettings;
-		}
+            _roleManager = roleManager;
+        }
 		public async Task<AuthenticationResult> RegisterAsync(UserRegistrationRequest request)
 		{
 			var user = await _userManager.FindByEmailAsync(request.Email);
@@ -45,6 +47,9 @@ namespace ActionCommandGame.Api.Authentication
 					Errors = result.Errors.Select(e => e.Description)
 				};
 			}
+
+            _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
+            _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
 
 			return GenerateAuthenticationResult(user);
 		}

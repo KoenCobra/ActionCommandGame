@@ -13,7 +13,6 @@ namespace ActionCommandGame.Sdk
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILocalStorageService _localStorageService;
 
-
         public PlayerItemApi(IHttpClientFactory httpClientFactory, ILocalStorageService localStorageService)
         {
             _httpClientFactory = httpClientFactory;

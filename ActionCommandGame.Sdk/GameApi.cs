@@ -4,6 +4,7 @@ using ActionCommandGame.Sdk.Extensions;
 using ActionCommandGame.Services.Model.Core;
 using ActionCommandGame.Services.Model.Results;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ActionCommandGame.Sdk
 {
