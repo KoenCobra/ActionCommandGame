@@ -14,7 +14,7 @@
             {
                 <p>Shop is loading...</p>
             }
-            @foreach (var item in Items)
+            @foreach (var item in Items.OrderBy(x=>x.Price))
             {
                 <div class="col-sm-6 col-xl-4">
                     <ItemCardComponent Item="item"></ItemCardComponent>

@@ -350,12 +350,12 @@ namespace ActionCommandGame.Services
 
             if (player.CurrentFuelPlayerItem == null)
             {
-                var infoText = "Playing without food is hard. You need a long time to recover. Consider buying food from the shop.";
+                var infoText = "Lifting without food is hard. You need a long time to recover. Consider buying food from the shop.";
                 serviceMessages.Add(new ServiceMessage { Code = "NoFood", Message = infoText, MessagePriority = MessagePriority.Warning });
             }
             if (player.CurrentAttackPlayerItem == null)
             {
-                var infoText = "Playing without tools is hard. You lost extra fuel. Consider buying tools from the shop.";
+                var infoText = "Lifting without supplements is hard. You lost extra fuel. Consider buying supplements from the shop.";
                 serviceMessages.Add(new ServiceMessage { Code = "NoTools", Message = infoText, MessagePriority = MessagePriority.Warning });
             }
             if (player.CurrentDefensePlayerItem == null)

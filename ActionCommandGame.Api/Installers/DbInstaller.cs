@@ -17,8 +17,8 @@ namespace ActionCommandGame.Api.Installers
             {
                 options.UseLoggerFactory(ConsoleLoggerFactory);
                 options.EnableSensitiveDataLogging();
-                //options.UseInMemoryDatabase("InMemoryDb");
-                options.UseSqlServer(connectionString);
+                options.UseInMemoryDatabase("InMemoryDb");
+                //options.UseSqlServer(connectionString);
 
             //had to put this back because otherwise the attack, defence, and fuel was not being consumed anymore
             }, ServiceLifetime.Singleton, ServiceLifetime.Singleton);

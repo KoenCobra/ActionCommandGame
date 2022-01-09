@@ -4,7 +4,10 @@
 @attribute [Authorize(Roles = "Admin")]
 
 <div class="container">
-    <a class="btn btn-primary" href="CreateItem">Create</a>
+    <div class="d-flex flex-row">
+        <a class="btn btn-primary" href="CreateItem">Create</a>
+    <a class="btn btn-secondary ms-2" href="players">Back</a>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -21,7 +24,7 @@
         @foreach (var item in Items)
         {
             <tr>
-                <th scope="row"><img style="height: 80px; width: 80px" class="admin-item-img" src="@item.ImageUrl" /></th>
+                <th scope="row"><img style="height: 80px; width: 80px" class="admin-item-img" src="@item.ImageUrl"/></th>
                 <td>@item.Name</td>
                 <td>@item.Price</td>
                 <td>@item.Attack</td>

@@ -12,16 +12,18 @@ namespace ActionCommandGame.Api.Authentication
 	public class IdentityService: IIdentityService
 	{
 		private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+		//1time use for creating Manager role for my personal account
+        //private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly JwtSettings _jwtSettings;
 
 		public IdentityService(
-			UserManager<IdentityUser> userManager, 
-			JwtSettings jwtSettings, RoleManager<IdentityRole> roleManager)
+			UserManager<IdentityUser> userManager,
+            JwtSettings jwtSettings
+            /*RoleManager<IdentityRole> roleManager*/)
 		{
 			_userManager = userManager;
 			_jwtSettings = jwtSettings;
-            _roleManager = roleManager;
+            //_roleManager = roleManager;
         }
 		public async Task<AuthenticationResult> RegisterAsync(UserRegistrationRequest request)
 		{
@@ -48,8 +50,8 @@ namespace ActionCommandGame.Api.Authentication
 				};
 			}
 
-            _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
-            _userManager.AddToRoleAsync(user, "Admin").GetAwaiter().GetResult();
+            //await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            //await _userManager.AddToRoleAsync(user, "Admin");
 
 			return GenerateAuthenticationResult(user);
 		}
