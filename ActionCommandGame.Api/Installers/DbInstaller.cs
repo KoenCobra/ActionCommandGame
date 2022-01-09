@@ -20,7 +20,7 @@ namespace ActionCommandGame.Api.Installers
                 options.UseInMemoryDatabase("InMemoryDb");
                 //options.UseSqlServer(connectionString);
 
-            //had to put this back because otherwise the attack, defence, and fuel was not being consumed anymore
+            //had to put this back otherwise the attack, defense, and fuel were not being consumed anymore
             }, ServiceLifetime.Singleton, ServiceLifetime.Singleton);
         }
     }

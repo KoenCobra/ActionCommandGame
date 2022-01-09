@@ -7,7 +7,7 @@
 @inject IJSRuntime _jsRuntime
 @inject NavigationManager _navigationManager
 
-<div class="vh-100 game-background">
+<div @onclick="ArnieSpin" class="vh-100 game-background">
 
     <div class="d-flex w-100 justify-content-between">
         <a href="/players" class="btn change-player-btn fw-bolder border-white primary-color ms-3 mt-3 rounded-pill">
@@ -23,23 +23,28 @@
         </button>
     </div>
     <div class="container">
-        <div style="height: 60vh" class="row">
-            <div class="col-5 mt-2 lift-section">
+        <div style="height: 60vh" class="row mt-0">
+            <div class="col-5 mt-0 lift-section">
                 <div class="d-flex flex-row justify-content-center mb-5">
                     <audio id="player">
                         <source id="playerSource" src="" />
                     </audio>
-                    <button @onclick="Lift" class="btn rounded-circle p-4 lift-button btn-dark"><i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i></button>
+                    <button @onclick="Lift" class="btn rounded-circle lift-button btn-dark">
+                        @*<i class="fas fa-dumbbell fa-fw fa-5x primary-color"></i>*@
+                        <img class="arnold-head @ArnieHeadSpinCssClass" src="Images/arnoldHead.png"/>
+                    </button>
                 </div>
                 <div class="primary-color h5 mt-3">
                     @if (_positiveGameEvent is null)
                     {
-                        <p class="h2">Pick up that weight, follow your destiny, and start lifting!!!</p>
+                        <p class="h1">
+                            Pick up that weight, follow your destiny, and start lifting!!!
+                        </p>
                     }
                     @if (_positiveGameEvent != null)
                     {
-                        <p>@Player.Name, You lift and...</p>
-                        <p>@_positiveGameEvent.Name</p>
+                        <p class="fw-bold h-6">@Player.Name, You lift and...</p>
+                        <p class="fst-italic">@_positiveGameEvent.Name</p>
                         @if (!string.IsNullOrWhiteSpace(_positiveGameEvent.Description))
                         {
                             <p>@_positiveGameEvent.Description</p>
@@ -91,7 +96,7 @@
                         }
                         else
                         {
-                            <ul class="list-group list-group-flush playerItems-card ">
+                            <ul class="list-group list-group-flush scroll playerItems-card ">
                                 @foreach (var playerItem in PlayerItems)
                                 {
                                     <PlayerItemComponent IsPlayerItemDeleted="RefreshPlayeritems" PlayerItem="playerItem"></PlayerItemComponent>
@@ -129,6 +134,8 @@
         "dont-worry.mp3", "go-on.mp3", "good.mp3", "hit-spot.mp3", "stop.mp3", "terrific.mp3", "terrific (1).mp3"
     };
 
+    private string ArnieHeadSpinCssClass = "";
+
     protected override async Task OnInitializedAsync()
     {
         _playerId = await _storageService.GetItemAsync<int>("PlayerId");
@@ -153,6 +160,8 @@
         _negativeGameEvent = result.Data.NegativeGameEvent;
         _negativeGameEventMessage = result.Data.NegativeGameEventMessages;
         ServiceMessages = result.Messages;
+
+        ArnieHeadSpinCssClass = "arnold-spin";
 
         await RefreshPlayeritems();
         await RefreshLeaderBoard();
@@ -182,5 +191,10 @@
         Task delay = Task.Delay(1600);
         await delay;
         _navigationManager.NavigateTo("/");
+    }
+
+    private void ArnieSpin()
+    {
+        ArnieHeadSpinCssClass = "";
     }
 }

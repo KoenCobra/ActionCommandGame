@@ -199,6 +199,22 @@
     overflow-y: scroll;
 }
 
+.scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    margin-left: 15px;
+}
+
+.scroll::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: lightgray;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #e78632;
+    border-radius: 10px;
+}
+
 body .modal-dialog {
     margin-left: 10rem;
 }
