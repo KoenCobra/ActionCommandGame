@@ -148,6 +148,10 @@
     object-fit: fill;
 }
 
+.player-card:hover .player-image {
+    cursor: pointer;
+}
+
 .play-btn {
     background: orange;
     color: black;

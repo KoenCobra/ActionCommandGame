@@ -360,7 +360,7 @@ namespace ActionCommandGame.Services
             }
             if (player.CurrentDefensePlayerItem == null)
             {
-                var infoText = "Playing without gear is hard. You lost extra fuel. Consider buying gear from the shop.";
+                var infoText = "Lifting without gear is hard. You lost extra fuel. Consider buying gear from the shop.";
                 serviceMessages.Add(new ServiceMessage { Code = "NoGear", Message = infoText, MessagePriority = MessagePriority.Warning });
             }
 

@@ -25,7 +25,7 @@
     <div class="container">
         <div style="height: 60vh" class="row mt-0">
             <div class="col-12 col-lg-5 mt-0 lift-section">
-                <div class="d-flex flex-row justify-content-center mb-5">
+                <div data-toggle="tooltip" data-placement="top" title="CLICK ME TO LIFT!!!!" class="d-flex flex-row justify-content-center mb-5">
                     <audio id="player">
                         <source id="playerSource" src="" />
                     </audio>
@@ -34,10 +34,10 @@
                         <img class="arnold-head @ArnieHeadSpinCssClass" src="Images/arnoldHead.png"/>
                     </button>
                 </div>
-                <div class="primary-color h5 mt-3">
+                <div class="h5 primary-color mt-3 lift-text">
                     @if (_positiveGameEvent is null)
                     {
-                        <p class="h1">
+                        <p class="h1 primary-color">
                             Pick up that weight, follow your destiny, and start lifting!!!
                         </p>
                     }
@@ -69,7 +69,7 @@
                     }
                     @foreach (var message in ServiceMessages)
                     {
-                        <p>@message.Message</p>
+                        <p class="service-message">@message.Message</p>
                     }
                 </div>
             </div>

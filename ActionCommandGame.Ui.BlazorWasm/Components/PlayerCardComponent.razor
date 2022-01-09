@@ -7,7 +7,7 @@
     <audio id="player">
         <source id="playerSource" src="" />
     </audio>
-    <img src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
+    <img @onclick="() => SetPlayerId(Player.Id)" src=@($"Images/{Player.ImageName}") class="card-img-top player-image" alt="player image">
     <div class="card-body bg-dark text-white">
         <h5 class="card-title primary-color">@Player.Name</h5>
         <p class="card-text">Gains: @Player.Gains</p>
