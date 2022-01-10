@@ -25,7 +25,7 @@
                     <i class="fas fa-weight-hanging text-white" data-fa-transform="shrink-8"></i>
                 </div>
             </div>
-            @foreach (var item in Items.Where(x => x.Attack > 0 && x.Defense == 0))
+            @foreach (var item in Items.OrderBy(x=>x.Price).Where(x => x.Attack > 0 && x.Defense == 0))
             {
                 <div class="col-sm-6 col-xl-4">
                     <ItemCardComponent Item="item"></ItemCardComponent>
@@ -42,7 +42,7 @@
                     <i class="fas fa-shield-alt text-white" data-fa-transform="shrink-8"></i>
                 </div>
             </div>
-            @foreach (var item in Items.Where(x => x.Defense > 0 && x.Fuel == 0))
+            @foreach (var item in Items.OrderBy(x=>x.Price).Where(x => x.Defense > 0 && x.Fuel == 0))
             {
                 <div class="col-sm-6 col-xl-4">
                     <ItemCardComponent Item="item"></ItemCardComponent>
@@ -59,7 +59,7 @@
                     <i class="fas fa-fire-alt text-white" data-fa-transform="shrink-8"></i>
                 </div>
             </div>
-            @foreach (var item in Items.Where(x => x.Fuel > 0 && x.Attack == 0))
+            @foreach (var item in Items.OrderBy(x=>x.Price).Where(x => x.Fuel > 0 && x.Attack == 0))
             {
                 <div class="col-sm-6 col-xl-4">
                     <ItemCardComponent Item="item"></ItemCardComponent>
@@ -76,7 +76,7 @@
                     <i class="fas fa-magic text-white" data-fa-transform="shrink-8"></i>
                 </div>
             </div>
-            @foreach (var item in Items.Where(x => x.Fuel == 0 && x.Defense == 0 && x.Attack == 0 || x.Name == "ARNOLD MODE"))
+            @foreach (var item in Items.OrderBy(x=>x.Price).Where(x => x.Fuel == 0 && x.Defense == 0 && x.Attack == 0 || x.Name == "ARNOLD MODE"))
             {
                 <div class="col-sm-6 col-xl-4">
                     <ItemCardComponent Item="item"></ItemCardComponent>
