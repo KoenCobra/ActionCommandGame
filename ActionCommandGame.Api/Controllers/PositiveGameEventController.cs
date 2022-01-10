@@ -1,5 +1,6 @@
 ﻿using ActionCommandGame.Services.Abstractions;
 using ActionCommandGame.Services.Model.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActionCommandGame.Api.Controllers
@@ -13,6 +14,7 @@ namespace ActionCommandGame.Api.Controllers
             _positiveGameEventService = positiveGameEventService;
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpGet("positiveGameEvents/{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -20,6 +22,7 @@ namespace ActionCommandGame.Api.Controllers
             return Ok(result);
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpGet("positiveGameEvents")]
         public async Task<IActionResult> Find()
         {
@@ -27,6 +30,7 @@ namespace ActionCommandGame.Api.Controllers
             return Ok(result);
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpPost("positiveGameEvents")]
         public async Task<IActionResult> Create(PositiveGameEventResult positiveGameEventResult)
         {
@@ -34,6 +38,7 @@ namespace ActionCommandGame.Api.Controllers
             return Ok(result);
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpPut("positiveGameEvents/{id}")]
         public async Task<IActionResult> Update(int id, PositiveGameEventResult positiveGameEventResult)
         {
@@ -41,6 +46,7 @@ namespace ActionCommandGame.Api.Controllers
             return Ok(result);
         }
 
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("positiveGameEvents/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

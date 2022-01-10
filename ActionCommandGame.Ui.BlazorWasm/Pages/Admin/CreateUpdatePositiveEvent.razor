@@ -1,5 +1,5 @@
 ﻿  @page "/CreatePosEvent"
-  @page "/UpdateUpdatePosEvent/{Id:int}"
+  @page "/UpdatePosEvent/{Id:int}"
 @using Microsoft.AspNetCore.Authorization
   @inject NavigationManager _navigationManager
   @inject IPositiveGameEventApi _positiveGameEventApi
@@ -28,21 +28,21 @@
             <label class="col-sm-2 col-form-label">
                 Experience
             </label>
-            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Experience" placeholder="Attack" />
+            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Experience" placeholder="Experience" />
         </div>
         <ValidationMessage For="() => PositiveGameEvent.Gains" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Gains
             </label>
-            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Gains" placeholder="Defence" />
+            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Gains" placeholder="Gains" />
         </div>
         <ValidationMessage For="() => PositiveGameEvent.Probability" />
         <div class="d-flex flex-row mb-2">
             <label class="col-sm-2 col-form-label">
                 Probability
             </label>
-            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Probability" placeholder="Fuel" />
+            <InputNumber class="form-control" @bind-Value="PositiveGameEvent.Probability" placeholder="Probability" />
         </div>
         <div class="d-flex flex-row align-items-center">
             <button type="submit" class="btn change-item-btn bg-black border-white primary-color rounded-pill">

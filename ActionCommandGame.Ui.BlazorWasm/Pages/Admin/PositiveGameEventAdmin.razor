@@ -6,39 +6,40 @@
 <div class="container">
     <div class="d-flex flex-row mt-3">
         <a class="btn btn-primary" href="CreatePosEvent">Create</a>
-    <a class="btn btn-secondary ms-2" href="players">Back</a>
+        <a class="btn btn-secondary ms-2" href="players">Back</a>
     </div>
     <table class="table">
         <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Gains</th>
-            <th scope="col">Experience</th>
-            <th scope="col">Probability</th>
-        </tr>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Gains</th>
+                <th scope="col">Experience</th>
+                <th scope="col">Probability</th>
+                <th scope="col">Actions</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var posEvent in GameEventResults)
-        {
-            <tr>
-                <td>@posEvent.Name</td>
-                <td>@posEvent.Description</td>
-                <td>@posEvent.Gains</td>
-                <td>@posEvent.Experience</td>
-                <td>@posEvent.Probability</td>
-                <td>
-                    <button @onclick="() => DeleteItem(posEvent.Id)" class="btn btn-sm btn-danger rounded-pill me-1"><i class="fas fa-trash-alt"></i></button>
-                    <a href="/UpdateUpdatePosEvent/@posEvent.Id" class="btn btn-sm bg-success update-btn border-1 rounded-pill"><i class="fas fa-pen"></i></a>
-                </td>
-            </tr>
-        }
+            @foreach (var posEvent in PositiveGameEventResults)
+            {
+                <tr>
+                    <td>@posEvent.Name</td>
+                    <td>@posEvent.Description</td>
+                    <td>@posEvent.Gains</td>
+                    <td>@posEvent.Experience</td>
+                    <td>@posEvent.Probability</td>
+                    <td>
+                        <button @onclick="() => DeleteItem(posEvent.Id)" class="btn btn-sm btn-danger rounded-pill me-1"><i class="fas fa-trash-alt"></i></button>
+                        <a href="/UpdatePosEvent/@posEvent.Id" class="btn btn-sm bg-success update-btn border-1 rounded-pill"><i class="fas fa-pen"></i></a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
 
 @code {
-    private IList<PositiveGameEventResult> GameEventResults { get; set; } = new List<PositiveGameEventResult>();
+    private IList<PositiveGameEventResult> PositiveGameEventResults { get; set; } = new List<PositiveGameEventResult>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,8 +55,8 @@
 
     private async Task RefreshItems()
     {
-        var GameEvents = await _positiveGameEventApi.Find();
-        GameEventResults = GameEvents.Data;
+        var gameEvents = await _positiveGameEventApi.Find();
+        PositiveGameEventResults = gameEvents.Data;
     }
 
 }

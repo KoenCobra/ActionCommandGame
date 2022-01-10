@@ -7,8 +7,8 @@ namespace ActionCommandGame.Sdk.Abstractions
     {
         Task<ServiceResult<PositiveGameEventResult>> GetAsync(int id);
         Task<ServiceResult<IList<PositiveGameEventResult>>> Find();
-        Task<ServiceResult<PositiveGameEventResult>> Create(PositiveGameEventResult playerResult);
-        Task<ServiceResult<PositiveGameEventResult>> Update(int id, PositiveGameEventResult playerResult);
+        Task<ServiceResult<PositiveGameEventResult>> Create(PositiveGameEventResult positiveGameEventResult);
+        Task<ServiceResult<PositiveGameEventResult>> Update(int id, PositiveGameEventResult negativeGameEventResult);
         Task<ServiceResult<PositiveGameEventResult>> DeleteAsync(int id);
     }
 }
