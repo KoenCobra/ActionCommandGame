@@ -15,7 +15,7 @@
             <th scope="col">Name</th>
             <th scope="col">Price</th>
             <th scope="col">Attack</th>
-            <th scope="col">Defence</th>
+            <th scope="col">Defense</th>
             <th scope="col">Fuel</th>
             <th scope="col">CoolDown</th>
             <th scope="col">Action</th>
@@ -42,12 +42,8 @@
     </table>
 </div>
 
-<DeleteItemComponent @ref="DeleteItemComponent"/>
-
 @code {
     private IList<ItemResult> Items { get; set; } = new List<ItemResult>();
-
-    private DeleteItemComponent? DeleteItemComponent { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

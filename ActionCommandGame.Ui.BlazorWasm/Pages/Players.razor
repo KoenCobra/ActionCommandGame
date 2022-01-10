@@ -5,18 +5,23 @@
 @inject NavigationManager _navigationManager
 
 <div class="d-flex min-vh-100 position-relative w-100 players-background justify-content-center align-items-center">
-    <div class="top-0 position-absolute end-0">
-        <audio id="player">
-            <source id="playerSource" src="" />
-        </audio>
-
-        <a href="ItemAdmin">Item Admin</a>
-        <a href="positivegameventadmin">Positive Events Admin</a>
-        <a href="negativegameventadmin">Negative Events Admin</a>
-        <button @onclick="Logout" class="btn logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill">
-            LOGOUT
-            <i class="fas fa-sign-out-alt ms-1"></i>
-        </button>
+    <audio id="player">
+        <source id="playerSource" src="" />
+    </audio>
+    <div class="top-0 position-absolute end-0 w-100">
+        <div class="w-100 d-flex justify-content-between">
+            <div class="">
+            <a class="btn btn-sm logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill" href="ItemAdmin">Item Admin</a>
+            <a class="btn btn-sm logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill" href="positivegameventadmin">Positive Events Admin</a>
+            <a class="btn btn-sm logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill" href="negativegameventadmin">Negative Events Admin</a>
+        </div>
+        <div>
+            <button @onclick="Logout" class="btn logout-btn fw-bolder border-white primary-color me-3 mt-3 rounded-pill">
+                LOGOUT
+                <i class="fas fa-sign-out-alt ms-1"></i>
+            </button>
+        </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -42,7 +47,7 @@
         </div>
     </div>
 </div>
-  
+
 
 @code
 {

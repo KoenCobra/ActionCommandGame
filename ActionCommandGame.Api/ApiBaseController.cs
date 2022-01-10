@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActionCommandGame.Api
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class ApiBaseController : ControllerBase
     {
