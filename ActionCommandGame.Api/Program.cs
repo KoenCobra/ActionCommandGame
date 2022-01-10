@@ -1,9 +1,8 @@
 using ActionCommandGame.Api.Installers.Extensions;
 using ActionCommandGame.Repository;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-var  MyAllowAllOrigins = "_myAllowAllmyOrigins";
+var MyAllowAllOrigins = "_myAllowAllmyOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
 

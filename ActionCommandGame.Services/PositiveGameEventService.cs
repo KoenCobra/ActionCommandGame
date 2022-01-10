@@ -6,8 +6,10 @@ using ActionCommandGame.Model;
 using ActionCommandGame.Repository;
 using ActionCommandGame.Services.Abstractions;
 using ActionCommandGame.Services.Extensions;
+using ActionCommandGame.Services.Extensions.Filters;
 using ActionCommandGame.Services.Helpers;
 using ActionCommandGame.Services.Model.Core;
+using ActionCommandGame.Services.Model.Filters;
 using ActionCommandGame.Services.Model.Results;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +42,79 @@ namespace ActionCommandGame.Services
 
             return new ServiceResult<PositiveGameEventResult>(randomEvent);
         }
-        
+
+
+        public async Task<ServiceResult<PositiveGameEventResult>> GetAsync(int id)
+        {
+            var positiveGameEvent = await _database.PositiveGameEvents
+                .ProjectToResult()
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            return new ServiceResult<PositiveGameEventResult>(positiveGameEvent);
+        }
+
+        public async Task<ServiceResult<IList<PositiveGameEventResult>>> FindAsync()
+        {
+            var positiveGameEvents = await _database.PositiveGameEvents
+                .ProjectToResult()
+                .ToListAsync();
+
+            return new ServiceResult<IList<PositiveGameEventResult>>(positiveGameEvents);
+        }
+
+        public async Task<ServiceResult<PositiveGameEventResult>> Create(PositiveGameEventResult positiveGameEventResult)
+        {
+            var positiveGameEvent = new PositiveGameEvent()
+            {
+                Id = positiveGameEventResult.Id,
+                Name = positiveGameEventResult.Name,
+                Description = positiveGameEventResult.Description,
+                Experience = positiveGameEventResult.Experience,
+                Gains = positiveGameEventResult.Gains,
+                Probability = positiveGameEventResult.Probability,
+            };
+
+            _database.PositiveGameEvents.Add(positiveGameEvent);
+            await _database.SaveChangesAsync();
+
+            return await GetAsync(positiveGameEvent.Id);
+        }
+
+        public async Task<ServiceResult<PositiveGameEventResult>> Update(int id, PositiveGameEventResult positiveGameEventResult)
+        {
+            var dbpositiveGameEvent = await _database.PositiveGameEvents
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (dbpositiveGameEvent == null)
+            {
+                return null;
+            }
+
+            dbpositiveGameEvent.Name = positiveGameEventResult.Name;
+            dbpositiveGameEvent.Gains = positiveGameEventResult.Gains;
+            dbpositiveGameEvent.Experience = positiveGameEventResult.Experience;
+            dbpositiveGameEvent.Description = positiveGameEventResult.Description;
+            dbpositiveGameEvent.Probability = positiveGameEventResult.Probability;
+
+            await _database.SaveChangesAsync();
+
+            return await GetAsync(dbpositiveGameEvent.Id);
+        }
+
+        public async Task<ServiceResult> DeleteAsync(int id)
+        {
+            var positiveGameEvent = await _database.PositiveGameEvents
+                .SingleOrDefaultAsync(p => p.Id == id);
+
+            if (positiveGameEvent == null)
+            {
+                return new ServiceResult().NotFound();
+            }
+
+            _database.PositiveGameEvents.Remove(positiveGameEvent);
+            await _database.SaveChangesAsync();
+
+            return new ServiceResult();
+        }
     }
 }
