@@ -21,7 +21,7 @@ namespace ActionCommandGame.Api.Installers
                 options.UseSqlServer(connectionString);
 
                 //had to put this back otherwise the attack, defense, and fuel were not being consumed anymore
-            }, ServiceLifetime.Singleton, ServiceLifetime.Singleton);
+            });
         }
     }
 }
